@@ -36,7 +36,7 @@ export function CarsharingComponent({
           </button>
         </div>
         <footer className={styles.footer}>
-          <p>© 2016-2019 «Need for drive»</p>
+          <p className={styles.copyright}>© 2016-2019 «Need for drive»</p>
           <p className={styles.company_number}>8 (495) 234-22-44</p>
         </footer>
       </div>

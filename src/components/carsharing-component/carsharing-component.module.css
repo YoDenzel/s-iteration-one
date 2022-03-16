@@ -79,7 +79,7 @@
   background: var(--button-default);
 }
 
-.main_book__button:focus {
+.main_book__button:focus-visible {
   background: var(--button-hover);
 }
 
@@ -106,10 +106,28 @@
   font-size: 14px;
   line-height: 16px;
   color: var(--gray);
+  padding-left: 7px;
 }
 
 .footer {
   flex-shrink: 0;
   display: flex;
   justify-content: space-between;
+  padding-bottom: 32px;
+}
+
+.copyright {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15px;
+  color: var(--gray);
+}
+
+.company_number {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15px;
+  color: var(--black);
 }
