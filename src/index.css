@@ -4,6 +4,9 @@
   --black: #121212;
   --gray: #999999;
   --white: #ffffff;
+  --button-default: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
+  --button-hover: linear-gradient(90deg, #0b934a 2.61%, #026e47 112.6%);
+  --button-clicked: linear-gradient(90deg, #076432 2.61%, #013c27 112.6%);
 }
 
 body {
