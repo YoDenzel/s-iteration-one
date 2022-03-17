@@ -1,6 +1,7 @@
 .carsharing {
   min-height: 100vh;
   background-color: var(--white);
+  width: 100%;
 }
 
 .container {
@@ -130,4 +131,11 @@
   font-size: 13px;
   line-height: 15px;
   color: var(--black);
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }
