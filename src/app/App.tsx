@@ -4,7 +4,7 @@ import { MainPage } from '../pages';
 export function App() {
   return (
     <Routes>
-      <Route path="/" element={<MainPage />} />
+      <Route path="/simbirsoft-iteration-one" element={<MainPage />} />
     </Routes>
   );
 }
