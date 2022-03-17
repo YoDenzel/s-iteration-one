@@ -1,0 +1,18 @@
+.container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.slider_content {
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.nav_arrows {
+  height: 100%;
+}
