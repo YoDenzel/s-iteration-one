@@ -30,7 +30,6 @@
 
 .more_info {
   border-radius: 4px;
-  font-family: Roboto;
   font-weight: 500;
   font-size: 18px;
   line-height: 21px;
@@ -45,4 +44,11 @@
 
 .more_info:active {
   opacity: 0.9;
+}
+
+@media (max-width: 1439px) {
+  .description_block {
+    margin-left: 64px;
+    margin-right: 64px;
+  }
 }
