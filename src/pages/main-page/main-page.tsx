@@ -1,14 +1,54 @@
 import { useState } from 'react';
-import { CarsharingComponent, HamburgerMenu } from '../../components';
-import { CarsharingSliderComponent } from '../../components/carsharing-slider-component';
+import {
+  CarsharingComponent,
+  CarsharingSliderComponent,
+} from '../../components';
 import styles from './main-page.module.css';
 import { images } from '../../shared/images';
+import { Icons } from '../../shared/icons';
+import { useWindowWidth } from '../../shared/custom-hooks';
 
 export function MainPage() {
   const [isClicked, setClicked] = useState(false);
-  const [isMenuActive, setMenuActive] = useState(true);
+  const [isMenuActive, setMenuActive] = useState(false);
+  const [language, setLanguage] = useState('Eng');
+  const { windowWidth, isMobile } = useWindowWidth();
 
-  const getWidth = () => window.innerWidth;
+  console.log(windowWidth);
+
+  const menuIcons = [
+    {
+      linkTo: '/simbirsoft-iteration-one',
+      icon: Icons.TelegramIcon,
+    },
+    {
+      linkTo: '/simbirsoft-iteration-one',
+      icon: Icons.FacebookIcon,
+    },
+    {
+      linkTo: '/simbirsoft-iteration-one',
+      icon: Icons.InstagramIcon,
+    },
+  ];
+
+  const menuTitlesArr = [
+    {
+      title: 'Парковка',
+      linkTo: '/simbirsoft-iteration-one',
+    },
+    {
+      title: 'Страховка',
+      linkTo: '/simbirsoft-iteration-one',
+    },
+    {
+      title: 'Бензин',
+      linkTo: '/simbirsoft-iteration-one',
+    },
+    {
+      title: 'Обслуживание',
+      linkTo: '/simbirsoft-iteration-one',
+    },
+  ];
 
   const [animation, setAnimation] = useState({
     translate: 0,
@@ -48,17 +88,29 @@ export function MainPage() {
 
   return (
     <div className={styles.container}>
-      <HamburgerMenu isMenuActive={isMenuActive} />
-      <CarsharingComponent isClicked={isClicked} setClicked={setClicked} />
-      <CarsharingSliderComponent
-        translate={translate}
-        transition={transition}
-        width={getWidth()}
-        sliderImagesArr={images}
-        prevSlide={prevSlide}
-        nextSlide={nextSlide}
-        activeIndex={activeIndex}
+      <CarsharingComponent
+        windowWidth={windowWidth}
+        isClicked={isClicked}
+        setClicked={setClicked}
+        isMenuActive={isMenuActive}
+        language={language}
+        menuIconsArr={menuIcons}
+        menuTitlesArr={menuTitlesArr}
+        setLanguage={setLanguage}
+        setMenuActive={setMenuActive}
       />
+      {windowWidth > 1023 ? (
+        <CarsharingSliderComponent
+          translate={translate}
+          transition={transition}
+          width={2}
+          sliderImagesArr={images}
+          prevSlide={prevSlide}
+          nextSlide={nextSlide}
+          activeIndex={activeIndex}
+          setAnimation={setAnimation}
+        />
+      ) : null}
     </div>
   );
 }
