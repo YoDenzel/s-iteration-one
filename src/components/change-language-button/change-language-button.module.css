@@ -1,0 +1,33 @@
+.language_button {
+  align-self: center;
+  margin: 30px 8px;
+  width: 48px;
+  height: 48px;
+  border: none;
+  background-color: unset;
+  color: var(--main-accent);
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 15px;
+}
+
+.language_button:hover {
+  border: 1px solid #eeeeee;
+  border-radius: 50%;
+  color: var(--white);
+}
+
+.language_button:active {
+  color: var(--main-accent);
+}
+
+@media (max-width: 767px) {
+  .language_button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+  }
+}
