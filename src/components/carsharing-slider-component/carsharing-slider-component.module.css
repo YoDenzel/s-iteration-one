@@ -16,3 +16,6 @@
 .nav_arrows {
   height: 100%;
 }
+
+@media (max-width: 1023px) {
+}

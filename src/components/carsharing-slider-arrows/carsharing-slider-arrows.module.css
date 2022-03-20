@@ -7,6 +7,10 @@
   transition: transform ease-in 0.1s;
   height: 100%;
   z-index: 100;
+  background-color: unset;
+  border: unset;
+  cursor: pointer;
+  align-items: center;
 }
 
 .right_arrow {
@@ -18,6 +22,10 @@
   height: 100%;
   z-index: 100;
   padding: 0 28px;
+  background-color: unset;
+  border: unset;
+  cursor: pointer;
+  align-items: center;
 }
 
 .left_arrow:hover {
@@ -30,8 +38,12 @@
   opacity: 0.2;
 }
 
-.nav_button {
-  background-color: unset;
-  border: unset;
-  cursor: pointer;
+@media (max-width: 1439px) {
+  .left_arrow {
+    padding: 0 12px;
+  }
+
+  .right_arrow {
+    padding: 0 12px;
+  }
 }

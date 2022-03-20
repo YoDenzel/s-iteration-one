@@ -12,16 +12,12 @@ export function CarsharingSliderArrows({
 }: TCarsharingSliderArrows) {
   return (
     <>
-      <div className={styles.left_arrow} style={{}}>
-        <button className={styles.nav_button} onClick={() => prevSlide()}>
-          <Icons.LeftArrow color="#ffffff" />
-        </button>
-      </div>
-      <div className={styles.right_arrow}>
-        <button className={styles.nav_button} onClick={() => nextSlide()}>
-          <Icons.RightArrow color="#ffffff" />
-        </button>
-      </div>
+      <button className={styles.left_arrow} onClick={() => prevSlide()}>
+        <Icons.LeftArrow color="#ffffff" />
+      </button>
+      <button className={styles.right_arrow} onClick={() => nextSlide()}>
+        <Icons.RightArrow color="#ffffff" />
+      </button>
     </>
   );
 }

@@ -1,16 +1,17 @@
-import { images } from '../../shared/images';
-import { CarsharingSliderArrows } from '../carsharing-slider-arrows';
-import { SingleSlideComponent } from '../single-slide-component/single-slide-component';
+import { TSetAnimation, TSliderImagesArr } from '../../shared/types';
+import { CarsharingSliderArrows, SingleSlideComponent } from '../index';
+import { SliderPaginationDots } from '../slider-pagination-dots';
 import styles from './carsharing-slider-component.module.css';
 
 type TCarsharingSliderComponent = {
   translate: number;
   transition: number;
   width: number;
-  sliderImagesArr: typeof images;
+  sliderImagesArr: TSliderImagesArr[];
   nextSlide: () => void;
   prevSlide: () => void;
   activeIndex: number;
+  setAnimation: TSetAnimation;
 };
 
 export function CarsharingSliderComponent({
@@ -21,11 +22,16 @@ export function CarsharingSliderComponent({
   nextSlide,
   prevSlide,
   activeIndex,
+  setAnimation,
 }: TCarsharingSliderComponent) {
   return (
     <div className={styles.container}>
       <CarsharingSliderArrows prevSlide={prevSlide} nextSlide={nextSlide} />
-
+      <SliderPaginationDots
+        activeIndex={activeIndex}
+        sliderImagesArr={sliderImagesArr}
+        setAnimation={setAnimation}
+      />
       <div
         className={styles.slider_content}
         style={{
