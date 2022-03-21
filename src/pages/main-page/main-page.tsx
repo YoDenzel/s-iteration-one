@@ -7,7 +7,6 @@ import styles from './main-page.module.css';
 import { images } from '../../shared/images';
 import { Icons } from '../../shared/icons';
 import { useWindowWidth } from '../../shared/custom-hooks';
-import { nextSlide } from '../../shared/functions';
 
 export function MainPage() {
   const [isClicked, setClicked] = useState(false);
