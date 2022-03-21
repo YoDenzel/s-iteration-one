@@ -1,10 +1,8 @@
-import { SetStateAction, Dispatch } from 'react';
-
 export type TIconProps = {
   height?: number;
   width?: number;
   color?: string;
-  isActive?: boolean
+  isActive?: boolean;
 };
 
 export type TSliderImagesArr = {
@@ -12,16 +10,6 @@ export type TSliderImagesArr = {
   description: string;
   buttonColor: string;
   sliderImage: any;
-};
-
-export type TSetAnimation = Dispatch<
-  SetStateAction<{ translate: number; transition: number; activeIndex: number }>
->;
-
-export type TAnimation = {
-  translate: number;
-  transition: number;
-  activeIndex: number;
 };
 
 export type TMenuTitlesArr = {
