@@ -39,17 +39,18 @@ export function CarsharingSliderComponent({
           transition: `transform ease-out 0.4s`,
         }}
       >
-        {sliderImagesArr.map((item, index) =>
-          activeIndex === index ? (
-            <SingleSlideComponent
-              key={item.title + index}
-              sliderImage={item.sliderImage}
-              buttonColor={item.buttonColor}
-              description={item.description}
-              title={item.title}
-              more="Подробнее"
-            />
-          ) : null,
+        {sliderImagesArr.map(
+          (item, index) =>
+            activeIndex === index && (
+              <SingleSlideComponent
+                key={item.title + index}
+                sliderImage={item.sliderImage}
+                buttonColor={item.buttonColor}
+                description={item.description}
+                title={item.title}
+                more="Подробнее"
+              />
+            ),
         )}
       </div>
     </div>

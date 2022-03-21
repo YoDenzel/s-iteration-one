@@ -11,6 +11,7 @@ type TMenuComponent = {
   windowWidth: number;
   language: string;
   setLanguage: (v: string) => void;
+  isActive: boolean;
 };
 
 export function MenuComponent({
@@ -20,9 +21,14 @@ export function MenuComponent({
   windowWidth,
   language,
   setLanguage,
+  isActive,
 }: TMenuComponent) {
   return (
-    <nav className={styles.menu_container__active}>
+    <nav
+      className={
+        isActive ? styles.menu_container__active : styles.menu_container
+      }
+    >
       <button
         className={styles.close_menu}
         onClick={() => setMenuActive(false)}
