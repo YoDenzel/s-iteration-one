@@ -49,6 +49,10 @@
   text-align: left;
 }
 
+.menu_link:hover {
+  color: var(--main-accent);
+}
+
 .menu_link:active {
   color: var(--main-accent);
 }
