@@ -1,44 +1,38 @@
-import { TSetAnimation, TSliderImagesArr } from '../../shared/types';
+import { TSliderImagesArr } from '../../shared/types';
 import { CarsharingSliderArrows, SingleSlideComponent } from '../index';
 import { SliderPaginationDots } from '../slider-pagination-dots';
 import styles from './carsharing-slider-component.module.css';
 
 type TCarsharingSliderComponent = {
-  translate: number;
-  transition: number;
-  width: number;
   sliderImagesArr: TSliderImagesArr[];
+  activeIndex: number;
+  setActiveIndex: (v: number) => void;
   nextSlide: () => void;
   prevSlide: () => void;
-  activeIndex: number;
-  setAnimation: TSetAnimation;
+  setAutoPlayEnabled: (v: boolean) => void;
 };
 
 export function CarsharingSliderComponent({
-  translate,
-  transition,
-  width,
   sliderImagesArr,
+  activeIndex,
+  setActiveIndex,
   nextSlide,
   prevSlide,
-  activeIndex,
-  setAnimation,
+  setAutoPlayEnabled,
 }: TCarsharingSliderComponent) {
   return (
     <div className={styles.container}>
-      <CarsharingSliderArrows prevSlide={prevSlide} nextSlide={nextSlide} />
+      <CarsharingSliderArrows
+        prevSlide={prevSlide}
+        nextSlide={nextSlide}
+        setAutoPlayEnabled={setAutoPlayEnabled}
+      />
       <SliderPaginationDots
         activeIndex={activeIndex}
         sliderImagesArr={sliderImagesArr}
-        setAnimation={setAnimation}
+        setActiveIndex={setActiveIndex}
       />
-      <div
-        className={styles.slider_content}
-        style={{
-          transform: `translate(-${translate}px)`,
-          transition: `transform ease-out 0.4s`,
-        }}
-      >
+      <div className={styles.slider_content}>
         {sliderImagesArr.map(
           (item, index) =>
             activeIndex === index && (

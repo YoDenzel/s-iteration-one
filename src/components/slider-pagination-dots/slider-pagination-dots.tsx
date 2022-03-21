@@ -1,17 +1,16 @@
-import { Dispatch, SetStateAction } from 'react';
-import { TSetAnimation, TSliderImagesArr } from '../../shared/types';
+import { TSliderImagesArr } from '../../shared/types';
 import styles from './slider-pagination-dots.module.css';
 
 type TSliderPaginationDots = {
   sliderImagesArr: TSliderImagesArr[];
   activeIndex: number;
-  setAnimation: TSetAnimation;
+  setActiveIndex: (v: number) => void;
 };
 
 export function SliderPaginationDots({
   sliderImagesArr,
   activeIndex,
-  setAnimation,
+  setActiveIndex,
 }: TSliderPaginationDots) {
   return (
     <nav className={styles.dots_container}>
@@ -22,13 +21,7 @@ export function SliderPaginationDots({
           style={{
             backgroundColor: index === activeIndex ? '#0EC261' : '#FFFFFF',
           }}
-          onClick={() =>
-            setAnimation({
-              translate: 0,
-              transition: 0,
-              activeIndex: index,
-            })
-          }
+          onClick={() => setActiveIndex(index)}
         />
       ))}
     </nav>

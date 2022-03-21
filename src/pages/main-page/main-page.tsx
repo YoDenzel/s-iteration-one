@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   CarsharingComponent,
   CarsharingSliderComponent,
@@ -7,11 +7,14 @@ import styles from './main-page.module.css';
 import { images } from '../../shared/images';
 import { Icons } from '../../shared/icons';
 import { useWindowWidth } from '../../shared/custom-hooks';
+import { nextSlide } from '../../shared/functions';
 
 export function MainPage() {
   const [isClicked, setClicked] = useState(false);
   const [isMenuActive, setMenuActive] = useState(false);
   const [language, setLanguage] = useState('Eng');
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [autoPlayEnabled, setAutoPlayEnabled] = useState(true);
   const { windowWidth } = useWindowWidth();
 
   const menuIcons = [
@@ -48,40 +51,33 @@ export function MainPage() {
     },
   ];
 
-  const [animation, setAnimation] = useState({
-    translate: 0,
-    transition: 0.45,
-    activeIndex: 0,
+  const autoPlayRef = useRef<any>();
+
+  useEffect(() => {
+    autoPlayRef.current = nextSlide;
   });
 
-  const { translate, transition, activeIndex } = animation;
+  useEffect(() => {
+    const play = () => {
+      autoPlayEnabled && autoPlayRef.current();
+    };
 
-  const nextSlide = () => {
-    if (activeIndex === images.length - 1) {
-      return setAnimation({
-        ...animation,
-        activeIndex: 0,
-      });
-    }
-
-    setAnimation({
-      ...animation,
-      activeIndex: activeIndex + 1,
-    });
-  };
+    const interval = setInterval(play, 2 * 1000);
+    return () => clearInterval(interval);
+  }, [autoPlayEnabled]);
 
   const prevSlide = () => {
     if (activeIndex === 0) {
-      return setAnimation({
-        ...animation,
-        activeIndex: images.length - 1,
-      });
+      return setActiveIndex(images.length - 1);
     }
+    setActiveIndex(activeIndex - 1);
+  };
 
-    setAnimation({
-      ...animation,
-      activeIndex: activeIndex - 1,
-    });
+  const nextSlide = () => {
+    if (activeIndex === images.length - 1) {
+      return setActiveIndex(0);
+    }
+    setActiveIndex(activeIndex + 1);
   };
 
   return (
@@ -99,14 +95,12 @@ export function MainPage() {
       />
       {windowWidth > 1023 ? (
         <CarsharingSliderComponent
-          translate={translate}
-          transition={transition}
-          width={2}
-          sliderImagesArr={images}
-          prevSlide={prevSlide}
           nextSlide={nextSlide}
+          prevSlide={prevSlide}
+          sliderImagesArr={images}
           activeIndex={activeIndex}
-          setAnimation={setAnimation}
+          setActiveIndex={setActiveIndex}
+          setAutoPlayEnabled={setAutoPlayEnabled}
         />
       ) : null}
     </div>
