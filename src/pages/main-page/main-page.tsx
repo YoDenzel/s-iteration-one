@@ -12,9 +12,7 @@ export function MainPage() {
   const [isClicked, setClicked] = useState(false);
   const [isMenuActive, setMenuActive] = useState(false);
   const [language, setLanguage] = useState('Eng');
-  const { windowWidth, isMobile } = useWindowWidth();
-
-  console.log(windowWidth);
+  const { windowWidth } = useWindowWidth();
 
   const menuIcons = [
     {
