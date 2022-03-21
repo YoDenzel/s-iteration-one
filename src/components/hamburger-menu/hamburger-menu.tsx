@@ -23,25 +23,30 @@ export function HamburgerMenu({
   menuTitlesArr,
   windowWidth,
 }: THamburgerMenu) {
-  return !isMenuActive ? (
-    <aside className={styles.container}>
-      <button className={styles.burger_btn} onClick={() => setMenuActive(true)}>
-        <Icons.OpenHamburgerMenuIcon
-          color={windowWidth < 768 ? '#000' : '#fff'}
-        />
-      </button>
-      {windowWidth > 765 && (
-        <ChangeLanguageButton language={language} setLanguage={setLanguage} />
-      )}
-    </aside>
-  ) : (
-    <MenuComponent
-      windowWidth={windowWidth}
-      menuIconsArr={menuIconsArr}
-      menuTitlesArr={menuTitlesArr}
-      setMenuActive={setMenuActive}
-      language={language}
-      setLanguage={setLanguage}
-    />
+  return (
+    <>
+      <aside className={styles.container}>
+        <button
+          className={styles.burger_btn}
+          onClick={() => setMenuActive(true)}
+        >
+          <Icons.OpenHamburgerMenuIcon
+            color={windowWidth < 768 ? '#000' : '#fff'}
+          />
+        </button>
+        {windowWidth > 765 && (
+          <ChangeLanguageButton language={language} setLanguage={setLanguage} />
+        )}
+      </aside>
+      <MenuComponent
+        windowWidth={windowWidth}
+        menuIconsArr={menuIconsArr}
+        menuTitlesArr={menuTitlesArr}
+        setMenuActive={setMenuActive}
+        language={language}
+        setLanguage={setLanguage}
+        isActive={isMenuActive}
+      />
+    </>
   );
 }
