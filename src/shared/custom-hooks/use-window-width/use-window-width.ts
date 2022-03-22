@@ -35,12 +35,12 @@ export const useWindowWidth = (): TReturn => {
   useEffect(() => {
     phoneWidth({ windowWidth: windowWidth, setState: setIsMobile });
     tabletWidth({ windowWidth: windowWidth, setState: setIsTablet });
-  }, []);
 
-  window.addEventListener('resize', function () {
-    phoneWidth({ windowWidth: windowWidth, setState: setIsMobile });
-    tabletWidth({ windowWidth: windowWidth, setState: setIsTablet });
-  });
+    window.addEventListener('resize', function () {
+      phoneWidth({ windowWidth: windowWidth, setState: setIsMobile });
+      tabletWidth({ windowWidth: windowWidth, setState: setIsTablet });
+    });
+  }, []);
 
   return {
     isMobile,
