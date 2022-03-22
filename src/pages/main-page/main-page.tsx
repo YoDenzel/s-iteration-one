@@ -49,7 +49,7 @@ export function MainPage() {
     },
   ];
 
-  const autoPlayRef = useRef<any>();
+  const autoPlayRef = useRef<() => void>();
 
   useEffect(() => {
     autoPlayRef.current = nextSlide;
@@ -57,7 +57,7 @@ export function MainPage() {
 
   useEffect(() => {
     const play = () => {
-      autoPlayEnabled && autoPlayRef.current();
+      autoPlayEnabled && autoPlayRef.current && autoPlayRef.current();
     };
 
     const interval = setInterval(play, 2 * 1000);
