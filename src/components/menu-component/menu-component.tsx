@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Icons } from '../../shared/icons';
 import { TMenuIcons, TMenuTitlesArr } from '../../shared/types';
@@ -14,6 +15,11 @@ type TMenuComponent = {
   isActive: boolean;
 };
 
+type TState = {
+  activeIndex: number | null;
+  isHovered: boolean;
+};
+
 export function MenuComponent({
   menuIconsArr,
   menuTitlesArr,
@@ -23,6 +29,11 @@ export function MenuComponent({
   setLanguage,
   isActive,
 }: TMenuComponent) {
+  const [mouseHover, setMouseHover] = useState<TState>({
+    activeIndex: null,
+    isHovered: false,
+  });
+
   return (
     <nav
       className={
@@ -48,8 +59,26 @@ export function MenuComponent({
             to={item.linkTo}
             key={item.linkTo + index}
             className={styles.social_media__item}
+            onMouseEnter={() =>
+              setMouseHover({
+                activeIndex: index,
+                isHovered: !mouseHover.isHovered,
+              })
+            }
+            onMouseLeave={() =>
+              setMouseHover({
+                activeIndex: index,
+                isHovered: !mouseHover.isHovered,
+              })
+            }
           >
-            <item.icon />
+            <item.icon
+              color={
+                index === mouseHover.activeIndex && mouseHover.isHovered
+                  ? '#0EC261'
+                  : '#ffffff'
+              }
+            />
           </Link>
         ))}
       </div>
