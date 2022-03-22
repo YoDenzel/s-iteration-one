@@ -1,11 +1,10 @@
 import { Icons } from '../../shared/icons';
 import { TMenuIcons, TMenuTitlesArr } from '../../shared/types';
 import { HamburgerMenu } from '../hamburger-menu';
+import { HeaderComponent } from '../header-component';
 import styles from './carsharing-component.module.css';
 
 type TCarsharingComponent = {
-  isClicked: boolean;
-  setClicked: (v: boolean) => void;
   isMenuActive: boolean;
   setMenuActive: (v: boolean) => void;
   language: string;
@@ -16,8 +15,6 @@ type TCarsharingComponent = {
 };
 
 export function CarsharingComponent({
-  isClicked,
-  setClicked,
   isMenuActive,
   language,
   menuIconsArr,
@@ -38,13 +35,7 @@ export function CarsharingComponent({
         menuTitlesArr={menuTitlesArr}
       />
       <div className={styles.container}>
-        <header className={styles.header}>
-          <p className={styles.header_tagline}>Need for drive</p>
-          <div className={styles.location_block}>
-            <Icons.LocationIcon />
-            <p className={styles.location}>Ульяновск</p>
-          </div>
-        </header>
+        <HeaderComponent />
         <div className={styles.main}>
           <div className={styles.main_text_content}>
             <h1 className={styles.main_header}>Каршеринг</h1>
@@ -53,12 +44,7 @@ export function CarsharingComponent({
               Поминутная аренда авто твоего города
             </p>
           </div>
-          <button
-            className={`${styles.main_book__button} ${
-              isClicked ? styles.main_book__button__clicked : ''
-            }`}
-            onClick={() => setClicked(true)}
-          >
+          <button className={`${styles.main_book__button}`}>
             Забронировать
           </button>
         </div>

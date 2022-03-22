@@ -9,7 +9,6 @@ import { Icons } from '../../shared/icons';
 import { useWindowWidth } from '../../shared/custom-hooks';
 
 export function MainPage() {
-  const [isClicked, setClicked] = useState(false);
   const [isMenuActive, setMenuActive] = useState(false);
   const [language, setLanguage] = useState('Eng');
   const [activeIndex, setActiveIndex] = useState(0);
@@ -83,8 +82,6 @@ export function MainPage() {
     <div className={styles.container}>
       <CarsharingComponent
         windowWidth={windowWidth}
-        isClicked={isClicked}
-        setClicked={setClicked}
         isMenuActive={isMenuActive}
         language={language}
         menuIconsArr={menuIcons}
