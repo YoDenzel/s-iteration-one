@@ -15,40 +15,6 @@ export function MainPage() {
   const [autoPlayEnabled, setAutoPlayEnabled] = useState(true);
   const { windowWidth } = useWindowWidth();
 
-  const menuIcons = [
-    {
-      linkTo: '/simbirsoft-iteration-one',
-      icon: Icons.TelegramIcon,
-    },
-    {
-      linkTo: '/simbirsoft-iteration-one',
-      icon: Icons.FacebookIcon,
-    },
-    {
-      linkTo: '/simbirsoft-iteration-one',
-      icon: Icons.InstagramIcon,
-    },
-  ];
-
-  const menuTitlesArr = [
-    {
-      title: 'Парковка',
-      linkTo: '/simbirsoft-iteration-one',
-    },
-    {
-      title: 'Страховка',
-      linkTo: '/simbirsoft-iteration-one',
-    },
-    {
-      title: 'Бензин',
-      linkTo: '/simbirsoft-iteration-one',
-    },
-    {
-      title: 'Обслуживание',
-      linkTo: '/simbirsoft-iteration-one',
-    },
-  ];
-
   const autoPlayRef = useRef<() => void>();
 
   useEffect(() => {
@@ -84,8 +50,6 @@ export function MainPage() {
         windowWidth={windowWidth}
         isMenuActive={isMenuActive}
         language={language}
-        menuIconsArr={menuIcons}
-        menuTitlesArr={menuTitlesArr}
         setLanguage={setLanguage}
         setMenuActive={setMenuActive}
       />

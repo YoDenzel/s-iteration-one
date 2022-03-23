@@ -1,5 +1,5 @@
 import { Icons } from '../../shared/icons';
-import { TMenuIcons, TMenuTitlesArr } from '../../shared/types';
+
 import { ChangeLanguageButton } from '../change-language-button';
 import { MenuComponent } from '../menu-component';
 import styles from './hamburger-menu.module.css';
@@ -9,8 +9,6 @@ type THamburgerMenu = {
   setMenuActive: (v: boolean) => void;
   language: string;
   setLanguage: (v: string) => void;
-  menuIconsArr: TMenuIcons[];
-  menuTitlesArr: TMenuTitlesArr[];
   windowWidth: number;
 };
 
@@ -19,10 +17,41 @@ export function HamburgerMenu({
   language,
   setLanguage,
   setMenuActive,
-  menuIconsArr,
-  menuTitlesArr,
   windowWidth,
 }: THamburgerMenu) {
+  const menuIcons = [
+    {
+      linkTo: '/simbirsoft-iteration-one',
+      icon: Icons.TelegramIcon,
+    },
+    {
+      linkTo: '/simbirsoft-iteration-one',
+      icon: Icons.FacebookIcon,
+    },
+    {
+      linkTo: '/simbirsoft-iteration-one',
+      icon: Icons.InstagramIcon,
+    },
+  ];
+
+  const menuTitlesArr = [
+    {
+      title: 'Парковка',
+      linkTo: '/simbirsoft-iteration-one',
+    },
+    {
+      title: 'Страховка',
+      linkTo: '/simbirsoft-iteration-one',
+    },
+    {
+      title: 'Бензин',
+      linkTo: '/simbirsoft-iteration-one',
+    },
+    {
+      title: 'Обслуживание',
+      linkTo: '/simbirsoft-iteration-one',
+    },
+  ];
   return (
     <>
       <aside className={styles.container}>
@@ -34,13 +63,13 @@ export function HamburgerMenu({
             color={windowWidth < 768 ? '#000' : '#fff'}
           />
         </button>
-        {windowWidth > 765 && (
+        {windowWidth > 767 && (
           <ChangeLanguageButton language={language} setLanguage={setLanguage} />
         )}
       </aside>
       <MenuComponent
         windowWidth={windowWidth}
-        menuIconsArr={menuIconsArr}
+        menuIconsArr={menuIcons}
         menuTitlesArr={menuTitlesArr}
         setMenuActive={setMenuActive}
         language={language}

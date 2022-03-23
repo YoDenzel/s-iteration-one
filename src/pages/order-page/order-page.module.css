@@ -1,0 +1,11 @@
+.order_container {
+  min-height: 100vh;
+  background-color: var(--white);
+  width: 100%;
+  display: flex;
+}
+
+.wrapper {
+  width: 100%;
+  padding: 0 64px;
+}
