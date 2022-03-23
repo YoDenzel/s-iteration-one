@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 type TReturn = {
   isMobile?: boolean;
@@ -6,40 +6,25 @@ type TReturn = {
   windowWidth: number;
 };
 
-type TWidthFunction = {
-  windowWidth: number;
-  setState: (v: boolean) => void;
-};
-
-const tabletWidth = ({ windowWidth, setState }: TWidthFunction) => {
-  if (windowWidth <= 1023 && windowWidth >= 768) {
-    setState(true);
-  } else {
-    setState(false);
-  }
-};
-
-const phoneWidth = ({ windowWidth, setState }: TWidthFunction) => {
-  if (windowWidth < 768) {
-    setState && setState(true);
-  } else {
-    setState && setState(false);
-  }
-};
+const checkIsTabletWidth = (width: number) => width <= 1023 && width >= 768;
+const checkIsPhoneWidth = (width: number) => width <= 768;
 
 export const useWindowWidth = (): TReturn => {
-  const windowWidth = window.innerWidth;
-  const [isMobile, setIsMobile] = useState<boolean>();
-  const [isTablet, setIsTablet] = useState<boolean>();
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const isMobile = useMemo(() => checkIsPhoneWidth(windowWidth), [windowWidth]);
+  const isTablet = useMemo(
+    () => checkIsTabletWidth(windowWidth),
+    [windowWidth],
+  );
 
   useEffect(() => {
-    phoneWidth({ windowWidth: windowWidth, setState: setIsMobile });
-    tabletWidth({ windowWidth: windowWidth, setState: setIsTablet });
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
 
-    window.addEventListener('resize', function () {
-      phoneWidth({ windowWidth: windowWidth, setState: setIsMobile });
-      tabletWidth({ windowWidth: windowWidth, setState: setIsTablet });
-    });
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return {
