@@ -1,5 +1,4 @@
-import { Icons } from '../../shared/icons';
-import { TMenuIcons, TMenuTitlesArr } from '../../shared/types';
+import { Link } from 'react-router-dom';
 import { HamburgerMenu } from '../hamburger-menu';
 import { HeaderComponent } from '../header-component';
 import styles from './carsharing-component.module.css';
@@ -9,16 +8,12 @@ type TCarsharingComponent = {
   setMenuActive: (v: boolean) => void;
   language: string;
   setLanguage: (v: string) => void;
-  menuIconsArr: TMenuIcons[];
-  menuTitlesArr: TMenuTitlesArr[];
   windowWidth: number;
 };
 
 export function CarsharingComponent({
   isMenuActive,
   language,
-  menuIconsArr,
-  menuTitlesArr,
   setLanguage,
   setMenuActive,
   windowWidth,
@@ -31,8 +26,6 @@ export function CarsharingComponent({
         language={language}
         setLanguage={setLanguage}
         setMenuActive={setMenuActive}
-        menuIconsArr={menuIconsArr}
-        menuTitlesArr={menuTitlesArr}
       />
       <div className={styles.container}>
         <HeaderComponent />
@@ -44,9 +37,11 @@ export function CarsharingComponent({
               Поминутная аренда авто твоего города
             </p>
           </div>
-          <button className={`${styles.main_book__button}`}>
-            Забронировать
-          </button>
+          <Link className={styles.link} to={'/simbirsoft-iteration-one/order'}>
+            <button className={`${styles.main_book__button}`}>
+              Забронировать
+            </button>
+          </Link>
         </div>
         <footer className={styles.footer}>
           <p className={styles.copyright}>© 2016-2019 «Need for drive»</p>
