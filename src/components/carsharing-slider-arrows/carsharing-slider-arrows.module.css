@@ -1,0 +1,49 @@
+.left_arrow {
+  display: flex;
+  position: absolute;
+  left: 0;
+  padding: 0 28px;
+  cursor: pointer;
+  transition: transform ease-in 0.1s;
+  height: 100%;
+  z-index: 100;
+  background-color: unset;
+  border: unset;
+  cursor: pointer;
+  align-items: center;
+}
+
+.right_arrow {
+  display: flex;
+  position: absolute;
+  cursor: pointer;
+  transition: transform ease-in 0.1s;
+  right: 0;
+  height: 100%;
+  z-index: 100;
+  padding: 0 28px;
+  background-color: unset;
+  border: unset;
+  cursor: pointer;
+  align-items: center;
+}
+
+.left_arrow:hover {
+  background-color: var(--main-accent);
+  opacity: 0.2;
+}
+
+.right_arrow:hover {
+  background-color: var(--main-accent);
+  opacity: 0.2;
+}
+
+@media (max-width: 1439px) {
+  .left_arrow {
+    padding: 0 12px;
+  }
+
+  .right_arrow {
+    padding: 0 12px;
+  }
+}

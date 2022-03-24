@@ -1,0 +1,16 @@
+.dots_container {
+  position: absolute;
+  bottom: 32px;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.single_dot {
+  padding: 4px;
+  margin-right: 8px;
+  cursor: pointer;
+  border-radius: 50%;
+}

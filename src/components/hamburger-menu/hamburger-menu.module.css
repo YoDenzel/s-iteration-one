@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  background-color: var(--aside-background);
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.burger_btn {
+  position: relative;
+  margin-top: 32px;
+  cursor: pointer;
+  background-color: unset;
+  border: none;
+}
+
+@media (max-width: 767px) {
+  .container {
+    position: absolute;
+    background: var(--white);
+    height: min-content;
+  }
+
+  .burger_btn {
+    margin-top: 16px;
+    margin-left: 16px;
+  }
+}
