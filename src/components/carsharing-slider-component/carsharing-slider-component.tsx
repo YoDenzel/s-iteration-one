@@ -1,7 +1,7 @@
 import { TSliderImagesArr } from '../../shared/types';
 import { CarsharingSliderArrows, SingleSlideComponent } from '../index';
 import { SliderPaginationDots } from '../slider-pagination-dots';
-import styles from './carsharing-slider-component.module.css';
+import styles from './carsharing-slider-component.module.scss';
 
 type TCarsharingSliderComponent = {
   sliderImagesArr: TSliderImagesArr[];

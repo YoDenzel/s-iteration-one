@@ -1,17 +1,20 @@
+$fullHeight: 100vh;
+$fullWidth: 100%;
+
 .carsharing {
-  min-height: 100vh;
+  min-height: $fullHeight;
   background-color: var(--white);
-  width: 100%;
+  width: $fullWidth;
   display: flex;
 }
 
 .container {
-  height: 100vh;
+  height: $fullHeight;
   display: flex;
   flex-direction: column;
   padding-left: 64px;
   padding-right: 64px;
-  width: 100%;
+  width: $fullWidth;
 }
 
 .main {
@@ -59,9 +62,16 @@
   text-align: center;
   background: var(--button-default);
   background-blend-mode: darken;
-  border: none;
   border-radius: 8px;
-  cursor: pointer;
+  &:hover {
+    background: var(--button-hover);
+  }
+  &:active {
+    background: var(--button-clicked);
+  }
+  &:focus-visible {
+    background: var(--button-hover);
+  }
 }
 
 .link {
@@ -69,20 +79,8 @@
   color: var(--white);
 }
 
-.main_book__button:hover {
-  background: var(--button-hover);
-}
-
-.main_book__button:active {
-  background: var(--button-clicked);
-}
-
 .main_book__button__clicked {
   background: var(--button-default);
-}
-
-.main_book__button:focus-visible {
-  background: var(--button-hover);
 }
 
 .footer {
@@ -142,7 +140,7 @@
   }
 
   .main_book__button {
-    width: 100%;
+    width: $fullWidth;
     border-radius: 0;
   }
 

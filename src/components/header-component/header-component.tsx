@@ -1,5 +1,5 @@
 import { Icons } from '../../shared/icons';
-import styles from './header-component.module.css';
+import styles from './header-component.module.scss';
 
 export function HeaderComponent() {
   return (

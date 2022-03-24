@@ -46,13 +46,7 @@ export function MainPage() {
 
   return (
     <div className={styles.container}>
-      <CarsharingComponent
-        windowWidth={windowWidth}
-        isMenuActive={isMenuActive}
-        language={language}
-        setLanguage={setLanguage}
-        setMenuActive={setMenuActive}
-      />
+      <CarsharingComponent />
       {windowWidth > 1023 ? (
         <CarsharingSliderComponent
           nextSlide={nextSlide}

@@ -1,4 +1,4 @@
-import styles from './single-slide-component.module.css';
+import styles from './single-slide-component.module.scss';
 
 type TSingleSlideComponent = {
   sliderImage: string;

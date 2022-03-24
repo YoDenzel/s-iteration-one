@@ -1,0 +1,23 @@
+$width: 100%;
+$page_padding: 0 64px;
+$border: 1px solid var(--light-gray);
+
+.breadcrumbs_container {
+  display: flex;
+  width: $width;
+  padding: $page_padding;
+  border: $border;
+}
+
+.button_link {
+  background-color: unset;
+  margin: 8px 16px 7px 0px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.arrow_icon {
+  margin: 8px 16px 8px 0px;
+}

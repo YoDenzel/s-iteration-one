@@ -1,32 +1,10 @@
 import { Link } from 'react-router-dom';
-import { HamburgerMenu } from '../hamburger-menu';
 import { HeaderComponent } from '../header-component';
-import styles from './carsharing-component.module.css';
+import styles from './carsharing-component.module.scss';
 
-type TCarsharingComponent = {
-  isMenuActive: boolean;
-  setMenuActive: (v: boolean) => void;
-  language: string;
-  setLanguage: (v: string) => void;
-  windowWidth: number;
-};
-
-export function CarsharingComponent({
-  isMenuActive,
-  language,
-  setLanguage,
-  setMenuActive,
-  windowWidth,
-}: TCarsharingComponent) {
+export function CarsharingComponent() {
   return (
     <section className={styles.carsharing}>
-      <HamburgerMenu
-        windowWidth={windowWidth}
-        isMenuActive={isMenuActive}
-        language={language}
-        setLanguage={setLanguage}
-        setMenuActive={setMenuActive}
-      />
       <div className={styles.container}>
         <HeaderComponent />
         <div className={styles.main}>

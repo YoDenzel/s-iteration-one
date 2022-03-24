@@ -7,3 +7,4 @@ export { CarsharingSliderArrows } from './carsharing-slider-arrows';
 export { MenuComponent } from './menu-component';
 export { ChangeLanguageButton } from './change-language-button';
 export { HeaderComponent } from './header-component';
+export { BreadcrumbsComponent } from './breadcrumbs-component';

@@ -3,7 +3,7 @@
   --main-accent: #0ec261;
   --black: #121212;
   --gray: #999999;
-  --light-gray: #EEEEEE;
+  --light-gray: #eeeeee;
   --white: #ffffff;
   --button-default: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
   --button-hover: linear-gradient(90deg, #0b934a 2.61%, #026e47 112.6%);
@@ -50,4 +50,14 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
 }

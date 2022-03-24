@@ -1,5 +1,5 @@
 import { Icons } from '../../shared/icons';
-import styles from './carsharing-slider-arrows.module.css';
+import styles from './carsharing-slider-arrows.module.scss';
 
 type TCarsharingSliderArrows = {
   prevSlide: () => void;

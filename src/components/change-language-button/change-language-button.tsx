@@ -1,4 +1,4 @@
-import styles from './change-language-button.module.css';
+import styles from './change-language-button.module.scss';
 
 type TChangeLanguageButton = {
   language: string;

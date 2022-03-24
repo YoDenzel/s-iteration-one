@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Icons } from '../../shared/icons';
 import { TMenuIcons, TMenuTitlesArr } from '../../shared/types';
 import { ChangeLanguageButton } from '../change-language-button';
-import styles from './menu-component.module.css';
+import styles from './menu-component.module.scss';
 
 type TMenuComponent = {
   menuTitlesArr: TMenuTitlesArr[];

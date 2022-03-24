@@ -6,6 +6,7 @@ import { InstagramIcon } from './instagram-icon';
 import { FacebookIcon } from './facebook-icon';
 import { TelegramIcon } from './telegram-icon';
 import { CloseMenuIcon } from './close-menu-icon';
+import { BreadcrumbsArrowIcon } from './breadcrumbs-arrow-icon';
 
 export const Icons = {
   LocationIcon,
@@ -16,4 +17,5 @@ export const Icons = {
   FacebookIcon,
   TelegramIcon,
   CloseMenuIcon,
+  BreadcrumbsArrowIcon,
 };

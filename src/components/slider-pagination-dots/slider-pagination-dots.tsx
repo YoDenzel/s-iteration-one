@@ -1,5 +1,5 @@
 import { TSliderImagesArr } from '../../shared/types';
-import styles from './slider-pagination-dots.module.css';
+import styles from './slider-pagination-dots.module.scss';
 
 type TSliderPaginationDots = {
   sliderImagesArr: TSliderImagesArr[];
