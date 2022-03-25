@@ -8,6 +8,7 @@ import styles from './order-page.module.scss';
 
 export function OrderPage() {
   const [activeComponentIndex, setActiveComponentIndex] = useState(0);
+
   const breadcrumbsArr = [
     {
       title: 'Местоположение',
