@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { TextInput } from '../text-input';
 import styles from './order-geolocation-component.module.scss';
 
@@ -37,27 +37,46 @@ const addressesArr = [
 ];
 
 export function OrderGeolocationComponent() {
-  const [input, setInput] = useState('');
+  const [inputCity, setInputCity] = useState('');
+  const [inputAddress, setInputAddress] = useState('');
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
   const citiesArr: string[] | undefined = [];
 
-  addressesArr.forEach(item => citiesArr.push(item.city));
-
-  console.log(
-    citiesArr.filter(item => item.toLowerCase().includes(input.toLowerCase())),
+  useMemo(
+    () =>
+      addressesArr
+        .filter(item => {
+          if (item.city.toUpperCase().includes(inputCity.toUpperCase()))
+            return true;
+          else return false;
+        })
+        .forEach(item => citiesArr.push(item.city)),
+    [inputCity],
   );
+
+  const streetsArr = addressesArr.filter(item => item.city === inputCity)[0];
+  console.log(streetsArr);
 
   return (
     <section>
-      <form>
+      <form className={styles.form}>
         <TextInput
           title="Город"
           placeholder="Введите город"
-          inputValue={input}
-          setInputValue={setInput}
-          listItems={citiesArr.filter(item => {
-            if (item.toUpperCase().includes(input.toUpperCase())) return true;
-            else return false;
-          })}
+          inputValue={inputCity}
+          setInputValue={setInputCity}
+          listItems={citiesArr}
+          setDropdownOpen={setDropdownOpen}
+          isDropDownOpen={isDropdownOpen}
+        />
+        <TextInput
+          title="Пункт выдачи"
+          placeholder="Введите адрес"
+          inputValue={inputAddress}
+          setInputValue={setInputAddress}
+          listItems={streetsArr?.address}
+          setDropdownOpen={setDropdownOpen}
+          isDropDownOpen={isDropdownOpen}
         />
       </form>
     </section>
