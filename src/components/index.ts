@@ -8,3 +8,5 @@ export { MenuComponent } from './menu-component';
 export { ChangeLanguageButton } from './change-language-button';
 export { HeaderComponent } from './header-component';
 export { BreadcrumbsComponent } from './breadcrumbs-component';
+export { OrderGeolocationComponent } from './order-geolocation-component';
+export { TextInput } from './text-input';

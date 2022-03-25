@@ -3,9 +3,8 @@ import {
   CarsharingComponent,
   CarsharingSliderComponent,
 } from '../../components';
-import styles from './main-page.module.css';
+import styles from './main-page.module.scss';
 import { images } from '../../shared/images';
-import { Icons } from '../../shared/icons';
 import { useWindowWidth } from '../../shared/custom-hooks';
 
 export function MainPage() {

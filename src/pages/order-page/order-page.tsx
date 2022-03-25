@@ -1,7 +1,10 @@
 import { useState } from 'react';
-import { BreadcrumbsComponent, HeaderComponent } from '../../components';
-
-import styles from './order-page.module.css';
+import {
+  BreadcrumbsComponent,
+  HeaderComponent,
+  OrderGeolocationComponent,
+} from '../../components';
+import styles from './order-page.module.scss';
 
 export function OrderPage() {
   const [activeComponentIndex, setActiveComponentIndex] = useState(0);
@@ -33,6 +36,9 @@ export function OrderPage() {
         breadcrumbsArr={breadcrumbsArr}
         activeComponentIndex={activeComponentIndex}
       />
+      <main className={styles.main_container}>
+        <OrderGeolocationComponent />
+      </main>
     </section>
   );
 }
