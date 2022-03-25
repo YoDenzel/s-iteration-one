@@ -7,6 +7,8 @@ type TTextInput = {
   inputValue: string;
   setInputValue: (v: string) => void;
   listItems?: string[];
+  isDropDownOpen?: boolean;
+  setDropdownOpen?: (v: boolean) => void;
 };
 
 export function TextInput({
@@ -15,12 +17,17 @@ export function TextInput({
   inputValue,
   setInputValue,
   listItems,
+  isDropDownOpen,
+  setDropdownOpen,
 }: TTextInput) {
   return (
     <div className={styles.wrapper}>
       <p className={styles.input_name}>{title}</p>
       <div className={styles.flexbox}>
-        <div className={styles.input_container}>
+        <div
+          className={styles.input_container}
+          onClick={() => setDropdownOpen && setDropdownOpen(true)}
+        >
           <input
             className={styles.input_bar}
             placeholder={placeholder}
@@ -35,13 +42,14 @@ export function TextInput({
             <Icons.ResetInputIcon />
           </button>
         </div>
-        {inputValue.length > 0 && listItems ? (
+        {inputValue.length > 0 && isDropDownOpen && listItems ? (
           <ul className={styles.dropdown}>
             {listItems.map((item, index) => (
               <li
                 key={item + index}
                 onClick={() => {
                   setInputValue(item);
+                  setDropdownOpen && setDropdownOpen(false);
                 }}
               >
                 {item}
