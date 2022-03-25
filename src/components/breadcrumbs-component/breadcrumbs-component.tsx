@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { Icons } from '../../shared/icons';
 import styles from './breadcrumbs-component.module.scss';
 
@@ -17,10 +16,9 @@ export function BreadcrumbsComponent({
   return (
     <nav className={styles.breadcrumbs_container}>
       {breadcrumbsArr.map((item, index, arr) => (
-        <>
+        <span key={item.title + index}>
           <button
             className={styles.button_link}
-            key={item.title + index}
             disabled={!(activeComponentIndex >= index)}
             style={{
               color: `${
@@ -38,7 +36,7 @@ export function BreadcrumbsComponent({
               <Icons.BreadcrumbsArrowIcon />
             </span>
           )}
-        </>
+        </span>
       ))}
     </nav>
   );
