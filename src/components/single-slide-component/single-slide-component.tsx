@@ -19,7 +19,7 @@ export function SingleSlideComponent({
     <div
       className={styles.slide}
       style={{
-        backgroundImage: `url(${sliderImage}`,
+        backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%), url(${sliderImage})`,
       }}
     >
       <div className={styles.description_block}>

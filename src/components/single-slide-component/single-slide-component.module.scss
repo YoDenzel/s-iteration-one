@@ -1,7 +1,4 @@
 .slide {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,11 +6,16 @@
   width: 100%;
 }
 
+.slide_image {
+  position: absolute;
+}
+
 .description_block {
   margin-left: 96px;
   margin-right: 97px;
   color: var(--white);
   margin-bottom: 200px;
+  z-index: 100;
 }
 
 .header {
