@@ -6,6 +6,7 @@ type TTextInput = {
   placeholder: string;
   inputValue: string;
   setInputValue: (v: string) => void;
+  listItems?: string[];
 };
 
 export function TextInput({
@@ -13,24 +14,41 @@ export function TextInput({
   placeholder,
   inputValue,
   setInputValue,
+  listItems,
 }: TTextInput) {
   return (
     <div className={styles.wrapper}>
-      <p className={styles.input_name}>{title}</p>{' '}
-      <div className={styles.input_container}>
-        <input
-          className={styles.input_bar}
-          placeholder={placeholder}
-          value={inputValue}
-          onChange={e => setInputValue(e.target.value)}
-        />
-        <button
-          type="button"
-          className={styles.reset_button}
-          onClick={() => setInputValue('')}
-        >
-          <Icons.ResetInputIcon />
-        </button>
+      <p className={styles.input_name}>{title}</p>
+      <div className={styles.flexbox}>
+        <div className={styles.input_container}>
+          <input
+            className={styles.input_bar}
+            placeholder={placeholder}
+            value={inputValue}
+            onChange={e => setInputValue(e.target.value)}
+          />
+          <button
+            type="button"
+            className={styles.reset_button}
+            onClick={() => setInputValue('')}
+          >
+            <Icons.ResetInputIcon />
+          </button>
+        </div>
+        {inputValue.length > 0 && listItems ? (
+          <ul className={styles.dropdown}>
+            {listItems.map((item, index) => (
+              <li
+                key={item + index}
+                onClick={() => {
+                  setInputValue(item);
+                }}
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        ) : null}
       </div>
     </div>
   );

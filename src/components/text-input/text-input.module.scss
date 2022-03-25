@@ -40,3 +40,23 @@
   background: unset;
   padding-right: 8px;
 }
+
+.dropdown {
+  @include input_font_type;
+  color: var(--gray);
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  border: 1px solid var(--light-gray);
+  li {
+    padding-left: 8px;
+    cursor: default;
+    width: 100%;
+  }
+  li:hover {
+    color: var(--main-accent);
+  }
+}
