@@ -1,0 +1,42 @@
+@mixin input_font_type {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--black);
+}
+
+.wrapper {
+  display: flex;
+}
+
+.input_container {
+  border-bottom: 1px solid var(--light-gray);
+  display: flex;
+  width: 224px;
+  align-items: center;
+}
+
+.input_bar {
+  @include input_font_type;
+  border: none;
+  width: 100%;
+  padding-left: 8px;
+  &:focus-visible {
+    outline: none;
+  }
+  &::placeholder {
+    color: var(--gray);
+  }
+}
+
+.input_name {
+  @include input_font_type;
+  margin: 0;
+  margin-right: 8px;
+}
+
+.reset_button {
+  background: unset;
+  padding-right: 8px;
+}
