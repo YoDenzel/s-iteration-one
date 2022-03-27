@@ -8,6 +8,7 @@
   position: absolute;
   transform: translateX(-120%);
   transition: ease-out 0.5s;
+  z-index: 100;
 }
 
 .menu_container__active {
@@ -20,6 +21,7 @@
   position: absolute;
   transform: translateX(0%);
   transition: ease-in 0.5s;
+  z-index: 2000;
 }
 
 .menu {
