@@ -21,3 +21,14 @@ export type TMenuIcons = {
   icon: ({ height, width }: TIconProps) => JSX.Element;
   linkTo: string;
 };
+
+export type TAddressesArr = {
+  city: string;
+  address: TAddress[];
+  cityCoordinates: number[];
+};
+
+export type TAddress = {
+  title: string;
+  coordinates: number[];
+};
