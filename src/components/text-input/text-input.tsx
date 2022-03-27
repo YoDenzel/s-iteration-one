@@ -44,17 +44,21 @@ export function TextInput({
         </div>
         {inputValue.length > 0 && isDropDownOpen && listItems ? (
           <ul className={styles.dropdown}>
-            {listItems.map((item, index) => (
-              <li
-                key={item + index}
-                onClick={() => {
-                  setInputValue(item);
-                  setDropdownOpen && setDropdownOpen(false);
-                }}
-              >
-                {item}
-              </li>
-            ))}
+            {listItems.map((item, index) => {
+              return (
+                !(item.toLowerCase() === inputValue.toLowerCase()) && (
+                  <li
+                    key={item + index}
+                    onClick={() => {
+                      setInputValue(item);
+                      setDropdownOpen && setDropdownOpen(false);
+                    }}
+                  >
+                    {item}
+                  </li>
+                )
+              );
+            })}
           </ul>
         ) : null}
       </div>
