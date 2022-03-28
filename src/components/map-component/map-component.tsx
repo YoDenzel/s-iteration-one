@@ -2,6 +2,7 @@ import { MapContainer, TileLayer } from 'react-leaflet';
 import { ChangeCityView, ChangeStreetView } from '../../shared/functions';
 import { TAddressesArr } from '../../shared/types';
 import { MapMarker } from '../map-marker';
+import styles from './map-component.module.scss';
 
 type TMapComponent = {
   cityTitle: string;
@@ -26,10 +27,7 @@ export function MapComponent({
         center={center}
         zoom={zoom}
         scrollWheelZoom={false}
-        style={{
-          height: '300px',
-          width: '700px',
-        }}
+        className={styles.map_container}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
