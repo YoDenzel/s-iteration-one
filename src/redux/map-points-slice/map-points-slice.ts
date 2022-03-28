@@ -8,8 +8,8 @@ export const mapPointsSlice = createSlice({
       address: [
         { title: 'Хрустальная 42', coordinates: [54.257746, 48.332694] },
         { title: 'Нариманова 42', coordinates: [54.33728, 48.382905] },
-        { title: 'Варейкиса 36', coordinates: [54.255539, 48.337545] },
-        { title: 'Кольцевая 49', coordinates: [54.253558, 48.342374] },
+        { title: 'Варейкиса 36', coordinates: [54.29185, 48.34392] },
+        { title: 'Кольцевая 49', coordinates: [54.3484, 48.4023] },
       ],
       cityCoordinates: [54.3187, 48.3978],
     },

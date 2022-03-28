@@ -15,7 +15,7 @@ export function CarsharingComponent() {
               Поминутная аренда авто твоего города
             </p>
           </div>
-          <Link className={styles.link} to={'/simbirsoft-iteration-one/order'}>
+          <Link className={styles.link} to={'/s-iteration-one/order'}>
             <button className={`${styles.main_book__button}`}>
               Забронировать
             </button>
