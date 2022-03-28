@@ -1,5 +1,6 @@
-import { MapContainer, TileLayer, useMap } from 'react-leaflet';
-import { TAddress, TAddressesArr } from '../../shared/types';
+import { MapContainer, TileLayer } from 'react-leaflet';
+import { ChangeCityView, ChangeStreetView } from '../../shared/functions';
+import { TAddressesArr } from '../../shared/types';
 import { MapMarker } from '../map-marker';
 
 type TMapComponent = {
@@ -7,14 +8,8 @@ type TMapComponent = {
   center: [number, number];
   zoom: number;
   infoArr?: TAddressesArr[];
-  setCity: (v: string) => void;
-  setStreet: (v: string) => void;
   streetTitle: string;
-};
-
-type TChangeStreetView = {
-  val: TAddress;
-  cityCoordinates: number[];
+  clickHandler: (city: string, street?: string) => void;
 };
 
 export function MapComponent({
@@ -22,38 +17,9 @@ export function MapComponent({
   cityTitle,
   infoArr,
   zoom,
-  setCity,
-  setStreet,
   streetTitle,
+  clickHandler,
 }: TMapComponent) {
-  const clickHandler = (city: string, street?: string) => {
-    setCity(city);
-    street && setStreet(street);
-  };
-
-  const ChangeCityView = (item: TAddressesArr) => {
-    const map = useMap();
-    if (item.city.toLowerCase() === cityTitle.toLowerCase()) {
-      map.setView([item.cityCoordinates[0], item.cityCoordinates[1]], 14);
-      return null;
-    } else if (!cityTitle) {
-      map.setZoom(6);
-    }
-    return null;
-  };
-
-  const ChangeStreetView = ({ val, cityCoordinates }: TChangeStreetView) => {
-    const map = useMap();
-    if (val.title.toLowerCase() === streetTitle.toLowerCase()) {
-      map.setView([val.coordinates[0], val.coordinates[1]], 14);
-      return null;
-    } else if (!streetTitle) {
-      map.setView([cityCoordinates[0], cityCoordinates[1]], 10);
-      return null;
-    }
-    return null;
-  };
-
   return (
     <div>
       <MapContainer
@@ -73,11 +39,7 @@ export function MapComponent({
           ? infoArr?.map((item, index) => {
               return (
                 <div key={item.city + index}>
-                  <ChangeCityView
-                    city={item.city}
-                    address={item.address}
-                    cityCoordinates={item.cityCoordinates}
-                  />
+                  <ChangeCityView item={item} cityTitle={cityTitle} />
                   <MapMarker
                     coordinates={item.cityCoordinates}
                     clickHandler={() => clickHandler(item.city)}
@@ -94,6 +56,7 @@ export function MapComponent({
                       <ChangeStreetView
                         val={val}
                         cityCoordinates={item.cityCoordinates}
+                        streetTitle={streetTitle}
                       />
                       <MapMarker
                         coordinates={val.coordinates}
