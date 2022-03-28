@@ -22,8 +22,8 @@ export function App() {
         setMenuActive={setMenuActive}
       />
       <Routes>
-        <Route path="/simbirsoft-iteration-one" element={<MainPage />} />
-        <Route path="/simbirsoft-iteration-one/order" element={<OrderPage />} />
+        <Route path="/s-iteration-one" element={<MainPage />} />
+        <Route path="/s-iteration-one/order" element={<OrderPage />} />
       </Routes>
     </div>
   );
