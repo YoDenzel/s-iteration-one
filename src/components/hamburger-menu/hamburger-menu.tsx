@@ -20,7 +20,7 @@ export function HamburgerMenu({
 }: THamburgerMenu) {
   const menuIcons = [
     {
-      linkTo: '/simbirsoft-iteration-one',
+      linkTo: '/s-iteration-one',
       icon: Icons.TelegramIcon,
     },
   ];
@@ -28,19 +28,19 @@ export function HamburgerMenu({
   const menuTitlesArr = [
     {
       title: 'Парковка',
-      linkTo: '/simbirsoft-iteration-one',
+      linkTo: '/s-iteration-one',
     },
     {
       title: 'Страховка',
-      linkTo: '/simbirsoft-iteration-one',
+      linkTo: '/s-iteration-one',
     },
     {
       title: 'Бензин',
-      linkTo: '/simbirsoft-iteration-one',
+      linkTo: '/s-iteration-one',
     },
     {
       title: 'Обслуживание',
-      linkTo: '/simbirsoft-iteration-one',
+      linkTo: '/s-iteration-one',
     },
   ];
   return (
