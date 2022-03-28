@@ -1,13 +1,12 @@
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import { TAddress, TAddressesArr } from '../../shared/types';
 import { MapMarker } from '../map-marker';
-import { addressesArr } from '../order-geolocation-component/order-geolocation-component';
 
 type TMapComponent = {
   cityTitle: string;
   center: [number, number];
   zoom: number;
-  infoArr?: typeof addressesArr;
+  infoArr?: TAddressesArr[];
   setCity: (v: string) => void;
   setStreet: (v: string) => void;
   streetTitle: string;
