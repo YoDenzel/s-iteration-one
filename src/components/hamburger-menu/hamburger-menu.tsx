@@ -23,14 +23,6 @@ export function HamburgerMenu({
       linkTo: '/simbirsoft-iteration-one',
       icon: Icons.TelegramIcon,
     },
-    {
-      linkTo: '/simbirsoft-iteration-one',
-      icon: Icons.FacebookIcon,
-    },
-    {
-      linkTo: '/simbirsoft-iteration-one',
-      icon: Icons.InstagramIcon,
-    },
   ];
 
   const menuTitlesArr = [
