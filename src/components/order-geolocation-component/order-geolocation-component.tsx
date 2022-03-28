@@ -48,7 +48,7 @@ export const addressesArr = [
 
 export function OrderGeolocationComponent() {
   const [inputCity, setInputCity] = useState('');
-  const [inputAddress, setInputAddress] = useState('');
+  const [inputStreet, setInputStreet] = useState('');
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const citiesArr: string[] = [];
@@ -79,11 +79,21 @@ export function OrderGeolocationComponent() {
           item.address.map(val => addresses.push(val.title));
         }
       }),
-    [inputAddress],
+    [inputStreet],
   );
   const streetsArr = addresses.filter(item =>
-    item.toLowerCase().includes(inputAddress.toLowerCase().replace(/\s/g, '')),
+    item.toLowerCase().includes(inputStreet.toLowerCase().replace(/\s/g, '')),
   );
+
+  const clickHandler = (city: string, street?: string) => {
+    setInputCity(city);
+    street && setInputStreet(street);
+  };
+
+  const clearInputHandler = () => {
+    inputStreet && setInputCity('');
+    setInputStreet('');
+  };
 
   return (
     <section>
@@ -96,15 +106,17 @@ export function OrderGeolocationComponent() {
           listItems={citiesArr}
           setDropdownOpen={setDropdownOpen}
           isDropDownOpen={isDropdownOpen}
+          clearInputHandler={() => setInputCity('')}
         />
         <TextInput
           title="Пункт выдачи"
           placeholder="Введите адрес"
-          inputValue={inputAddress}
-          setInputValue={setInputAddress}
+          inputValue={inputStreet}
+          setInputValue={setInputStreet}
           listItems={streetsArr}
           setDropdownOpen={setDropdownOpen}
           isDropDownOpen={isDropdownOpen}
+          clearInputHandler={() => clearInputHandler()}
         />
       </form>
       <div className={styles.map_wrapper}>
@@ -114,9 +126,8 @@ export function OrderGeolocationComponent() {
           center={[54.233722, 47.962227]}
           cityTitle={inputCity}
           infoArr={addressesArr}
-          setCity={setInputCity}
-          setStreet={setInputAddress}
-          streetTitle={inputAddress}
+          streetTitle={inputStreet}
+          clickHandler={clickHandler}
         />
       </div>
     </section>
