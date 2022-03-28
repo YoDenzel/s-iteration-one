@@ -9,6 +9,7 @@ type TTextInput = {
   listItems?: string[];
   isDropDownOpen?: boolean;
   setDropdownOpen?: (v: boolean) => void;
+  clearInputHandler: () => void;
 };
 
 export function TextInput({
@@ -19,6 +20,7 @@ export function TextInput({
   listItems,
   isDropDownOpen,
   setDropdownOpen,
+  clearInputHandler,
 }: TTextInput) {
   return (
     <div className={styles.wrapper}>
@@ -37,7 +39,7 @@ export function TextInput({
           <button
             type="button"
             className={styles.reset_button}
-            onClick={() => setInputValue('')}
+            onClick={() => clearInputHandler()}
           >
             <Icons.ResetInputIcon />
           </button>
