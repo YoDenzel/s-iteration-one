@@ -18,6 +18,6 @@ export function MapMarker({ clickHandler, coordinates, zoom }: TMapMarker) {
         },
       }}
       position={[coordinates[0], coordinates[1]]}
-    ></Marker>
+    />
   );
 }
