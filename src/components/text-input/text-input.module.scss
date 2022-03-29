@@ -65,3 +65,21 @@
     color: var(--main-accent);
   }
 }
+
+@media (max-width: 767px) {
+  .input_name {
+    width: 100%;
+  }
+
+  .input_container {
+    width: auto;
+  }
+
+  .input_bar {
+    width: auto;
+  }
+
+  .dropdown {
+    overflow-y: unset;
+  }
+}

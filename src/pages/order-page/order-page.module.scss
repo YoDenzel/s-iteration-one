@@ -1,4 +1,6 @@
 $side_padding_desktop: 0 64px;
+$side_padding_tablet: 0 32px;
+$side-padding_mobile: 0 16px;
 
 .order_container {
   min-height: 100vh;
@@ -15,5 +17,33 @@ $side_padding_desktop: 0 64px;
 
 .main_container {
   padding: $side_padding_desktop;
-  padding-top: 32px;
+  display: flex;
+  height: 100%;
+}
+
+.flex_wrapper {
+  display: flex;
+}
+
+@media (max-width: 1439px) {
+  .wrapper {
+    padding: $side_padding_tablet;
+  }
+
+  .main_container {
+    padding: $side_padding_tablet;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: $side-padding_mobile;
+    padding-bottom: 10px;
+  }
+
+  .main_container {
+    display: flex;
+    flex-direction: column;
+    padding: $side-padding_mobile;
+  }
 }

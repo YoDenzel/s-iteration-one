@@ -1,4 +1,11 @@
 .map_container {
-  width: 700px;
+  width: 70%;
   height: 300px;
+  z-index: 1;
+}
+
+@media (max-width: 767px) {
+  .map_container {
+    width: 100%;
+  }
 }

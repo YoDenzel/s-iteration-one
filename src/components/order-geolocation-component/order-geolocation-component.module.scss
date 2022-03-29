@@ -1,5 +1,10 @@
 @import '../text-input/text-input.module.scss';
 
+.container {
+  width: 100%;
+  padding-top: 32px;
+}
+
 .form {
   display: inline-flex;
   flex-direction: column;
@@ -13,4 +18,10 @@
 
 .title {
   @include input_font_type;
+}
+
+@media (max-width: 767px) {
+  .form {
+    align-items: unset;
+  }
 }

@@ -1,9 +1,13 @@
 .slide {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: left;
   width: 100%;
+  z-index: 4;
 }
 
 .slide_image {

@@ -1,9 +1,11 @@
-$page_padding: 0 64px;
+$side_padding_desktop: 0 64px;
+$side_padding_tablet: 0 32px;
+$side-padding_mobile: 0 16px;
 $border: 1px solid var(--light-gray);
 
 .breadcrumbs_container {
   display: flex;
-  padding: $page_padding;
+  padding: $side_padding_desktop;
   border: $border;
 }
 
@@ -21,4 +23,17 @@ $border: 1px solid var(--light-gray);
 
 .arrow_icon {
   margin: 8px 16px 8px 0px;
+}
+
+@media (max-width: 1439px) {
+  .breadcrumbs_container {
+    padding: $side_padding_tablet;
+  }
+}
+
+@media (max-width: 768px) {
+  .breadcrumbs_container {
+    padding: $side-padding_mobile;
+    flex-direction: column;
+  }
 }
