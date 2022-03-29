@@ -1,9 +1,9 @@
-export type TIconProps = {
-  height?: number;
-  width?: number;
-  color?: string;
-  isActive?: boolean;
-};
+export type TIconProps = Partial<{
+  height: number;
+  width: number;
+  color: string;
+  isActive: boolean;
+}>;
 
 export type TSliderImagesArr = {
   title: string;
