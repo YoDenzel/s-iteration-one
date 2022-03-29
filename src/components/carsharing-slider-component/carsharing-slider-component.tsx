@@ -1,16 +1,7 @@
-import { TSliderImagesArr } from '../../shared/types';
+import { TCarsharingSliderComponent } from './types';
 import { CarsharingSliderArrows, SingleSlideComponent } from '../index';
 import { SliderPaginationDots } from '../slider-pagination-dots';
 import styles from './carsharing-slider-component.module.scss';
-
-type TCarsharingSliderComponent = {
-  sliderImagesArr: TSliderImagesArr[];
-  activeIndex: number;
-  setActiveIndex: (v: number) => void;
-  nextSlide: () => void;
-  prevSlide: () => void;
-  setAutoPlayEnabled: (v: boolean) => void;
-};
 
 export function CarsharingSliderComponent({
   sliderImagesArr,

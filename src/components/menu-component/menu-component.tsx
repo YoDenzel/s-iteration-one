@@ -1,24 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Icons } from '../../shared/icons';
-import { TMenuIcons, TMenuTitlesArr } from '../../shared/types';
 import { ChangeLanguageButton } from '../change-language-button';
 import styles from './menu-component.module.scss';
-
-type TMenuComponent = {
-  menuTitlesArr: TMenuTitlesArr[];
-  menuIconsArr: TMenuIcons[];
-  setMenuActive: (v: boolean) => void;
-  windowWidth: number;
-  language: string;
-  setLanguage: (v: string) => void;
-  isActive: boolean;
-};
-
-type TState = {
-  activeIndex: number | null;
-  isHovered: boolean;
-};
+import { TMenuComponent, TState } from './types';
 
 export function MenuComponent({
   menuIconsArr,
