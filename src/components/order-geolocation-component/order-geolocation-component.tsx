@@ -57,7 +57,7 @@ export function OrderGeolocationComponent() {
   };
 
   return (
-    <section>
+    <section className={styles.container}>
       <form className={styles.form}>
         <TextInput
           title="Город"
