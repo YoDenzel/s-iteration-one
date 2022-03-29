@@ -67,7 +67,7 @@ export function OrderGeolocationComponent() {
           listItems={citiesArr}
           setDropdownOpen={setDropdownOpen}
           isDropDownOpen={isDropdownOpen}
-          clearInputHandler={() => setInputCity('')}
+          clearInputHandler={() => clearInputHandler()}
         />
         <TextInput
           title="Пункт выдачи"
