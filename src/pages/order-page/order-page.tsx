@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {
   BreadcrumbsComponent,
+  CheckoutForm,
   HeaderComponent,
   OrderGeolocationComponent,
 } from '../../components';
@@ -39,6 +40,7 @@ export function OrderPage() {
       />
       <main className={styles.main_container}>
         <OrderGeolocationComponent />
+        <CheckoutForm />
       </main>
     </section>
   );
