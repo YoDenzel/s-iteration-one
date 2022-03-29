@@ -1,3 +1,4 @@
+import { menuIcons, menuTitlesArr } from '../../shared/constants';
 import { Icons } from '../../shared/icons';
 import { ChangeLanguageButton } from '../change-language-button';
 import { MenuComponent } from '../menu-component';
@@ -18,31 +19,6 @@ export function HamburgerMenu({
   setMenuActive,
   windowWidth,
 }: THamburgerMenu) {
-  const menuIcons = [
-    {
-      linkTo: '/s-iteration-one',
-      icon: Icons.TelegramIcon,
-    },
-  ];
-
-  const menuTitlesArr = [
-    {
-      title: 'Парковка',
-      linkTo: '/s-iteration-one',
-    },
-    {
-      title: 'Страховка',
-      linkTo: '/s-iteration-one',
-    },
-    {
-      title: 'Бензин',
-      linkTo: '/s-iteration-one',
-    },
-    {
-      title: 'Обслуживание',
-      linkTo: '/s-iteration-one',
-    },
-  ];
   return (
     <>
       <aside className={styles.container}>
