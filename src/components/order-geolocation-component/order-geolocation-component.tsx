@@ -12,38 +12,39 @@ export function OrderGeolocationComponent() {
     return state.mapPoints;
   });
 
-  const citiesArr: string[] = [];
-  const addresses: string[] = [];
-
-  useMemo(
+  const citiesArr = useMemo(
     () =>
       addressesArr
         .filter(item => {
-          if (
-            item.city
-              .toUpperCase()
-              .includes(inputCity.toUpperCase().replace(/\s/g, ''))
-          )
-            return true;
-          else return false;
+          return item.city
+            .toUpperCase()
+            .includes(inputCity.toUpperCase().replace(/\s/g, ''));
         })
-        .forEach(item => {
-          citiesArr.push(item.city);
-        }),
+        .map(({ city }) => city),
     [inputCity],
   );
 
+  // addresses я решил оставить так как было, потому что нужное мне значние (title) находится глубоко внутри массива,
+  // а я честно говоряю не знаю, как это сделать красиво, думал над flatmap и reduce, но не получилось
+
+  const addresses: string[] = [];
   useMemo(
     () =>
-      addressesArr.map(item => {
-        if (item.city === inputCity) {
-          item.address.map(val => addresses.push(val.title));
-        }
-      }),
-    [inputStreet],
-  );
-  const streetsArr = addresses.filter(item =>
-    item.toLowerCase().includes(inputStreet.toLowerCase().replace(/\s/g, '')),
+      addressesArr.filter(val =>
+        val.address
+          .filter(item => {
+            return item.title
+              .toLowerCase()
+              .replace(/\s/g, '')
+              .includes(inputStreet.toLowerCase().replace(/\s/g, ''));
+          })
+          .map(value => {
+            if (val.city === inputCity) {
+              addresses.push(value.title);
+            }
+          }),
+      ),
+    [inputStreet, isDropdownOpen],
   );
 
   const clickHandler = (city: string, street?: string) => {
@@ -52,7 +53,7 @@ export function OrderGeolocationComponent() {
   };
 
   const clearInputHandler = () => {
-    inputStreet && setInputCity('');
+    setInputCity('');
     setInputStreet('');
   };
 
@@ -74,7 +75,7 @@ export function OrderGeolocationComponent() {
           placeholder="Введите адрес"
           inputValue={inputStreet}
           setInputValue={setInputStreet}
-          listItems={streetsArr}
+          listItems={addresses}
           setDropdownOpen={setDropdownOpen}
           isDropDownOpen={isDropdownOpen}
           clearInputHandler={() => clearInputHandler()}

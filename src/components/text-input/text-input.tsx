@@ -26,14 +26,12 @@ export function TextInput({
     <div className={styles.wrapper}>
       <p className={styles.input_name}>{title}</p>
       <div className={styles.flexbox}>
-        <div
-          className={styles.input_container}
-          onClick={() => setDropdownOpen && setDropdownOpen(true)}
-        >
+        <div className={styles.input_container}>
           <input
             className={styles.input_bar}
             placeholder={placeholder}
             value={inputValue}
+            onClick={() => setDropdownOpen && setDropdownOpen(true)}
             onChange={e => setInputValue(e.target.value)}
           />
           <button
@@ -44,7 +42,7 @@ export function TextInput({
             <Icons.ResetInputIcon />
           </button>
         </div>
-        {inputValue.length > 0 && isDropDownOpen && listItems ? (
+        {isDropDownOpen && listItems && (
           <ul className={styles.dropdown}>
             {listItems.map((item, index) => {
               return (
@@ -62,7 +60,7 @@ export function TextInput({
               );
             })}
           </ul>
-        ) : null}
+        )}
       </div>
     </div>
   );
