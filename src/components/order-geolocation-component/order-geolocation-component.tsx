@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   setCityInput,
   setStreetInput,
@@ -10,15 +10,25 @@ import styles from './order-geolocation-component.module.scss';
 
 export function OrderGeolocationComponent() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [inputCity, setInputCity] = useState('');
+  const [inputStreet, setInputStreet] = useState('');
   const dispatch = useAppDispatch();
   const addressesArr = useAppSelector(state => {
     return state.mapPoints;
   });
-  const { inputCity, inputStreet } = useAppSelector(
-    state => state.stepOneOrderForm,
-  );
+  const checkCityInputValidity = useMemo(() => {
+    return addressesArr.filter(
+      item => item.city.toLowerCase() === inputCity.toLowerCase(),
+    );
+  }, [inputCity]);
 
-  const setInputCity = (input: string) => {
+  const checkStreetInputValidity = useMemo(() => {
+    return checkCityInputValidity[0]?.address.filter(
+      item => item.title === inputStreet,
+    );
+  }, [inputStreet]);
+
+  const setInputCityReducer = (input: string) => {
     dispatch(
       setCityInput({
         cityInput: input,
@@ -26,13 +36,20 @@ export function OrderGeolocationComponent() {
     );
   };
 
-  const setInputStreet = (input: string) => {
+  const setInputStreetReducer = (input: string) => {
     dispatch(
       setStreetInput({
         streetInput: input,
       }),
     );
   };
+
+  useEffect(() => {
+    if (checkCityInputValidity?.length > 0 || !inputCity)
+      setInputCityReducer(inputCity);
+    if (checkStreetInputValidity?.length > 0 || !inputStreet)
+      setInputStreetReducer(inputStreet);
+  }, [inputCity, inputStreet]);
 
   const citiesArr = useMemo(
     () =>
