@@ -9,11 +9,7 @@ export function App() {
   const [language, setLanguage] = useState('Eng');
   const { windowWidth } = useWindowWidth();
   return (
-    <div
-      style={{
-        display: 'flex',
-      }}
-    >
+    <div className="flex">
       <HamburgerMenu
         windowWidth={windowWidth}
         isMenuActive={isMenuActive}
