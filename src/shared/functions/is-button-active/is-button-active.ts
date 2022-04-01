@@ -1,3 +1,4 @@
+import { useAppSelector } from '../../custom-hooks';
 import { TFirstStepObj } from '../../types';
 
 type TIsButtonActive = {
@@ -7,8 +8,9 @@ type TIsButtonActive = {
 
 export function isButtonActive({ activeIndex, firstStep }: TIsButtonActive) {
   switch (activeIndex) {
-    case 1: {
-      if (firstStep.information.length > 7) return true;
+    case 0: {
+      if (firstStep.information.length > 10) return false;
+      else return true;
     }
   }
 }
