@@ -1,34 +1,29 @@
+import { CheckoutItem } from '../checkout-item';
+import { TCheckoutForm } from './types';
 import styles from './checkout-form.module.scss';
 
-export function CheckoutForm() {
-  const arr = [
-    {
-      title: 'Пункт выдачи',
-      information: 'Ульяновск, Нариманова 42',
-    },
-    {
-      title: 'Модель',
-      information: 'Самара, Шахиди 42',
-    },
-  ];
-
+export function CheckoutForm({
+  firstStepObj,
+  isButtonActive,
+  price,
+  buttonTitle,
+}: TCheckoutForm) {
   return (
     <form className={styles.form_wrapper}>
       <div className={styles.container}>
         <h4 className={styles.title}>Ваш заказ</h4>
-        {arr.map((item, index) => (
-          <div className={styles.order_info_item} key={item.title + index}>
-            <p className={styles.item_title}>{item.title}</p>
-            <span className={styles.dots} />
-            <p className={styles.item_text}>{item.information}</p>
-          </div>
-        ))}
+        {(!firstStepObj.information || firstStepObj.information.length > 5) && (
+          <CheckoutItem
+            title={firstStepObj.title}
+            information={firstStepObj.information}
+          />
+        )}
         <div className={styles.summary_block}>
           <h4 className={styles.summary_title}>Цена:</h4>
-          <p className={styles.summary_price}> от 8 000 до 12 000 ₽</p>
+          <p className={styles.summary_price}> от {price} ₽</p>
         </div>
-        <button className={styles.checkout_button} disabled={true}>
-          Выбрать модель
+        <button className={styles.checkout_button} disabled={isButtonActive}>
+          {buttonTitle}
         </button>
       </div>
     </form>
