@@ -57,6 +57,7 @@ export function OrderGeolocationComponent() {
         .filter(item => {
           return item.city
             .toUpperCase()
+            .replace(/\s/g, '')
             .includes(inputCity.toUpperCase().replace(/\s/g, ''));
         })
         .map(({ city }) => city),
