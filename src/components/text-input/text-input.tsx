@@ -33,6 +33,7 @@ export function TextInput({
             value={inputValue}
             onClick={() => setDropdownOpen && setDropdownOpen(true)}
             onChange={e => setInputValue(e.target.value)}
+            maxLength={17}
           />
           <button
             type="button"
