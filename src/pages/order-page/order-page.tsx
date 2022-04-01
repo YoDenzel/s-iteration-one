@@ -5,29 +5,19 @@ import {
   HeaderComponent,
   OrderGeolocationComponent,
 } from '../../components';
+import { breadcrumbsArr } from '../../shared/constants';
+import { useAppSelector } from '../../shared/custom-hooks';
 import styles from './order-page.module.scss';
 
 export function OrderPage() {
   const [activeComponentIndex, setActiveComponentIndex] = useState(0);
-
-  const breadcrumbsArr = [
-    {
-      title: 'Местоположение',
-      linkTo: '/simbirsoft-iteration-one/order',
-    },
-    {
-      title: 'Модель',
-      linkTo: '/simbirsoft-iteration-one/order',
-    },
-    {
-      title: 'Дополнительно',
-      linkTo: '/simbirsoft-iteration-one/order',
-    },
-    {
-      title: 'Итого',
-      linkTo: '/simbirsoft-iteration-one/order',
-    },
-  ];
+  const stepOne = useAppSelector(state => state.stepOneOrderForm);
+  const firstStepObj = {
+    title: 'Пункт выдачи',
+    information: `${stepOne.inputCity}${
+      stepOne.inputStreet.length > 10 ? ', ' + stepOne.inputStreet : ''
+    }`,
+  };
 
   return (
     <section className={styles.order_container}>
@@ -40,7 +30,12 @@ export function OrderPage() {
       />
       <main className={styles.main_container}>
         <OrderGeolocationComponent />
-        <CheckoutForm />
+        <CheckoutForm
+          price="8000 до 12000"
+          isButtonActive={true}
+          buttonTitle="Выбрать модель"
+          firstStepObj={firstStepObj}
+        />
       </main>
     </section>
   );

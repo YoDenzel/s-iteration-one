@@ -1,17 +1,9 @@
 import { MapContainer, TileLayer } from 'react-leaflet';
 import { ChangeCityView, ChangeStreetView } from '../../shared/functions';
-import { TAddressesArr } from '../../shared/types';
 import { MapMarker } from '../map-marker';
 import styles from './map-component.module.scss';
+import { TMapComponent } from './types';
 
-type TMapComponent = {
-  cityTitle: string;
-  center: [number, number];
-  zoom: number;
-  infoArr?: TAddressesArr[];
-  streetTitle: string;
-  clickHandler: (city: string, street?: string) => void;
-};
 
 export function MapComponent({
   center,
