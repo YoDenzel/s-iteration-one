@@ -7,6 +7,7 @@ import {
 } from '../../components';
 import { breadcrumbsArr } from '../../shared/constants';
 import { useAppSelector } from '../../shared/custom-hooks';
+import { isButtonActive } from '../../shared/functions/is-button-active';
 import styles from './order-page.module.scss';
 
 export function OrderPage() {
@@ -18,6 +19,10 @@ export function OrderPage() {
       stepOne.inputStreet.length > 6 ? ', ' + stepOne.inputStreet : ''
     }`,
   };
+  const buttonActive = isButtonActive({
+    activeIndex: activeComponentIndex,
+    firstStep: firstStepObj,
+  });
 
   return (
     <section className={styles.order_container}>
@@ -32,7 +37,7 @@ export function OrderPage() {
         <OrderGeolocationComponent />
         <CheckoutForm
           price="8000 до 12000"
-          isButtonActive={true}
+          isButtonActive={buttonActive}
           buttonTitle="Выбрать модель"
           firstStepObj={firstStepObj}
         />
