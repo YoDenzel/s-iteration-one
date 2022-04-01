@@ -22,7 +22,11 @@ export function CheckoutForm({
           <h4 className={styles.summary_title}>Цена:</h4>
           <p className={styles.summary_price}> от {price} ₽</p>
         </div>
-        <button className={styles.checkout_button} disabled={isButtonActive}>
+        <button
+          type="button"
+          className={styles.checkout_button}
+          disabled={isButtonActive}
+        >
           {buttonTitle}
         </button>
       </div>
