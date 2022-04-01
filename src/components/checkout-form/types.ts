@@ -5,4 +5,5 @@ export type TCheckoutForm = {
   isButtonActive?: boolean;
   price: string;
   buttonTitle: string;
+  clickHandler: () => void;
 };

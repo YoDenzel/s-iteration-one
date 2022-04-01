@@ -7,6 +7,7 @@ export function CheckoutForm({
   isButtonActive,
   price,
   buttonTitle,
+  clickHandler,
 }: TCheckoutForm) {
   return (
     <form className={styles.form_wrapper}>
@@ -22,7 +23,12 @@ export function CheckoutForm({
           <h4 className={styles.summary_title}>Цена:</h4>
           <p className={styles.summary_price}> от {price} ₽</p>
         </div>
-        <button className={styles.checkout_button} disabled={isButtonActive}>
+        <button
+          className={styles.checkout_button}
+          disabled={isButtonActive}
+          type="button"
+          onClick={clickHandler}
+        >
           {buttonTitle}
         </button>
       </div>
