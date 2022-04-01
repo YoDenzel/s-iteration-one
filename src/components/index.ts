@@ -13,3 +13,4 @@ export { TextInput } from './text-input';
 export { MapMarker } from './map-marker';
 export { MapComponent } from './map-component';
 export { CheckoutForm } from './checkout-form';
+export { CheckoutItem } from './checkout-item';
