@@ -2,7 +2,7 @@ import { TFirstStepObj } from '../../shared/types';
 
 export type TCheckoutForm = {
   firstStepObj: TFirstStepObj;
-  isButtonActive: boolean;
+  isButtonActive?: boolean;
   price: string;
   buttonTitle: string;
 };
