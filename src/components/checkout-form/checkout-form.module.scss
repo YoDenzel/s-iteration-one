@@ -14,7 +14,6 @@ $top_margin: 32px;
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   border-left: 1px solid var(--light-gray);
 }
 
@@ -51,10 +50,7 @@ $top_margin: 32px;
 
 .dots {
   border-bottom: 2px dotted var(--gray);
-  /* flex: 1; */
   width: 100%;
-  /* height: 1px; */
-  /* flex-grow: 1; */
   flex-shrink: 2;
   margin-left: 12px;
 }
@@ -99,6 +95,7 @@ $top_margin: 32px;
   background: var(--button-default);
   background-blend-mode: darken;
   border-radius: 8px;
+  width: 100%;
   &:hover {
     background: var(--button-hover);
   }
@@ -126,6 +123,5 @@ $top_margin: 32px;
   .checkout_button {
     margin-bottom: 25px;
     width: 100%;
-    border-radius: 0;
   }
 }
