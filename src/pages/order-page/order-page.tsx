@@ -15,7 +15,7 @@ export function OrderPage() {
   const firstStepObj = {
     title: 'Пункт выдачи',
     information: `${stepOne.inputCity}${
-      stepOne.inputStreet.length > 10 ? ', ' + stepOne.inputStreet : ''
+      stepOne.inputStreet.length > 6 ? ', ' + stepOne.inputStreet : ''
     }`,
   };
 
