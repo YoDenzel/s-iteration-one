@@ -12,5 +12,7 @@ export function isButtonActive({ activeIndex, firstStep }: TIsButtonActive) {
       if (firstStep.information.length > 10) return false;
       else return true;
     }
+    default:
+      return true;
   }
 }
