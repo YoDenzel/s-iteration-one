@@ -7,17 +7,20 @@ type TBreadcrumbsComponent = {
     linkTo: string;
   }>;
   activeComponentIndex: number;
+  setActiveIndex: (v: number) => void;
 };
 
 export function BreadcrumbsComponent({
   breadcrumbsArr,
   activeComponentIndex,
+  setActiveIndex,
 }: TBreadcrumbsComponent) {
   return (
     <nav className={styles.breadcrumbs_container}>
       {breadcrumbsArr.map((item, index, arr) => (
         <span key={item.title + index}>
           <button
+            onClick={() => setActiveIndex(index)}
             className={styles.button_link}
             disabled={!(activeComponentIndex >= index)}
             style={{
