@@ -12,7 +12,7 @@ import { isButtonActive } from '../../shared/functions/is-button-active';
 import styles from './order-page.module.scss';
 
 export function OrderPage() {
-  const [activeComponentIndex, setActiveComponentIndex] = useState(0);
+  const [activeComponentIndex, setActiveComponentIndex] = useState(1);
   const stepOne = useAppSelector(state => state.stepOneOrderForm);
   const firstStepObj = {
     title: 'Пункт выдачи',
@@ -48,6 +48,7 @@ export function OrderPage() {
       <BreadcrumbsComponent
         breadcrumbsArr={breadcrumbsArr}
         activeComponentIndex={activeComponentIndex}
+        setActiveIndex={setActiveComponentIndex}
       />
       <main className={styles.main_container}>
         {showComponent(activeComponentIndex)}
