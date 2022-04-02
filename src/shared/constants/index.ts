@@ -1,1 +1,6 @@
-export { menuTitlesArr, menuIcons, breadcrumbsArr } from './constants';
+export {
+  menuTitlesArr,
+  menuIcons,
+  breadcrumbsArr,
+  radioFilterButtonsArr,
+} from './constants';
