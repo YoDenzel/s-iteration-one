@@ -6,6 +6,8 @@ import { TelegramIcon } from './telegram-icon';
 import { CloseMenuIcon } from './close-menu-icon';
 import { BreadcrumbsArrowIcon } from './breadcrumbs-arrow-icon';
 import { ResetInputIcon } from './reset-input-icon';
+import { RadioButtonActive } from './radio-button-active';
+import { RadioButtonInactive } from './radio-button-inactive';
 
 export const Icons = {
   LocationIcon,
@@ -16,4 +18,6 @@ export const Icons = {
   CloseMenuIcon,
   BreadcrumbsArrowIcon,
   ResetInputIcon,
+  RadioButtonActive,
+  RadioButtonInactive,
 };
