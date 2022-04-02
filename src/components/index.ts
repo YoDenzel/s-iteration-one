@@ -15,3 +15,5 @@ export { MapComponent } from './map-component';
 export { CheckoutForm } from './checkout-form';
 export { CheckoutItem } from './checkout-item';
 export { OrderCarListComponent } from './order-car-list-component';
+export { FilterCarsForm } from './filter-cars-form';
+export { FilterCarsRadioButton } from './filter-cars-radio-button';
