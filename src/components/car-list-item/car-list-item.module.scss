@@ -1,0 +1,50 @@
+$margin_null: 0px;
+$border_padding: 16px;
+
+.car_item_container {
+  width: 40%;
+  background: unset;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--light-gray);
+}
+
+.car_item_container:hover {
+  border: 1px solid var(--gray);
+}
+
+.text_info_block {
+  text-align: left;
+  margin-bottom: 36px;
+  padding-left: $border_padding;
+  padding-top: $border_padding;
+}
+
+.title_info {
+  margin: $margin_null;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: var(--black);
+}
+
+.price_info {
+  margin: $margin_null;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--gray);
+}
+
+.image_block {
+  align-self: flex-end;
+  padding-bottom: $border_padding;
+  padding-right: $border_padding;
+}
+
+.car_image {
+  width: 130px;
+  height: 85px;
+}
