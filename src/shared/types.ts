@@ -37,3 +37,37 @@ export type TFirstStepObj = {
   title: string;
   information: string;
 };
+
+export type TCars = {
+  count: number;
+  data: TCarsData[];
+  fields: {};
+};
+
+export type TCarsData = {
+  categoryId: TCarCategoryId;
+  colors: string[];
+  createdAt: number;
+  description: string;
+  id: string;
+  name: string;
+  number: string;
+  priceMax: number;
+  priceMin: number;
+  tank: number;
+  thumbnail: TCarThumbnail;
+  updatedAt: number;
+};
+
+export type TCarCategoryId = {
+  name: string;
+  id: string;
+  description: string;
+};
+
+export type TCarThumbnail = {
+  mimetype: string;
+  originalname: string;
+  path: string;
+  size: number;
+};
