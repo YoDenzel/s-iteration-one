@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import {
   setCityInput,
   setStreetInput,
-} from '../../redux/step-one-order-form/step-one-order-form';
+} from '../../redux/step-one-order-form-slice/step-one-order-form-slice';
 import { useAppDispatch, useAppSelector } from '../../shared/custom-hooks';
 import { MapComponent } from '../map-component';
 import { TextInput } from '../text-input';
