@@ -1,7 +1,7 @@
-import { menuIcons, menuTitlesArr } from '../../shared/constants';
 import { Icons } from '../../shared/icons';
 import { ChangeLanguageButton } from '../change-language-button';
 import { MenuComponent } from '../menu-component';
+import { menuIcons, menuTitlesArr } from './constants';
 import styles from './hamburger-menu.module.scss';
 
 type THamburgerMenu = {
