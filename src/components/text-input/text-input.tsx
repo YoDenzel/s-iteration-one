@@ -10,6 +10,7 @@ type TTextInput = {
   isDropDownOpen?: boolean;
   setDropdownOpen?: (v: boolean) => void;
   clearInputHandler: () => void;
+  inputClickHandler: () => void;
 };
 
 export function TextInput({
@@ -21,6 +22,7 @@ export function TextInput({
   isDropDownOpen,
   setDropdownOpen,
   clearInputHandler,
+  inputClickHandler,
 }: TTextInput) {
   return (
     <div className={styles.wrapper}>
@@ -31,7 +33,7 @@ export function TextInput({
             className={styles.input_bar}
             placeholder={placeholder}
             value={inputValue}
-            onClick={() => setDropdownOpen && setDropdownOpen(true)}
+            onClick={() => inputClickHandler()}
             onChange={e => setInputValue(e.target.value)}
             maxLength={17}
           />
