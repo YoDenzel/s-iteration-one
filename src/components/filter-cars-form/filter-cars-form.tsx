@@ -1,5 +1,5 @@
-import { radioFilterButtonsArr } from '../../shared/constants';
 import { FilterCarsRadioButton } from '../filter-cars-radio-button';
+import { radioFilterButtonsArr } from './constants';
 import styles from './filter-cars-form.module.scss';
 
 type TFilterCarsForm = {
