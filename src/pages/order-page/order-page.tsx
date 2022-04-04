@@ -6,9 +6,9 @@ import {
   OrderCarListComponent,
   OrderGeolocationComponent,
 } from '../../components';
-import { breadcrumbsArr } from '../../shared/constants';
 import { useAppSelector } from '../../shared/custom-hooks';
-import { isButtonActive } from '../../shared/functions/is-button-active';
+import { isButtonActive } from '../../shared/functions';
+import { breadcrumbsArr } from './constants';
 import styles from './order-page.module.scss';
 
 export function OrderPage() {
