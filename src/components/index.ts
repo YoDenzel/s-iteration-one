@@ -17,3 +17,6 @@ export { CheckoutItem } from './checkout-item';
 export { OrderCarListComponent } from './order-car-list-component';
 export { FilterCarsForm } from './filter-cars-form';
 export { FilterCarsRadioButton } from './filter-cars-radio-button';
+export { CarsListComponent } from './cars-list-component';
+export { CarListItem } from './car-list-item';
+export { Pagination } from './pagination';
