@@ -9,7 +9,8 @@ import { TextInput } from '../text-input';
 import styles from './order-geolocation-component.module.scss';
 
 export function OrderGeolocationComponent() {
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [isFirstDropdownOpen, setFirstDropdownOpen] = useState(false);
+  const [isSecondDropdownOpen, setSecondDropdownOpen] = useState(false);
   const [inputCity, setInputCity] = useState('');
   const [inputStreet, setInputStreet] = useState('');
   const dispatch = useAppDispatch();
@@ -83,7 +84,7 @@ export function OrderGeolocationComponent() {
             }
           }),
       ),
-    [inputStreet, isDropdownOpen],
+    [inputStreet, isFirstDropdownOpen, isSecondDropdownOpen],
   );
 
   const clickHandler = (city: string, street?: string) => {
@@ -96,6 +97,21 @@ export function OrderGeolocationComponent() {
     setInputStreet('');
   };
 
+  const inputClickHandler = (variant: number) => {
+    switch (variant) {
+      case 1: {
+        setFirstDropdownOpen(!isFirstDropdownOpen);
+        setSecondDropdownOpen(false);
+        break;
+      }
+      case 2: {
+        setFirstDropdownOpen(false);
+        setSecondDropdownOpen(!isSecondDropdownOpen);
+        break;
+      }
+    }
+  };
+
   return (
     <section className={styles.container}>
       <form className={styles.form}>
@@ -105,9 +121,10 @@ export function OrderGeolocationComponent() {
           inputValue={inputCity}
           setInputValue={setInputCity}
           listItems={citiesArr}
-          setDropdownOpen={setDropdownOpen}
-          isDropDownOpen={isDropdownOpen}
+          setDropdownOpen={setFirstDropdownOpen}
+          isDropDownOpen={isFirstDropdownOpen}
           clearInputHandler={() => clearInputHandler()}
+          inputClickHandler={() => inputClickHandler(1)}
         />
         <TextInput
           title="Пункт выдачи"
@@ -115,9 +132,10 @@ export function OrderGeolocationComponent() {
           inputValue={inputStreet}
           setInputValue={setInputStreet}
           listItems={addresses}
-          setDropdownOpen={setDropdownOpen}
-          isDropDownOpen={isDropdownOpen}
+          setDropdownOpen={setSecondDropdownOpen}
+          isDropDownOpen={isFirstDropdownOpen}
           clearInputHandler={() => clearInputHandler()}
+          inputClickHandler={() => inputClickHandler(2)}
         />
       </form>
       <div className={styles.map_wrapper}>
