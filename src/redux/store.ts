@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import mapPointsReducer from './map-points-slice/map-points-slice';
-import stepOneOrderFormReducer from './step-one-order-form/step-one-order-form';
+import stepOneOrderFormReducer from './step-one-order-form-slice/step-one-order-form-slice';
 
 export const store = configureStore({
   reducer: {
