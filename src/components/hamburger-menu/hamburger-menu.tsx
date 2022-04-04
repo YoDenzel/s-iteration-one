@@ -1,8 +1,8 @@
-import { menuIcons, menuTitlesArr } from '../../shared/constants';
 import { Icons } from '../../shared/icons';
 import { ChangeLanguageButton } from '../change-language-button';
 import { MenuComponent } from '../menu-component';
 import styles from './hamburger-menu.module.scss';
+import { menuIcons, menuTitlesArr } from './constants';
 
 type THamburgerMenu = {
   isMenuActive: boolean;

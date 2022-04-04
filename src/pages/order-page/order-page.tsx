@@ -4,7 +4,7 @@ import {
   HeaderComponent,
   OrderGeolocationComponent,
 } from '../../components';
-import { breadcrumbsArr } from '../../shared/constants';
+import { breadcrumbsArr } from './constants';
 import styles from './order-page.module.scss';
 
 export function OrderPage() {
