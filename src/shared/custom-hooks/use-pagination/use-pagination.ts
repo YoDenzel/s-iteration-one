@@ -14,9 +14,8 @@ export const usePagination = ({
   siblingCount = 1,
   totalCount,
 }: TUsePagination) => {
+  const totalPageCount = Math.ceil(totalCount / pageSize);
   const paginationRange = useMemo(() => {
-    const totalPageCount = Math.ceil(totalCount / pageSize);
-
     const totalPageNumbers = siblingCount + 5;
 
     if (totalPageNumbers >= totalPageCount) {
@@ -59,5 +58,5 @@ export const usePagination = ({
       return [firstPageIndex, 'DOTS', ...middleRange, 'DOTS', lastPageIndex];
     }
   }, [totalCount, pageSize, siblingCount, currentPage]);
-  return paginationRange;
+  return { paginationRange, totalPageCount };
 };
