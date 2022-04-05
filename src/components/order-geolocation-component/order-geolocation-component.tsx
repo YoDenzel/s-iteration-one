@@ -133,8 +133,8 @@ export function OrderGeolocationComponent() {
           setInputValue={setInputStreet}
           listItems={addresses}
           setDropdownOpen={setSecondDropdownOpen}
-          isDropDownOpen={isFirstDropdownOpen}
-          clearInputHandler={() => clearInputHandler()}
+          isDropDownOpen={isSecondDropdownOpen}
+          clearInputHandler={() => setInputStreet('')}
           inputClickHandler={() => inputClickHandler(2)}
         />
       </form>
