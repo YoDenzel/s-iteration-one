@@ -4,12 +4,12 @@ import styles from './filter-cars-form.module.scss';
 
 type TFilterCarsForm = {
   activeButtonName: string;
-  setActiveButtonName: (v: string) => void;
+  clickRadioButtonHandler: (v1: string, v2: string) => void;
 };
 
 export function FilterCarsForm({
   activeButtonName,
-  setActiveButtonName,
+  clickRadioButtonHandler,
 }: TFilterCarsForm) {
   return (
     <form className={styles.form_wrapper}>
@@ -17,9 +17,10 @@ export function FilterCarsForm({
         <FilterCarsRadioButton
           key={item.title + index}
           activeButtonName={activeButtonName}
-          setActiveButtonName={setActiveButtonName}
           name={item.name}
           label={item.title}
+          clickRadioButtonHandler={clickRadioButtonHandler}
+          filter={item.filter}
         />
       ))}
     </form>

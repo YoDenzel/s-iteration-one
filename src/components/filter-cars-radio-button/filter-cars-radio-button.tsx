@@ -3,16 +3,18 @@ import styles from './filter-cars-radio-button.module.scss';
 
 type TFilterCarsRadioButton = {
   activeButtonName: string;
-  setActiveButtonName: (v: string) => void;
   name: string;
   label: string;
+  clickRadioButtonHandler: (v1: string, v2: string) => void;
+  filter: string;
 };
 
 export function FilterCarsRadioButton({
   activeButtonName,
-  setActiveButtonName,
   name,
   label,
+  clickRadioButtonHandler,
+  filter,
 }: TFilterCarsRadioButton) {
   return (
     <label className={styles.radio_button_container}>
@@ -25,7 +27,7 @@ export function FilterCarsRadioButton({
         <input
           type="radio"
           className={styles.radio_icon}
-          onClick={() => setActiveButtonName(name)}
+          onClick={() => clickRadioButtonHandler(name, filter)}
         />
       </div>
       <p className={styles.radio_button_label}>{label}</p>
