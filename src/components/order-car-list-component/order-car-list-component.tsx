@@ -20,6 +20,16 @@ export function OrderCarListComponent() {
     siblingCount: 1,
   });
 
+  const isNextPage = () => {
+    if (currentPage === totalPageCount) return true;
+    else return false;
+  };
+
+  const isPrevPage = () => {
+    if (currentPage === 1) return true;
+    else return false;
+  };
+
   return (
     <div className={styles.container}>
       <FilterCarsForm
@@ -27,6 +37,8 @@ export function OrderCarListComponent() {
         setActiveButtonName={setActiveButtonName}
       />
       <CarsListComponent
+        isNextPage={isNextPage}
+        isPrevPage={isPrevPage}
         data={data}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}

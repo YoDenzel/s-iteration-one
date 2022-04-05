@@ -7,6 +7,8 @@ type TPagination = {
   paginationRange: (string | number)[] | undefined;
   nextPageClickhandler: () => void;
   prevPageClickhandler: () => void;
+  isPrevPage: () => boolean;
+  isNextPage: () => boolean;
 };
 
 export function Pagination({
@@ -15,14 +17,19 @@ export function Pagination({
   paginationRange,
   prevPageClickhandler,
   setCurrentPage,
+  isNextPage,
+  isPrevPage,
 }: TPagination) {
   return (
     <nav className={styles.nav_container}>
       <button
-        className={styles.pagination_item}
+        disabled={isPrevPage()}
+        className={`${styles.pagination_item} ${
+          isPrevPage() && styles.unactive_button
+        }`}
         onClick={() => prevPageClickhandler()}
       >
-        <Icons.LeftArrow color="#000" />
+        <Icons.LeftArrow color={isPrevPage() ? '#999999' : '#000'} />
       </button>
       {paginationRange?.map((item, index) => {
         if (item === 'DOTS') {
@@ -46,10 +53,13 @@ export function Pagination({
         );
       })}
       <button
-        className={styles.pagination_item}
+        className={`${styles.pagination_item} ${
+          isNextPage() && styles.unactive_button
+        }`}
         onClick={() => nextPageClickhandler()}
+        disabled={isNextPage()}
       >
-        <Icons.RightArrow color="#000" />
+        <Icons.RightArrow color={isNextPage() ? '#999999' : '#000'} />
       </button>
     </nav>
   );

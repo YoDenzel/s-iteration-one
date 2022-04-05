@@ -10,6 +10,8 @@ type TCarsList = {
   paginationRange: (string | number)[] | undefined;
   nextPageClickhandler: () => void;
   prevPageClickhandler: () => void;
+  isPrevPage: () => boolean;
+  isNextPage: () => boolean;
 };
 
 export function CarsListComponent({
@@ -19,6 +21,8 @@ export function CarsListComponent({
   paginationRange,
   prevPageClickhandler,
   setCurrentPage,
+  isNextPage,
+  isPrevPage,
 }: TCarsList) {
   return (
     <section className={styles.flex_wrapper}>
@@ -39,6 +43,8 @@ export function CarsListComponent({
         paginationRange={paginationRange}
         prevPageClickhandler={prevPageClickhandler}
         setCurrentPage={setCurrentPage}
+        isNextPage={isNextPage}
+        isPrevPage={isPrevPage}
       />
     </section>
   );
