@@ -1,10 +1,10 @@
-import { TCars } from '../../shared/types';
+import { TCarsData } from '../../shared/types';
 import { CarListItem } from '../car-list-item';
 import { Pagination } from '../pagination';
 import styles from './cars-list-component.module.scss';
 
 type TCarsList = {
-  data?: TCars;
+  data?: TCarsData[];
   currentPage: number;
   setCurrentPage: (v: number) => void;
   paginationRange: (string | number)[] | undefined;
@@ -27,7 +27,7 @@ export function CarsListComponent({
   return (
     <section className={styles.flex_wrapper}>
       <div className={styles.cars_list_container}>
-        {data?.data.map(item => (
+        {data?.map(item => (
           <CarListItem
             name={item.name}
             path={item.thumbnail.path}
