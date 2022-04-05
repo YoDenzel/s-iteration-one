@@ -1,0 +1,52 @@
+.nav_container {
+  margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pagination_item {
+  display: inline-flex;
+  font-size: 18px;
+  align-items: center;
+  line-height: 22px;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border: 1px solid transparent;
+  font-weight: 400;
+  text-align: center;
+  padding: 0px 6px;
+  margin: 0px 3px;
+  color: var(--black);
+  justify-content: center;
+  &:hover {
+    border-radius: 16px;
+    border: 1px solid var(--gray);
+  }
+}
+
+.active_page {
+  color: var(--main-accent);
+  border: 1px solid var(--main-accent);
+  border-radius: 16px;
+}
+
+.pagination_item_dots {
+  font-size: 18px;
+  font-weight: 400;
+  text-align: center;
+  margin: 0 3px;
+  margin-bottom: 5px;
+  justify-content: center;
+  align-self: flex-end;
+  width: 32px;
+  height: auto;
+}
+
+.prev_page_button {
+  margin-right: 10px;
+}
+
+.next_page_button {
+  margin-left: 10px;
+}
