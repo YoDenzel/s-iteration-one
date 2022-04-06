@@ -2,15 +2,18 @@ import { useMemo, useState } from 'react';
 import { useGetData, usePagination } from '../../shared/custom-hooks';
 import { TCars } from '../../shared/types';
 import { CarsListComponent } from '../cars-list-component';
+import { ErrorComponent } from '../error-component';
 import { FilterCarsForm } from '../filter-cars-form';
+import { LoadingComponent } from '../loading-component';
 import { PAGE_LIMIT } from './constants';
 import styles from './order-car-list-component.module.scss';
 
 export function OrderCarListComponent() {
   const [activeButtonName, setActiveButtonName] = useState('all');
   const [filter, setFilter] = useState('');
+  const [image, setImage] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const { data } = useGetData<TCars>({
+  const { data, isError, isLoading } = useGetData<TCars>({
     QUERY_KEY: 'cars',
     url: `car?${filter}&page=${currentPage - 1}&limit=${PAGE_LIMIT}`,
   });
@@ -34,6 +37,7 @@ export function OrderCarListComponent() {
   const clickRadioButtonHandler = (name: string, filter: string) => {
     setActiveButtonName(name);
     setFilter(filter);
+    setCurrentPage(1);
   };
 
   return (
@@ -42,16 +46,26 @@ export function OrderCarListComponent() {
         activeButtonName={activeButtonName}
         clickRadioButtonHandler={clickRadioButtonHandler}
       />
-      <CarsListComponent
-        isNextPage={isNextPage}
-        isPrevPage={isPrevPage}
-        data={data?.data}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        nextPageClickhandler={() => setCurrentPage(prevValue => prevValue + 1)}
-        paginationRange={paginationRange}
-        prevPageClickhandler={() => setCurrentPage(prevValue => prevValue - 1)}
-      />
+      {isError && <ErrorComponent />}
+      {isLoading && <LoadingComponent />}
+      {!isError && !isLoading && (
+        <CarsListComponent
+          isNextPage={isNextPage}
+          isPrevPage={isPrevPage}
+          data={data?.data}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          nextPageClickhandler={() =>
+            setCurrentPage(prevValue => prevValue + 1)
+          }
+          paginationRange={paginationRange}
+          prevPageClickhandler={() =>
+            setCurrentPage(prevValue => prevValue - 1)
+          }
+          image={image}
+          setImage={setImage}
+        />
+      )}
     </div>
   );
 }
