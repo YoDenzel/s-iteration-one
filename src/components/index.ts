@@ -20,3 +20,5 @@ export { FilterCarsRadioButton } from './filter-cars-radio-button';
 export { CarsListComponent } from './cars-list-component';
 export { CarListItem } from './car-list-item';
 export { Pagination } from './pagination';
+export { ErrorComponent } from './error-component';
+export { LoadingComponent } from './loading-component';
