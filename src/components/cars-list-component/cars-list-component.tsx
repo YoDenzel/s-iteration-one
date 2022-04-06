@@ -12,6 +12,8 @@ type TCarsList = {
   prevPageClickhandler: () => void;
   isPrevPage: () => boolean;
   isNextPage: () => boolean;
+  image: string;
+  setImage: (v: string) => void;
 };
 
 export function CarsListComponent({
@@ -23,6 +25,7 @@ export function CarsListComponent({
   setCurrentPage,
   isNextPage,
   isPrevPage,
+  image, setImage
 }: TCarsList) {
   return (
     <section className={styles.flex_wrapper}>
@@ -34,6 +37,8 @@ export function CarsListComponent({
             priceMax={item.priceMax}
             priceMin={item.priceMin}
             key={item.id}
+            image={image}
+            setImage={setImage}
           />
         ))}
       </div>
