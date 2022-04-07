@@ -8,6 +8,7 @@ export function CheckoutForm({
   price,
   buttonTitle,
   clickHandler,
+  secondStepObj,
 }: TCheckoutForm) {
   return (
     <form className={styles.form_wrapper}>
@@ -17,6 +18,12 @@ export function CheckoutForm({
           <CheckoutItem
             title={firstStepObj.title}
             information={firstStepObj.information}
+          />
+        )}
+        {secondStepObj.information && (
+          <CheckoutItem
+            title={secondStepObj.title}
+            information={secondStepObj.information}
           />
         )}
         <div className={styles.summary_block}>
