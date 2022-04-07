@@ -1,5 +1,10 @@
-import { useMemo, useState } from 'react';
-import { useGetData, usePagination } from '../../shared/custom-hooks';
+import { useEffect, useMemo, useState } from 'react';
+import { setCarName } from '../../redux/step-two-order-form-slice/step-two-order-form-slice';
+import {
+  useAppDispatch,
+  useGetData,
+  usePagination,
+} from '../../shared/custom-hooks';
 import { TCars } from '../../shared/types';
 import { CarsListComponent } from '../cars-list-component';
 import { ErrorComponent } from '../error-component';
@@ -10,9 +15,11 @@ import styles from './order-car-list-component.module.scss';
 
 export function OrderCarListComponent() {
   const [activeButtonName, setActiveButtonName] = useState('all');
+  const [car, setCar] = useState('');
   const [filter, setFilter] = useState('');
   const [image, setImage] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const dispatch = useAppDispatch();
   const { data, isError, isLoading } = useGetData<TCars>({
     QUERY_KEY: 'cars',
     url: `car?${filter}&page=${currentPage - 1}&limit=${PAGE_LIMIT}`,
@@ -23,6 +30,14 @@ export function OrderCarListComponent() {
     totalCount: data?.count ?? 1,
     siblingCount: 1,
   });
+
+  useEffect(() => {
+    dispatch(
+      setCarName({
+        carInput: car,
+      }),
+    );
+  }, [car]);
 
   const isNextPage = () => {
     if (currentPage === totalPageCount) return true;
@@ -64,6 +79,8 @@ export function OrderCarListComponent() {
           }
           image={image}
           setImage={setImage}
+          clickHandler={setCar}
+          carName={car}
         />
       )}
     </div>
