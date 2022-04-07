@@ -28,10 +28,8 @@
 
 .dots {
   border-bottom: 2px dotted var(--gray);
-  /* flex: 1; */
   width: 100%;
-  /* height: 1px; */
-  /* flex-grow: 1; */
   flex-shrink: 2;
   margin-left: 12px;
+  margin-bottom: 3px;
 }
