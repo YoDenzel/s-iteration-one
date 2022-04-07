@@ -9,6 +9,8 @@ type TCarListItem = {
   path: string;
   image: string;
   setImage: (v: string) => void;
+  clickHandler: (v: string) => void;
+  carName: string;
 };
 
 export function CarListItem({
@@ -18,9 +20,16 @@ export function CarListItem({
   priceMin,
   image,
   setImage,
+  clickHandler,
+  carName,
 }: TCarListItem) {
   return (
-    <button className={styles.car_item_container}>
+    <button
+      className={`${styles.car_item_container} ${
+        carName === name && styles.car_choosed
+      }`}
+      onClick={() => clickHandler(name)}
+    >
       <div className={styles.text_info_block}>
         <h4 className={styles.title_info}>{name}</h4>
         <p className={styles.price_info}>
