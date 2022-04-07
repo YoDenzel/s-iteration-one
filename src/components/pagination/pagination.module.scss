@@ -48,3 +48,10 @@
     border: 0px;
   }
 }
+
+@media (max-width: 767px) {
+  .pagination_item {
+    width: 24px;
+    height: 24px;
+  }
+}
