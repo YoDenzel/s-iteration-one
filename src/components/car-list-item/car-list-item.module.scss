@@ -9,6 +9,10 @@ $border_padding: 16px;
   border: 1px solid var(--light-gray);
 }
 
+.car_choosed {
+  border: 1px solid var(--main-accent);
+}
+
 .car_item_container:hover {
   border: 1px solid var(--gray);
 }
@@ -47,4 +51,10 @@ $border_padding: 16px;
 .car_image {
   width: auto;
   height: 55px;
+}
+
+@media (max-width: 767px) {
+  .car_image {
+    height: 40px;
+  }
 }
