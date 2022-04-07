@@ -39,6 +39,10 @@ export function OrderCarListComponent() {
     );
   }, [car]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
+
   const isNextPage = () => {
     if (currentPage === totalPageCount) return true;
     else return false;
