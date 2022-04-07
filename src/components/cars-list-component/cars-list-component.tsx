@@ -14,6 +14,8 @@ type TCarsList = {
   isNextPage: () => boolean;
   image: string;
   setImage: (v: string) => void;
+  clickHandler: (v: string) => void;
+  carName: string;
 };
 
 export function CarsListComponent({
@@ -25,7 +27,10 @@ export function CarsListComponent({
   setCurrentPage,
   isNextPage,
   isPrevPage,
-  image, setImage
+  image,
+  setImage,
+  clickHandler,
+  carName,
 }: TCarsList) {
   return (
     <section className={styles.flex_wrapper}>
@@ -39,6 +44,8 @@ export function CarsListComponent({
             key={item.id}
             image={image}
             setImage={setImage}
+            clickHandler={clickHandler}
+            carName={carName}
           />
         ))}
       </div>
