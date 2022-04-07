@@ -1,15 +1,32 @@
+$background: var(--gray);
+
 .container {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 25px;
   width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skeleton_items_block {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
 }
 
 .skeleton_item {
   height: 150px;
   width: 40%;
-  background: var(--gray);
+  background: $background;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--light-gray);
+}
+
+.pagination_item {
+  height: 32px;
+  background: $background;
+  width: 20%;
 }
