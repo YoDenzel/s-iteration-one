@@ -7,7 +7,7 @@ export const radioFilterButtonsArr = [
   {
     title: 'Эконом',
     name: 'cheap',
-    filter: 'priceMin[$lt]=200000',
+    filter: 'priceMin[$lt]=20000',
   },
   {
     title: 'Премиум',
