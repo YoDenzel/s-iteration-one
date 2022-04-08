@@ -1,7 +1,7 @@
-import { TCarsharingSliderComponent } from './types';
 import { CarsharingSliderArrows, SingleSlideComponent } from '../index';
 import { SliderPaginationDots } from '../slider-pagination-dots';
 import styles from './carsharing-slider-component.module.scss';
+import { TCarsharingSliderComponent } from './types';
 
 export function CarsharingSliderComponent({
   sliderImagesArr,
@@ -10,9 +10,11 @@ export function CarsharingSliderComponent({
   nextSlide,
   prevSlide,
   setAutoPlayEnabled,
+  isMenuActive,
+  setMenu,
 }: TCarsharingSliderComponent) {
   return (
-    <div className={styles.container}>
+    <section className={styles.container} onClick={() => setMenu(false)}>
       <CarsharingSliderArrows
         prevSlide={prevSlide}
         nextSlide={nextSlide}
@@ -38,6 +40,11 @@ export function CarsharingSliderComponent({
             ),
         )}
       </div>
-    </div>
+      <div
+        className={`${
+          isMenuActive ? styles.fogger_active : styles.fogger_inactive
+        }`}
+      />
+    </section>
   );
 }
