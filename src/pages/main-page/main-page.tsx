@@ -5,14 +5,26 @@ import {
 } from '../../components';
 import styles from './main-page.module.scss';
 import { images } from '../../shared/images';
-import { useWindowWidth } from '../../shared/custom-hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useWindowWidth,
+} from '../../shared/custom-hooks';
+import { setMenuActive } from '../../redux/sidebar-slice/sidebar-slice';
 
 export function MainPage() {
-  const [isMenuActive, setMenuActive] = useState(false);
-  const [language, setLanguage] = useState('Eng');
   const [activeIndex, setActiveIndex] = useState(0);
   const [autoPlayEnabled, setAutoPlayEnabled] = useState(true);
   const { windowWidth } = useWindowWidth();
+  const isMenuActive = useAppSelector(state => state.sidebarSlide.isMenuActive);
+  const dispatch = useAppDispatch();
+  const setMenu = (value: boolean) => {
+    dispatch(
+      setMenuActive({
+        menuActive: value,
+      }),
+    );
+  };
 
   const autoPlayRef = useRef<() => void>();
 
@@ -54,6 +66,8 @@ export function MainPage() {
           activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}
           setAutoPlayEnabled={setAutoPlayEnabled}
+          isMenuActive={isMenuActive}
+          setMenu={setMenu}
         />
       ) : null}
     </div>
