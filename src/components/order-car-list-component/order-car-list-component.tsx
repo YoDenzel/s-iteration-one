@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { setCarName } from '../../redux/step-two-order-form-slice/step-two-order-form-slice';
 import {
   useAppDispatch,
