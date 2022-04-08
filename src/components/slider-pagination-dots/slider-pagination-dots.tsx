@@ -1,11 +1,5 @@
-import { TSliderImagesArr } from '../../shared/types';
 import styles from './slider-pagination-dots.module.scss';
-
-type TSliderPaginationDots = {
-  sliderImagesArr: TSliderImagesArr[];
-  activeIndex: number;
-  setActiveIndex: (v: number) => void;
-};
+import { TSliderPaginationDots } from './types';
 
 export function SliderPaginationDots({
   sliderImagesArr,

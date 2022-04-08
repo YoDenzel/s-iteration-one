@@ -1,15 +1,7 @@
 import { useState } from 'react';
 import slide1 from '../../shared/images/slider/slide-1.png';
 import styles from './car-list-item.module.scss';
-
-type TCarListItem = {
-  name: string;
-  priceMin: number;
-  priceMax: number;
-  path: string;
-  clickHandler: (v: string) => void;
-  carName: string;
-};
+import { TCarListItem } from './types';
 
 export function CarListItem({
   name,

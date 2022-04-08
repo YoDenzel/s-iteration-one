@@ -1,13 +1,6 @@
 import { Icons } from '../../shared/icons';
 import styles from './filter-cars-radio-button.module.scss';
-
-type TFilterCarsRadioButton = {
-  activeButtonName: string;
-  name: string;
-  label: string;
-  clickRadioButtonHandler: (v1: string, v2: string) => void;
-  filter: string;
-};
+import { TFilterCarsRadioButton } from './types';
 
 export function FilterCarsRadioButton({
   activeButtonName,

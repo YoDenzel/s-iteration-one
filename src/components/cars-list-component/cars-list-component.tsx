@@ -1,20 +1,7 @@
-import { TCarsData } from '../../shared/types';
 import { CarListItem } from '../car-list-item';
 import { Pagination } from '../pagination';
 import styles from './cars-list-component.module.scss';
-
-type TCarsList = {
-  data?: TCarsData[];
-  currentPage: number;
-  setCurrentPage: (v: number) => void;
-  paginationRange: (string | number)[] | undefined;
-  nextPageClickhandler: () => void;
-  prevPageClickhandler: () => void;
-  isPrevPage: () => boolean;
-  isNextPage: () => boolean;
-  clickHandler: (v: string) => void;
-  carName: string;
-};
+import { TCarsList } from './types';
 
 export function CarsListComponent({
   data,
