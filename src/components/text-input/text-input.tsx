@@ -1,17 +1,6 @@
 import { Icons } from '../../shared/icons';
+import { TTextInput } from './types';
 import styles from './text-input.module.scss';
-
-type TTextInput = {
-  title: string;
-  placeholder: string;
-  inputValue: string;
-  setInputValue: (v: string) => void;
-  listItems?: string[];
-  isDropDownOpen?: boolean;
-  setDropdownOpen?: (v: boolean) => void;
-  clearInputHandler: () => void;
-  inputClickHandler: () => void
-};
 
 export function TextInput({
   title,
@@ -22,10 +11,11 @@ export function TextInput({
   isDropDownOpen,
   setDropdownOpen,
   clearInputHandler,
-  inputClickHandler
+  inputClickHandler,
+  referal,
 }: TTextInput) {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} ref={referal}>
       <p className={styles.input_name}>{title}</p>
       <div className={styles.flexbox}>
         <div className={styles.input_container}>
