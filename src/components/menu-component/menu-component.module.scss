@@ -44,7 +44,6 @@
 .menu_link {
   text-decoration: none;
   color: var(--white);
-  font-style: normal;
   font-weight: 500;
   font-size: 32px;
   line-height: 38px;
@@ -72,6 +71,13 @@
   .menu_container__active {
     width: 100%;
   }
+
+  .menu_link {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 33px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -90,6 +96,12 @@
   .menu {
     margin-left: 28px;
     margin-top: 80px;
+  }
+
+  .menu_link {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
   }
 
   .social_media {
