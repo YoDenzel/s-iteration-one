@@ -50,6 +50,10 @@
 }
 
 @media (max-width: 767px) {
+  .nav_container {
+    flex-wrap: nowrap;
+  }
+
   .pagination_item {
     width: 24px;
     height: 24px;

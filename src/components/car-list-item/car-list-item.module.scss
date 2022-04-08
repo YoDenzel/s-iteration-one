@@ -7,6 +7,7 @@ $border_padding: 16px;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--light-gray);
+  justify-content: space-between;
 }
 
 .car_choosed {
@@ -50,11 +51,22 @@ $border_padding: 16px;
 
 .car_image {
   width: auto;
-  height: 55px;
+  height: 100px;
+}
+
+@media (max-width: 1439px) {
+  .car_image {
+    height: 55px;
+  }
 }
 
 @media (max-width: 767px) {
+  .car_item_container {
+    width: 100%;
+  }
+
   .car_image {
-    height: 40px;
+    height: auto;
+    width: 100px;
   }
 }
