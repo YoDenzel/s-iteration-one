@@ -7,8 +7,6 @@ type TCarListItem = {
   priceMin: number;
   priceMax: number;
   path: string;
-  image: string;
-  setImage: (v: string) => void;
   clickHandler: (v: string) => void;
   carName: string;
 };
@@ -18,11 +16,10 @@ export function CarListItem({
   path,
   priceMax,
   priceMin,
-  image,
-  setImage,
   clickHandler,
   carName,
 }: TCarListItem) {
+  const [image, setImage] = useState('');
   return (
     <button
       className={`${styles.car_item_container} ${
@@ -41,6 +38,7 @@ export function CarListItem({
           src={image || path}
           className={styles.car_image}
           onError={() => setImage(slide1)}
+          alt="Фотография машины"
         />
       </div>
     </button>
