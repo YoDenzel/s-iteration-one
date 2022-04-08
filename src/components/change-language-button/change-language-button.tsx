@@ -1,9 +1,5 @@
 import styles from './change-language-button.module.scss';
-
-type TChangeLanguageButton = {
-  language: string;
-  setLanguage: (v: string) => void;
-};
+import { TChangeLanguageButton } from './types';
 
 export function ChangeLanguageButton({
   language,

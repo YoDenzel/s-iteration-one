@@ -1,10 +1,5 @@
 import { Marker, useMap } from 'react-leaflet';
-
-type TMapMarker = {
-  clickHandler: () => void;
-  coordinates: number[];
-  zoom: number;
-};
+import { TMapMarker } from './types';
 
 export function MapMarker({ clickHandler, coordinates, zoom }: TMapMarker) {
   const map = useMap();

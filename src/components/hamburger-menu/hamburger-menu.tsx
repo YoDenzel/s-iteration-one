@@ -3,14 +3,7 @@ import { ChangeLanguageButton } from '../change-language-button';
 import { MenuComponent } from '../menu-component';
 import styles from './hamburger-menu.module.scss';
 import { menuIcons, menuTitlesArr } from './constants';
-
-type THamburgerMenu = {
-  isMenuActive: boolean;
-  setMenuActive: (v: boolean) => void;
-  language: string;
-  setLanguage: (v: string) => void;
-  windowWidth: number;
-};
+import { THamburgerMenu } from './types';
 
 export function HamburgerMenu({
   isMenuActive,

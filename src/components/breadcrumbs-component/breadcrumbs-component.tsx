@@ -1,13 +1,6 @@
 import { Icons } from '../../shared/icons';
 import styles from './breadcrumbs-component.module.scss';
-
-type TBreadcrumbsComponent = {
-  breadcrumbsArr: Array<{
-    title: string;
-    linkTo: string;
-  }>;
-  activeComponentIndex: number;
-};
+import { TBreadcrumbsComponent } from './types';
 
 export function BreadcrumbsComponent({
   breadcrumbsArr,
