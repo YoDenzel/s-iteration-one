@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { useAppSelector } from '../../shared/custom-hooks';
+import { useAppSelector, useClickOutside } from '../../shared/custom-hooks';
 import { MapComponent } from '../map-component';
 import { TextInput } from '../text-input';
 import styles from './order-geolocation-component.module.scss';
@@ -9,10 +9,14 @@ export function OrderGeolocationComponent() {
   const [inputStreet, setInputStreet] = useState('');
   const [isFirstDropdownOpen, setFirstDropdownOpen] = useState(false);
   const [isSecondDropdownOpen, setSecondDropdownOpen] = useState(false);
-
-  const addressesArr = useAppSelector(state => {
-    return state.mapPoints;
+  const firstInputRef = useClickOutside<HTMLDivElement>(() => {
+    setFirstDropdownOpen(false);
   });
+  const secondInputRef = useClickOutside<HTMLDivElement>(() => {
+    setSecondDropdownOpen(false);
+  });
+
+  const addressesArr = useAppSelector(state => state.mapPoints);
 
   const citiesArr = useMemo(
     () =>
@@ -59,21 +63,6 @@ export function OrderGeolocationComponent() {
     setInputStreet('');
   };
 
-  const inputClickHandler = (variant: number) => {
-    switch (variant) {
-      case 1: {
-        setFirstDropdownOpen(!isFirstDropdownOpen);
-        setSecondDropdownOpen(false);
-        break;
-      }
-      case 2: {
-        setFirstDropdownOpen(false);
-        setSecondDropdownOpen(!isSecondDropdownOpen);
-        break;
-      }
-    }
-  };
-
   return (
     <section>
       <form className={styles.form}>
@@ -86,7 +75,8 @@ export function OrderGeolocationComponent() {
           setDropdownOpen={setFirstDropdownOpen}
           isDropDownOpen={isFirstDropdownOpen}
           clearInputHandler={() => clearInputHandler()}
-          inputClickHandler={() => inputClickHandler(1)}
+          inputClickHandler={() => setFirstDropdownOpen(!isFirstDropdownOpen)}
+          referal={firstInputRef}
         />
         <TextInput
           title="Пункт выдачи"
@@ -97,7 +87,8 @@ export function OrderGeolocationComponent() {
           setDropdownOpen={setSecondDropdownOpen}
           isDropDownOpen={isSecondDropdownOpen}
           clearInputHandler={() => setInputStreet('')}
-          inputClickHandler={() => inputClickHandler(2)}
+          inputClickHandler={() => setSecondDropdownOpen(!isSecondDropdownOpen)}
+          referal={secondInputRef}
         />
       </form>
       <div className={styles.map_wrapper}>
