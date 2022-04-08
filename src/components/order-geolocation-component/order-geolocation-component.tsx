@@ -14,9 +14,7 @@ export function OrderGeolocationComponent() {
   const [inputCity, setInputCity] = useState('');
   const [inputStreet, setInputStreet] = useState('');
   const dispatch = useAppDispatch();
-  const addressesArr = useAppSelector(state => {
-    return state.mapPoints;
-  });
+  const addressesArr = useAppSelector(state => state.mapPoints);
   const checkCityInputValidity = useMemo(() => {
     return addressesArr.filter(
       item => item.city.toLowerCase() === inputCity.toLowerCase(),
