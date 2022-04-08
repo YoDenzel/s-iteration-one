@@ -17,7 +17,6 @@ export function OrderCarListComponent() {
   const [activeButtonName, setActiveButtonName] = useState('all');
   const [car, setCar] = useState('');
   const [filter, setFilter] = useState('');
-  const [image, setImage] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useAppDispatch();
   const { data, isError, isLoading } = useGetData<TCars>({
@@ -81,8 +80,6 @@ export function OrderCarListComponent() {
           prevPageClickhandler={() =>
             setCurrentPage(prevValue => prevValue - 1)
           }
-          image={image}
-          setImage={setImage}
           clickHandler={setCar}
           carName={car}
         />

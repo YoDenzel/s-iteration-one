@@ -12,8 +12,6 @@ type TCarsList = {
   prevPageClickhandler: () => void;
   isPrevPage: () => boolean;
   isNextPage: () => boolean;
-  image: string;
-  setImage: (v: string) => void;
   clickHandler: (v: string) => void;
   carName: string;
 };
@@ -27,8 +25,6 @@ export function CarsListComponent({
   setCurrentPage,
   isNextPage,
   isPrevPage,
-  image,
-  setImage,
   clickHandler,
   carName,
 }: TCarsList) {
@@ -42,8 +38,6 @@ export function CarsListComponent({
             priceMax={item.priceMax}
             priceMin={item.priceMin}
             key={item.id}
-            image={image}
-            setImage={setImage}
             clickHandler={clickHandler}
             carName={carName}
           />
