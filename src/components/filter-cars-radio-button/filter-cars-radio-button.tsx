@@ -23,7 +23,13 @@ export function FilterCarsRadioButton({
           onClick={() => clickRadioButtonHandler(name, filter)}
         />
       </div>
-      <p className={styles.radio_button_label}>{label}</p>
+      <p
+        className={`${styles.radio_button_label} ${
+          activeButtonName !== name && styles.inactive_radio_button
+        }`}
+      >
+        {label}
+      </p>
     </label>
   );
 }
