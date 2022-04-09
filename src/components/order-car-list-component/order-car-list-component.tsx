@@ -52,14 +52,14 @@ export function OrderCarListComponent() {
     else return false;
   };
 
-  const clickRadioButtonHandler = (name: string, filter: string) => {
+  const clickRadioButtonHandler = (name: string, filter?: string) => {
     setActiveButtonName(name);
-    setFilter(filter);
+    setFilter(filter || '');
     setCurrentPage(1);
   };
 
   return (
-    <div className={styles.container}>
+    <section className={styles.container}>
       <FilterCarsForm
         activeButtonName={activeButtonName}
         clickRadioButtonHandler={clickRadioButtonHandler}
@@ -84,6 +84,6 @@ export function OrderCarListComponent() {
           carName={car}
         />
       )}
-    </div>
+    </section>
   );
 }
