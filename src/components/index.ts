@@ -22,3 +22,4 @@ export { CarListItem } from './car-list-item';
 export { Pagination } from './pagination';
 export { ErrorComponent } from './error-component';
 export { LoadingComponent } from './loading-component';
+export { OrderAdditionSettingsComponent } from './order-addition-settings-component';

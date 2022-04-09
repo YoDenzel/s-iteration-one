@@ -1,11 +1,6 @@
 import { Icons } from '../../shared/icons';
 import styles from './carsharing-slider-arrows.module.scss';
-
-type TCarsharingSliderArrows = {
-  prevSlide: () => void;
-  nextSlide: () => void;
-  setAutoPlayEnabled: (v: boolean) => void;
-};
+import { TCarsharingSliderArrows } from './types';
 
 export function CarsharingSliderArrows({
   prevSlide,

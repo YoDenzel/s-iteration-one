@@ -16,7 +16,7 @@ export function CarsListComponent({
   carName,
 }: TCarsList) {
   return (
-    <section className={styles.flex_wrapper}>
+    <article className={styles.flex_wrapper}>
       <div className={styles.cars_list_container}>
         {data?.map(item => (
           <CarListItem
@@ -39,6 +39,6 @@ export function CarsListComponent({
         isNextPage={isNextPage}
         isPrevPage={isPrevPage}
       />
-    </section>
+    </article>
   );
 }
