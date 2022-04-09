@@ -8,13 +8,13 @@ import {
 import { TCars } from '../../shared/types';
 import { CarsListComponent } from '../cars-list-component';
 import { ErrorComponent } from '../error-component';
-import { FilterCarsForm } from '../filter-cars-form';
+import { FilterRadioForm } from '../filter-radio-form';
 import { LoadingComponent } from '../loading-component';
-import { PAGE_LIMIT } from './constants';
+import { PAGE_LIMIT, radioFilterButtonsArr } from './constants';
 import styles from './order-car-list-component.module.scss';
 
 export function OrderCarListComponent() {
-  const [activeButtonName, setActiveButtonName] = useState('all');
+  const [activeButtonName, setActiveButtonName] = useState('Все модели');
   const [car, setCar] = useState('');
   const [filter, setFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -52,17 +52,22 @@ export function OrderCarListComponent() {
     else return false;
   };
 
-  const clickRadioButtonHandler = (name: string, filter?: string) => {
+  const clickRadioButtonHandler = (name: string) => {
     setActiveButtonName(name);
-    setFilter(filter || '');
+    setFilter(() => {
+      if (name === 'Эконом') return 'priceMin[$lt]=20000';
+      else if (name === 'Премиум') return 'priceMin[$gt]=20000';
+      else return 'priceMin[$gt]=20000';
+    });
     setCurrentPage(1);
   };
 
   return (
     <section className={styles.container}>
-      <FilterCarsForm
+      <FilterRadioForm
         activeButtonName={activeButtonName}
         clickRadioButtonHandler={clickRadioButtonHandler}
+        titleArr={radioFilterButtonsArr}
       />
       {isError && <ErrorComponent />}
       {isLoading && <LoadingComponent />}
