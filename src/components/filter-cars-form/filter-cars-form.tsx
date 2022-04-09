@@ -4,7 +4,7 @@ import styles from './filter-cars-form.module.scss';
 
 type TFilterCarsForm = {
   activeButtonName: string;
-  clickRadioButtonHandler: (v1: string, v2: string) => void;
+  clickRadioButtonHandler: (v1: string, v2?: string) => void;
 };
 
 export function FilterCarsForm({

@@ -52,9 +52,9 @@ export function OrderCarListComponent() {
     else return false;
   };
 
-  const clickRadioButtonHandler = (name: string, filter: string) => {
+  const clickRadioButtonHandler = (name: string, filter?: string) => {
     setActiveButtonName(name);
-    setFilter(filter);
+    setFilter(filter || '');
     setCurrentPage(1);
   };
 
