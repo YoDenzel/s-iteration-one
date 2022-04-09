@@ -1,13 +1,11 @@
 import { Icons } from '../../shared/icons';
-import styles from './filter-cars-radio-button.module.scss';
+import styles from './filter-radio-button.module.scss';
 import { TFilterCarsRadioButton } from './types';
 
-export function FilterCarsRadioButton({
+export function FilterRadioButton({
   activeButtonName,
   name,
-  label,
   clickRadioButtonHandler,
-  filter,
 }: TFilterCarsRadioButton) {
   return (
     <label className={styles.radio_button_container}>
@@ -20,10 +18,10 @@ export function FilterCarsRadioButton({
         <input
           type="radio"
           className={styles.radio_icon}
-          onClick={() => clickRadioButtonHandler(name, filter)}
+          onClick={() => clickRadioButtonHandler(name)}
         />
       </div>
-      <p className={styles.radio_button_label}>{label}</p>
+      <p className={styles.radio_button_label}>{name}</p>
     </label>
   );
 }
