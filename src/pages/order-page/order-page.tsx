@@ -3,6 +3,7 @@ import {
   BreadcrumbsComponent,
   CheckoutForm,
   HeaderComponent,
+  OrderAdditionSettingsComponent,
   OrderCarListComponent,
   OrderGeolocationComponent,
 } from '../../components';
@@ -44,6 +45,9 @@ export function OrderPage() {
       }
       case 1: {
         return <OrderCarListComponent />;
+      }
+      case 2: {
+        return <OrderAdditionSettingsComponent />;
       }
     }
   }
