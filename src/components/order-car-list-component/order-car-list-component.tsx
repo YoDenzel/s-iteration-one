@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
-import { setCarName } from '../../redux/step-two-order-form-slice/step-two-order-form-slice';
+import {
+  setCarColors,
+  setCarName,
+} from '../../redux/step-two-order-form-slice/step-two-order-form-slice';
 import {
   useAppDispatch,
+  useAppSelector,
   useGetData,
   usePagination,
 } from '../../shared/custom-hooks';
@@ -18,6 +22,7 @@ export function OrderCarListComponent() {
   const [car, setCar] = useState('');
   const [filter, setFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const carColor = useAppSelector(state => state.stepTwoOrderForm.carColors);
   const dispatch = useAppDispatch();
   const { data, isError, isLoading } = useGetData<TCars>({
     QUERY_KEY: 'cars',
@@ -34,6 +39,15 @@ export function OrderCarListComponent() {
     dispatch(
       setCarName({
         carInput: car,
+      }),
+    );
+    dispatch(
+      setCarColors({
+        carColors: data?.data
+          .filter(item => {
+            if (item.name === car) return item.colors;
+          })
+          .map(val => val.colors)[0],
       }),
     );
   }, [car]);
