@@ -22,3 +22,5 @@ export { Pagination } from './pagination';
 export { ErrorComponent } from './error-component';
 export { LoadingComponent } from './loading-component';
 export { OrderAdditionSettingsComponent } from './order-addition-settings-component';
+export { ColorFilterForm } from './color-filter-form';
+export { InputDatePicker } from './input-datepicker';
