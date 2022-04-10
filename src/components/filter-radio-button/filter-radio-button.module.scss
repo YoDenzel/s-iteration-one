@@ -30,3 +30,7 @@
   @include radio_button_title;
   color: var(--black);
 }
+
+.radio_button_inactive {
+  color: var(--gray);
+}

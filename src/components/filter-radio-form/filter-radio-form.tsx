@@ -1,17 +1,12 @@
 import { FilterRadioButton } from '../filter-radio-button';
 import styles from './filter-radio-form.module.scss';
-
-type TFilterCarsForm = {
-  activeButtonName: string;
-  clickRadioButtonHandler: (v1: string) => void;
-  titleArr: string[];
-};
+import { TFilterRadioForm } from './types';
 
 export function FilterRadioForm({
   activeButtonName,
   clickRadioButtonHandler,
   titleArr,
-}: TFilterCarsForm) {
+}: TFilterRadioForm) {
   return (
     <form className={styles.form_wrapper}>
       {titleArr.map((item, index) => (

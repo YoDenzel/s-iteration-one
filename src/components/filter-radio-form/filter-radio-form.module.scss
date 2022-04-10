@@ -1,3 +1,9 @@
-.form_wrapper {
+src/components/filter-radio-form/filter-radio-form.tsx.form_wrapper {
   display: flex;
+}
+
+@media (max-width: 767px) {
+  .form_wrapper {
+    flex-wrap: wrap;
+  }
 }

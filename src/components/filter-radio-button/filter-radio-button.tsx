@@ -21,7 +21,13 @@ export function FilterRadioButton({
           onClick={() => clickRadioButtonHandler(name)}
         />
       </div>
-      <p className={styles.radio_button_label}>{name}</p>
+      <p
+        className={`${styles.radio_button_label} ${
+          activeButtonName !== name && styles.radio_button_inactive
+        }`}
+      >
+        {name}
+      </p>
     </label>
   );
 }
