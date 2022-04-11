@@ -15,7 +15,6 @@ export function OrderGeolocationComponent() {
   const secondInputRef = useClickOutside<HTMLDivElement>(() => {
     setSecondDropdownOpen(false);
   });
-
   const addressesArr = useAppSelector(state => state.mapPoints);
 
   const citiesArr = useMemo(
