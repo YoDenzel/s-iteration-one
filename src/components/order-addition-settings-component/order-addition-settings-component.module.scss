@@ -1,11 +1,13 @@
+$wrapper_margin: 32px 0;
+
 .settings_container {
   width: 100%;
 }
 
-.date_form_wrapper {
-  margin-top: 5px;
+.color_filter_form_wrapper {
+  margin: $wrapper_margin;
 }
 
-.second_input_wrapper {
-  margin-top: 10px;
+.car_rate_wrapper {
+  margin: $wrapper_margin;
 }

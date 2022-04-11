@@ -29,6 +29,7 @@
 .radio_button_label {
   @include radio_button_title;
   color: var(--black);
+  margin: 0;
 }
 
 .radio_button_inactive {
