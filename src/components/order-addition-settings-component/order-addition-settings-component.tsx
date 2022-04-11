@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react';
 import { useAppSelector } from '../../shared/custom-hooks';
+import { CarRateComponent } from '../car-rate-component';
 import { ColorFilterForm } from '../color-filter-form';
+import { DateFilterComponent } from '../date-filter-component';
 import { InputDatePicker } from '../input-datepicker';
 import styles from './order-addition-settings-component.module.scss';
 
@@ -26,31 +28,26 @@ export function OrderAdditionSettingsComponent() {
 
   return (
     <section className={styles.settings_container}>
-      <ColorFilterForm
-        title="Цвет"
-        activeButtonName={activeButtonName}
-        titleArr={filterRadioButtonTitlesArr}
-        clickRadioButtonHandler={setActiveButtonName}
-      />
-      <article className={styles.date_form_wrapper}>
-        <InputDatePicker
-          title="С"
-          date={dateFrom}
-          setDate={setDateFrom}
-          isDisabled={false}
-          clearInputClickHandler={() => clearInputClickHandler()}
+      <div className={styles.color_filter_form_wrapper}>
+        <ColorFilterForm
+          title="Цвет"
+          activeButtonName={activeButtonName}
+          titleArr={filterRadioButtonTitlesArr}
+          clickRadioButtonHandler={setActiveButtonName}
         />
-        <article className={styles.second_input_wrapper}>
-          <InputDatePicker
-            title="По"
-            date={dateTo}
-            setDate={setDateTo}
-            minDate={dateFrom}
-            isDisabled={dateFrom ? false : true}
-            clearInputClickHandler={() => setDateTo(null)}
-          />
-        </article>
-      </article>
+      </div>
+      <DateFilterComponent
+        clearInputClickHandler={clearInputClickHandler}
+        dateFrom={dateFrom}
+        dateTo={dateTo}
+        setDateFrom={setDateFrom}
+        setDateTo={setDateTo}
+        firstInputTitle="С"
+        secondInputTitle="По"
+        minDate={dateFrom}
+      />
+      <div className={styles.car_rate_wrapper}>
+      <CarRateComponent /></div>
     </section>
   );
 }
