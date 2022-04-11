@@ -1,3 +1,5 @@
+import { LegacyRef } from 'react';
+
 export type TTextInput = {
   title: string;
   placeholder: string;
@@ -8,5 +10,5 @@ export type TTextInput = {
   setDropdownOpen?: (v: boolean) => void;
   clearInputHandler: () => void;
   inputClickHandler: () => void;
-  referal: any;
+  referal: LegacyRef<HTMLDivElement> | undefined;
 };
