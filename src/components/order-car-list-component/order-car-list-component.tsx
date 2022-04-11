@@ -75,11 +75,12 @@ export function OrderCarListComponent() {
 
   return (
     <section className={styles.container}>
+      <div className={styles.margin_wrapper}>
       <FilterRadioForm
         activeButtonName={activeButtonName}
         clickRadioButtonHandler={clickRadioButtonHandler}
         titleArr={radioFilterButtonsArr}
-      />
+      /></div>
       {isError && <ErrorComponent />}
       {isLoading && <LoadingComponent />}
       {!isError && !isLoading && (
