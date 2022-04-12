@@ -2,26 +2,12 @@ import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { HamburgerMenu } from '../components';
 import { MainPage, OrderPage } from '../pages';
-import { setMenuActive } from '../redux/sidebar-slice/sidebar-slice';
-import {
-  useAppDispatch,
-  useAppSelector,
-  useWindowWidth,
-} from '../shared/custom-hooks';
+import { useAppSelector, useWindowWidth } from '../shared/custom-hooks';
 
 export function App() {
   const [language, setLanguage] = useState('Eng');
   const isMenuActive = useAppSelector(state => state.sidebarSlide.isMenuActive);
-  const dispatch = useAppDispatch();
   const { windowWidth } = useWindowWidth();
-
-  const setMenu = (value: boolean) => {
-    dispatch(
-      setMenuActive({
-        menuActive: value,
-      }),
-    );
-  };
 
   return (
     <div className="flex">
@@ -30,7 +16,6 @@ export function App() {
         isMenuActive={isMenuActive}
         language={language}
         setLanguage={setLanguage}
-        setMenuActive={setMenu}
       />
       <Routes>
         <Route path="/s-iteration-one" element={<MainPage />} />
