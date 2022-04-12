@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import MaskedInput from 'react-text-mask';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -13,7 +12,7 @@ export function InputDatePicker({
   title,
   minDate,
   isDisabled,
-  clearInputClickHandler
+  clearInputClickHandler,
 }: TInputDatePicker) {
   registerLocale('ru', ru);
 
@@ -32,6 +31,8 @@ export function InputDatePicker({
           placeholderText="Введите дату и время"
           dateFormat="dd/MM/yyyy HH:mm"
           minDate={minDate}
+          minTime={minDate !== null ? minDate : undefined}
+          maxTime={minDate !== null ? new Date() : undefined}
           disabled={isDisabled}
           customInput={
             <MaskedInput
