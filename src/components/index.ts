@@ -25,3 +25,4 @@ export { OrderAdditionSettingsComponent } from './order-addition-settings-compon
 export { ColorFilterForm } from './color-filter-form';
 export { InputDatePicker } from './input-datepicker';
 export { CarRateComponent } from './car-rate-component';
+export { CheckboxItem } from './checkbox-item';
