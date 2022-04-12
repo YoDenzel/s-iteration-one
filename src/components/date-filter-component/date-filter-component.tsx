@@ -13,7 +13,7 @@ export function DateFilterComponent({
   secondInputTitle,
 }: TDateFilterComponent) {
   return (
-    <article className={styles.date_form_wrapper}>
+    <section className={styles.date_form_wrapper}>
       <h1 className={styles.component_header}>Дата аренды</h1>
       <InputDatePicker
         title={firstInputTitle}
@@ -32,6 +32,6 @@ export function DateFilterComponent({
           clearInputClickHandler={() => setDateTo(null)}
         />
       </article>
-    </article>
+    </section>
   );
 }
