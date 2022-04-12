@@ -1,6 +1,10 @@
 import { TIconProps } from '../../types';
 
-export const CloseMenuIcon = ({ width = 32, height = 32 }: TIconProps) => (
+export const CloseMenuIcon = ({
+  width = 32,
+  height = 32,
+  color,
+}: TIconProps) => (
   <svg
     width={width}
     height={height}
@@ -9,7 +13,7 @@ export const CloseMenuIcon = ({ width = 32, height = 32 }: TIconProps) => (
   >
     <path
       d="M24 8 8 24M8 8l16 16"
-      stroke="#fff"
+      stroke={color || '#fff'}
       strokeWidth={3}
       strokeLinecap="round"
       strokeLinejoin="round"

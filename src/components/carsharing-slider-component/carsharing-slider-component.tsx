@@ -1,16 +1,9 @@
-import { TSliderImagesArr } from '../../shared/types';
+import { setMenuActive } from '../../redux/sidebar-slice/sidebar-slice';
+import { useAppDispatch } from '../../shared/custom-hooks';
 import { CarsharingSliderArrows, SingleSlideComponent } from '../index';
 import { SliderPaginationDots } from '../slider-pagination-dots';
-import styles from './carsharing-slider-component.module.css';
-
-type TCarsharingSliderComponent = {
-  sliderImagesArr: TSliderImagesArr[];
-  activeIndex: number;
-  setActiveIndex: (v: number) => void;
-  nextSlide: () => void;
-  prevSlide: () => void;
-  setAutoPlayEnabled: (v: boolean) => void;
-};
+import styles from './carsharing-slider-component.module.scss';
+import { TCarsharingSliderComponent } from './types';
 
 export function CarsharingSliderComponent({
   sliderImagesArr,
@@ -19,9 +12,20 @@ export function CarsharingSliderComponent({
   nextSlide,
   prevSlide,
   setAutoPlayEnabled,
+  isMenuActive,
 }: TCarsharingSliderComponent) {
+  const dispatch = useAppDispatch();
   return (
-    <div className={styles.container}>
+    <section
+      className={styles.container}
+      onClick={() =>
+        dispatch(
+          setMenuActive({
+            menuActive: false,
+          }),
+        )
+      }
+    >
       <CarsharingSliderArrows
         prevSlide={prevSlide}
         nextSlide={nextSlide}
@@ -47,6 +51,11 @@ export function CarsharingSliderComponent({
             ),
         )}
       </div>
-    </div>
+      <div
+        className={`${
+          isMenuActive ? styles.fogger_active : styles.fogger_inactive
+        }`}
+      />
+    </section>
   );
 }

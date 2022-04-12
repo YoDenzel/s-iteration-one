@@ -1,12 +1,5 @@
-import styles from './single-slide-component.module.css';
-
-type TSingleSlideComponent = {
-  sliderImage: string;
-  buttonColor: string;
-  description: string;
-  title: string;
-  more: string;
-};
+import styles from './single-slide-component.module.scss';
+import { TSingleSlideComponent } from './types';
 
 export function SingleSlideComponent({
   sliderImage,

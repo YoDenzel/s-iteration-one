@@ -7,6 +7,11 @@
   justify-content: center;
   text-align: left;
   width: 100%;
+  z-index: 4;
+}
+
+.slide_image {
+  position: absolute;
 }
 
 .description_block {
@@ -14,6 +19,7 @@
   margin-right: 97px;
   color: var(--white);
   margin-bottom: 200px;
+  z-index: 100;
 }
 
 .header {
