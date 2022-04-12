@@ -1,11 +1,6 @@
 import { Icons } from '../../shared/icons';
-import styles from './carsharing-slider-arrows.module.css';
-
-type TCarsharingSliderArrows = {
-  prevSlide: () => void;
-  nextSlide: () => void;
-  setAutoPlayEnabled: (v: boolean) => void;
-};
+import styles from './carsharing-slider-arrows.module.scss';
+import { TCarsharingSliderArrows } from './types';
 
 export function CarsharingSliderArrows({
   prevSlide,
@@ -21,7 +16,10 @@ export function CarsharingSliderArrows({
           prevSlide();
         }}
       >
-        <Icons.LeftArrow color="#ffffff" />
+        <div className={styles.left_arrow_hover} />
+        <span>
+          <Icons.LeftArrow color="#ffffff" />
+        </span>
       </button>
       <button
         className={styles.right_arrow}
@@ -30,7 +28,10 @@ export function CarsharingSliderArrows({
           nextSlide();
         }}
       >
-        <Icons.RightArrow color="#ffffff" />
+        <div className={styles.right_arrow_hover} />
+        <span>
+          <Icons.RightArrow color="#ffffff" />
+        </span>
       </button>
     </>
   );

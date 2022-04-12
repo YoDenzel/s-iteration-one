@@ -3,54 +3,17 @@ import {
   CarsharingComponent,
   CarsharingSliderComponent,
 } from '../../components';
-import styles from './main-page.module.css';
+import styles from './main-page.module.scss';
 import { images } from '../../shared/images';
-import { Icons } from '../../shared/icons';
-import { useWindowWidth } from '../../shared/custom-hooks';
+import { useAppSelector, useWindowWidth } from '../../shared/custom-hooks';
 
 export function MainPage() {
-  const [isClicked, setClicked] = useState(false);
-  const [isMenuActive, setMenuActive] = useState(false);
-  const [language, setLanguage] = useState('Eng');
   const [activeIndex, setActiveIndex] = useState(0);
   const [autoPlayEnabled, setAutoPlayEnabled] = useState(true);
   const { windowWidth } = useWindowWidth();
+  const isMenuActive = useAppSelector(state => state.sidebarSlide.isMenuActive);
 
-  const menuIcons = [
-    {
-      linkTo: '/simbirsoft-iteration-one',
-      icon: Icons.TelegramIcon,
-    },
-    {
-      linkTo: '/simbirsoft-iteration-one',
-      icon: Icons.FacebookIcon,
-    },
-    {
-      linkTo: '/simbirsoft-iteration-one',
-      icon: Icons.InstagramIcon,
-    },
-  ];
-
-  const menuTitlesArr = [
-    {
-      title: 'Парковка',
-      linkTo: '/simbirsoft-iteration-one',
-    },
-    {
-      title: 'Страховка',
-      linkTo: '/simbirsoft-iteration-one',
-    },
-    {
-      title: 'Бензин',
-      linkTo: '/simbirsoft-iteration-one',
-    },
-    {
-      title: 'Обслуживание',
-      linkTo: '/simbirsoft-iteration-one',
-    },
-  ];
-
-  const autoPlayRef = useRef<any>();
+  const autoPlayRef = useRef<() => void>();
 
   useEffect(() => {
     autoPlayRef.current = nextSlide;
@@ -58,7 +21,7 @@ export function MainPage() {
 
   useEffect(() => {
     const play = () => {
-      autoPlayEnabled && autoPlayRef.current();
+      autoPlayEnabled && autoPlayRef.current && autoPlayRef.current();
     };
 
     const interval = setInterval(play, 2 * 1000);
@@ -81,17 +44,7 @@ export function MainPage() {
 
   return (
     <div className={styles.container}>
-      <CarsharingComponent
-        windowWidth={windowWidth}
-        isClicked={isClicked}
-        setClicked={setClicked}
-        isMenuActive={isMenuActive}
-        language={language}
-        menuIconsArr={menuIcons}
-        menuTitlesArr={menuTitlesArr}
-        setLanguage={setLanguage}
-        setMenuActive={setMenuActive}
-      />
+      <CarsharingComponent />
       {windowWidth > 1023 ? (
         <CarsharingSliderComponent
           nextSlide={nextSlide}
@@ -100,6 +53,7 @@ export function MainPage() {
           activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}
           setAutoPlayEnabled={setAutoPlayEnabled}
+          isMenuActive={isMenuActive}
         />
       ) : null}
     </div>

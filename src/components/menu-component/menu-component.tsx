@@ -1,29 +1,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { setMenuActive } from '../../redux/sidebar-slice/sidebar-slice';
+import { useAppDispatch } from '../../shared/custom-hooks';
 import { Icons } from '../../shared/icons';
-import { TMenuIcons, TMenuTitlesArr } from '../../shared/types';
 import { ChangeLanguageButton } from '../change-language-button';
-import styles from './menu-component.module.css';
-
-type TMenuComponent = {
-  menuTitlesArr: TMenuTitlesArr[];
-  menuIconsArr: TMenuIcons[];
-  setMenuActive: (v: boolean) => void;
-  windowWidth: number;
-  language: string;
-  setLanguage: (v: string) => void;
-  isActive: boolean;
-};
-
-type TState = {
-  activeIndex: number | null;
-  isHovered: boolean;
-};
+import styles from './menu-component.module.scss';
+import { TMenuComponent, TState } from './types';
 
 export function MenuComponent({
   menuIconsArr,
   menuTitlesArr,
-  setMenuActive,
   windowWidth,
   language,
   setLanguage,
@@ -33,7 +19,7 @@ export function MenuComponent({
     activeIndex: null,
     isHovered: false,
   });
-
+  const dispatch = useAppDispatch();
   return (
     <nav
       className={
@@ -42,7 +28,7 @@ export function MenuComponent({
     >
       <button
         className={styles.close_menu}
-        onClick={() => setMenuActive(false)}
+        onClick={() => dispatch(setMenuActive({ menuActive: false }))}
       >
         <Icons.CloseMenuIcon />
       </button>

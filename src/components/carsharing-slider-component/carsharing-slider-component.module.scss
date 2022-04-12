@@ -1,0 +1,50 @@
+.container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.button {
+  height: 100%;
+  cursor: default;
+  width: 100%;
+}
+
+.slider_content {
+  height: 100%;
+  display: flex;
+}
+
+.nav_arrows {
+  height: 100%;
+}
+
+.fogger_active {
+  background: rgba(21, 27, 31, 0.81);
+  z-index: 100;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  transition: 0.4s ease-in;
+  transform: translateX(0%);
+}
+
+.fogger_inactive {
+  transition: 0.4s ease-out;
+  transform: translateX(-100%);
+  background: rgba(21, 27, 31, 0.81);
+  z-index: 100;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+}
+
+@media (max-width: 1023px) {
+  .container {
+    display: none;
+  }
+}

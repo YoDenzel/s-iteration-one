@@ -1,50 +1,12 @@
-import { Icons } from '../../shared/icons';
-import { TMenuIcons, TMenuTitlesArr } from '../../shared/types';
-import { HamburgerMenu } from '../hamburger-menu';
-import styles from './carsharing-component.module.css';
+import { Link } from 'react-router-dom';
+import { HeaderComponent } from '../header-component';
+import styles from './carsharing-component.module.scss';
 
-type TCarsharingComponent = {
-  isClicked: boolean;
-  setClicked: (v: boolean) => void;
-  isMenuActive: boolean;
-  setMenuActive: (v: boolean) => void;
-  language: string;
-  setLanguage: (v: string) => void;
-  menuIconsArr: TMenuIcons[];
-  menuTitlesArr: TMenuTitlesArr[];
-  windowWidth: number;
-};
-
-export function CarsharingComponent({
-  isClicked,
-  setClicked,
-  isMenuActive,
-  language,
-  menuIconsArr,
-  menuTitlesArr,
-  setLanguage,
-  setMenuActive,
-  windowWidth,
-}: TCarsharingComponent) {
+export function CarsharingComponent() {
   return (
     <section className={styles.carsharing}>
-      <HamburgerMenu
-        windowWidth={windowWidth}
-        isMenuActive={isMenuActive}
-        language={language}
-        setLanguage={setLanguage}
-        setMenuActive={setMenuActive}
-        menuIconsArr={menuIconsArr}
-        menuTitlesArr={menuTitlesArr}
-      />
       <div className={styles.container}>
-        <header className={styles.header}>
-          <p className={styles.header_tagline}>Need for drive</p>
-          <div className={styles.location_block}>
-            <Icons.LocationIcon />
-            <p className={styles.location}>Ульяновск</p>
-          </div>
-        </header>
+        <HeaderComponent />
         <div className={styles.main}>
           <div className={styles.main_text_content}>
             <h1 className={styles.main_header}>Каршеринг</h1>
@@ -53,14 +15,11 @@ export function CarsharingComponent({
               Поминутная аренда авто твоего города
             </p>
           </div>
-          <button
-            className={`${styles.main_book__button} ${
-              isClicked ? styles.main_book__button__clicked : ''
-            }`}
-            onClick={() => setClicked(true)}
-          >
-            Забронировать
-          </button>
+          <Link className={styles.link} to={'/s-iteration-one/order'}>
+            <button className={`${styles.main_book__button}`}>
+              Забронировать
+            </button>
+          </Link>
         </div>
         <footer className={styles.footer}>
           <p className={styles.copyright}>© 2016-2019 «Need for drive»</p>

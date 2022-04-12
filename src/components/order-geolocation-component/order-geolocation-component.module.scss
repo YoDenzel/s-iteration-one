@@ -1,0 +1,16 @@
+@import '../text-input/text-input.module.scss';
+
+.form {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.map_wrapper {
+  margin-top: 48px;
+}
+
+.title {
+  @include input_font_type;
+}

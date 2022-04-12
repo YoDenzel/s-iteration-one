@@ -1,0 +1,65 @@
+$phone_padding: 0 12px;
+$phone_width: 36px;
+$zero: 0;
+
+@mixin arrow_options {
+  display: flex;
+  position: absolute;
+  padding: 0 28px;
+  cursor: pointer;
+  transition: transform ease-in 0.1s;
+  z-index: 100;
+  background-color: unset;
+  border: unset;
+  align-items: center;
+  height: 100%;
+}
+
+@mixin arrow_hover {
+  position: absolute;
+  height: 100%;
+  width: 70px;
+  z-index: 100;
+  &:hover {
+    background-color: var(--main-accent);
+    opacity: 0.2;
+  }
+}
+
+.left_arrow {
+  @include arrow_options;
+  left: $zero;
+}
+
+.left_arrow_hover {
+  @include arrow_hover;
+  left: $zero;
+}
+
+.right_arrow {
+  @include arrow_options;
+  right: $zero;
+}
+
+.right_arrow_hover {
+  @include arrow_hover;
+  right: $zero;
+}
+
+@media (max-width: 1439px) {
+  .left_arrow {
+    padding: $phone_padding;
+  }
+
+  .left_arrow_hover {
+    width: $phone_width;
+  }
+
+  .right_arrow {
+    padding: $phone_padding;
+  }
+
+  .right_arrow_hover {
+    width: $phone_width;
+  }
+}

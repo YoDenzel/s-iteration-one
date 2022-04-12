@@ -20,7 +20,7 @@ export const images = [
   },
   {
     title: 'Страховка',
-    description: 'Полная страховка страховка автомобиля',
+    description: 'Полная страховка  автомобиля',
     sliderImage: SliderImages.slide2,
     buttonColor: 'linear-gradient(90deg, #132949 0%, #0C7B67 100%)',
   },
