@@ -9,13 +9,13 @@ export function ColorFilterForm({
   title,
 }: TColorFilterForm) {
   return (
-    <article className={styles.form_container}>
+    <section className={styles.form_container}>
       <h1 className={styles.form_title}>{title}</h1>
       <FilterRadioForm
         activeButtonName={activeButtonName}
         clickRadioButtonHandler={clickRadioButtonHandler}
         titleArr={titleArr}
       />
-    </article>
+    </section>
   );
 }
