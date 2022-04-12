@@ -15,14 +15,6 @@ export function App() {
   const dispatch = useAppDispatch();
   const { windowWidth } = useWindowWidth();
 
-  const setMenu = (value: boolean) => {
-    dispatch(
-      setMenuActive({
-        menuActive: value,
-      }),
-    );
-  };
-
   return (
     <div className="flex">
       <HamburgerMenu
@@ -30,7 +22,9 @@ export function App() {
         isMenuActive={isMenuActive}
         language={language}
         setLanguage={setLanguage}
-        setMenuActive={setMenu}
+        setMenuActive={(value: boolean) =>
+          dispatch(setMenuActive({ menuActive: value }))
+        }
       />
       <Routes>
         <Route path="/s-iteration-one" element={<MainPage />} />
