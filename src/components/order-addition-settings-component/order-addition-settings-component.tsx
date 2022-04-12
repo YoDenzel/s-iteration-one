@@ -1,15 +1,19 @@
 import { useMemo, useState } from 'react';
 import { useAppSelector } from '../../shared/custom-hooks';
 import { CarRateComponent } from '../car-rate-component';
+import { CheckboxItem } from '../checkbox-item';
 import { ColorFilterForm } from '../color-filter-form';
 import { DateFilterComponent } from '../date-filter-component';
-import { InputDatePicker } from '../input-datepicker';
+import { carsRateTitleArr } from './constants';
+import compareAsc from 'date-fns/compareAsc';
 import styles from './order-addition-settings-component.module.scss';
 
 export function OrderAdditionSettingsComponent() {
-  const [activeButtonName, setActiveButtonName] = useState('Любой');
+  const [activeColorButtonName, setActiveColorButtonName] = useState('Любой');
   const [dateFrom, setDateFrom] = useState<Date | null>(null);
   const [dateTo, setDateTo] = useState<Date | null>(null);
+  const [activeCarRateButtonName, setActiveCarRateButtonName] =
+    useState('Поминутно, 7₽/мин');
   const carColors = useAppSelector(state =>
     useMemo(
       () =>
@@ -31,9 +35,9 @@ export function OrderAdditionSettingsComponent() {
       <div className={styles.color_filter_form_wrapper}>
         <ColorFilterForm
           title="Цвет"
-          activeButtonName={activeButtonName}
+          activeButtonName={activeColorButtonName}
           titleArr={filterRadioButtonTitlesArr}
-          clickRadioButtonHandler={setActiveButtonName}
+          clickRadioButtonHandler={setActiveColorButtonName}
         />
       </div>
       <DateFilterComponent
@@ -47,7 +51,13 @@ export function OrderAdditionSettingsComponent() {
         minDate={dateFrom}
       />
       <div className={styles.car_rate_wrapper}>
-      <CarRateComponent /></div>
+        <CarRateComponent
+          activeButtonName={activeCarRateButtonName}
+          carsRateTitleArr={carsRateTitleArr}
+          setActiveButtonName={setActiveCarRateButtonName}
+        />
+      </div>
+      <CheckboxItem />
     </section>
   );
 }
