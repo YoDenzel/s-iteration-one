@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { FilterRadioButton } from '../filter-radio-button';
 import styles from './car-rate-component.module.scss';
+import { TCarRateComponent } from './types';
 
-export function CarRateComponent() {
-  const [activeButtonName, setActiveButtonName] = useState('Поминутно, 7₽/мин');
-  const carsRateTitleArr = ['Поминутно, 7₽/мин', 'На сутки, 1999 ₽/сутки'];
+export function CarRateComponent({
+  activeButtonName,
+  carsRateTitleArr,
+  setActiveButtonName,
+}: TCarRateComponent) {
   return (
-    <form className={styles.car_rate_container}>
+    <section className={styles.car_rate_container}>
       <h1 className={styles.header_title}>Тариф</h1>
       {carsRateTitleArr.map((item, index) => (
         <div className={styles.cars_title_wrapper} key={item + index}>
@@ -17,6 +20,6 @@ export function CarRateComponent() {
           />
         </div>
       ))}
-    </form>
+    </section>
   );
 }
