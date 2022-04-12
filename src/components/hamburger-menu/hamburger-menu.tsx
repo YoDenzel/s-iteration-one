@@ -4,20 +4,22 @@ import { MenuComponent } from '../menu-component';
 import styles from './hamburger-menu.module.scss';
 import { menuIcons, menuTitlesArr } from './constants';
 import { THamburgerMenu } from './types';
+import { useAppDispatch } from '../../shared/custom-hooks';
+import { setMenuActive } from '../../redux/sidebar-slice/sidebar-slice';
 
 export function HamburgerMenu({
   isMenuActive,
   language,
   setLanguage,
-  setMenuActive,
   windowWidth,
 }: THamburgerMenu) {
+  const dispatch = useAppDispatch();
   return (
     <>
       <aside className={styles.container}>
         <button
           className={styles.burger_btn}
-          onClick={() => setMenuActive(true)}
+          onClick={() => dispatch(setMenuActive({ menuActive: true }))}
         >
           <Icons.OpenHamburgerMenuIcon
             color={windowWidth < 768 ? '#000' : '#fff'}
@@ -31,7 +33,6 @@ export function HamburgerMenu({
         windowWidth={windowWidth}
         menuIconsArr={menuIcons}
         menuTitlesArr={menuTitlesArr}
-        setMenuActive={setMenuActive}
         language={language}
         setLanguage={setLanguage}
         isActive={isMenuActive}

@@ -1,3 +1,5 @@
+import { setMenuActive } from '../../redux/sidebar-slice/sidebar-slice';
+import { useAppDispatch } from '../../shared/custom-hooks';
 import { CarsharingSliderArrows, SingleSlideComponent } from '../index';
 import { SliderPaginationDots } from '../slider-pagination-dots';
 import styles from './carsharing-slider-component.module.scss';
@@ -11,10 +13,19 @@ export function CarsharingSliderComponent({
   prevSlide,
   setAutoPlayEnabled,
   isMenuActive,
-  setMenu,
 }: TCarsharingSliderComponent) {
+  const dispatch = useAppDispatch();
   return (
-    <section className={styles.container} onClick={() => setMenu(false)}>
+    <section
+      className={styles.container}
+      onClick={() =>
+        dispatch(
+          setMenuActive({
+            menuActive: false,
+          }),
+        )
+      }
+    >
       <CarsharingSliderArrows
         prevSlide={prevSlide}
         nextSlide={nextSlide}
