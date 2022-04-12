@@ -8,6 +8,7 @@ import { BreadcrumbsArrowIcon } from './breadcrumbs-arrow-icon';
 import { ResetInputIcon } from './reset-input-icon';
 import { RadioButtonActive } from './radio-button-active';
 import { RadioButtonInactive } from './radio-button-inactive';
+import { CheckMarkIcon } from './check-mark-icon';
 
 export const Icons = {
   LocationIcon,
@@ -20,4 +21,5 @@ export const Icons = {
   ResetInputIcon,
   RadioButtonActive,
   RadioButtonInactive,
+  CheckMarkIcon,
 };
