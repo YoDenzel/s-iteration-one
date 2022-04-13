@@ -24,7 +24,7 @@ export function MapComponent({
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {cityTitle.length < 5
+        {cityTitle.length < 6
           ? infoArr?.map((item, index) => {
               return (
                 <div key={item.city + index}>

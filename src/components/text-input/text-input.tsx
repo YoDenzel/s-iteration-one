@@ -25,6 +25,7 @@ export function TextInput({
             value={inputValue}
             onClick={() => inputClickHandler()}
             onChange={e => setInputValue(e.target.value)}
+            maxLength={17}
           />
           <button
             type="button"

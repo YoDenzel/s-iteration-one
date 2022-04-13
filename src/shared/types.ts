@@ -32,3 +32,8 @@ export type TAddress = {
   title: string;
   coordinates: number[];
 };
+
+export type TFirstStepObj = {
+  title: string;
+  information: string;
+};

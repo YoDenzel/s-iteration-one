@@ -1,10 +1,19 @@
-import { useMemo, useState } from 'react';
-import { useAppSelector, useClickOutside } from '../../shared/custom-hooks';
+import { useEffect, useMemo, useState } from 'react';
+import {
+  useAppSelector,
+  useClickOutside,
+  useAppDispatch,
+} from '../../shared/custom-hooks';
+import {
+  setCityInput,
+  setStreetInput,
+} from '../../redux/step-one-order-form/step-one-order-form';
 import { MapComponent } from '../map-component';
 import { TextInput } from '../text-input';
 import styles from './order-geolocation-component.module.scss';
 
 export function OrderGeolocationComponent() {
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [inputCity, setInputCity] = useState('');
   const [inputStreet, setInputStreet] = useState('');
   const [isFirstDropdownOpen, setFirstDropdownOpen] = useState(false);
@@ -17,12 +26,50 @@ export function OrderGeolocationComponent() {
   });
   const addressesArr = useAppSelector(state => state.mapPoints);
 
+  const dispatch = useAppDispatch();
+
+  const checkCityInputValidity = useMemo(() => {
+    return addressesArr.filter(
+      item => item.city.toLowerCase() === inputCity.toLowerCase(),
+    );
+  }, [inputCity]);
+
+  const checkStreetInputValidity = useMemo(() => {
+    return checkCityInputValidity[0]?.address.filter(
+      item => item.title === inputStreet,
+    );
+  }, [inputStreet]);
+
+  const setInputCityReducer = (input: string) => {
+    dispatch(
+      setCityInput({
+        cityInput: input,
+      }),
+    );
+  };
+
+  const setInputStreetReducer = (input: string) => {
+    dispatch(
+      setStreetInput({
+        streetInput: input,
+      }),
+    );
+  };
+
+  useEffect(() => {
+    if (checkCityInputValidity?.length > 0 || !inputCity)
+      setInputCityReducer(inputCity);
+    if (checkStreetInputValidity?.length > 0 || !inputStreet)
+      setInputStreetReducer(inputStreet);
+  }, [inputCity, inputStreet]);
+
   const citiesArr = useMemo(
     () =>
       addressesArr
         .filter(item => {
           return item.city
             .toUpperCase()
+            .replace(/\s/g, '')
             .includes(inputCity.toUpperCase().replace(/\s/g, ''));
         })
         .map(({ city }) => city),
@@ -63,7 +110,7 @@ export function OrderGeolocationComponent() {
   };
 
   return (
-    <section>
+    <section className={styles.container}>
       <form className={styles.form}>
         <TextInput
           title="Город"

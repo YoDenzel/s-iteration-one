@@ -1,4 +1,4 @@
-import { TAddressesArr } from "../../shared/types";
+import { TAddressesArr } from '../../shared/types';
 
 export type TMapComponent = {
   cityTitle: string;

@@ -51,6 +51,7 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 0;
+  border: 1px solid var(--light-gray);
   position: absolute;
   z-index: 500;
   background: white;
@@ -71,5 +72,23 @@
   }
   li:hover {
     color: var(--main-accent);
+  }
+}
+
+@media (max-width: 767px) {
+  .input_name {
+    width: 100%;
+  }
+
+  .input_container {
+    width: auto;
+  }
+
+  .input_bar {
+    width: auto;
+  }
+
+  .dropdown {
+    overflow-y: unset;
   }
 }
