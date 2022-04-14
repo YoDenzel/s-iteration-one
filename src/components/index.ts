@@ -26,3 +26,4 @@ export { ColorFilterForm } from './color-filter-form';
 export { InputDatePicker } from './input-datepicker';
 export { CarRateComponent } from './car-rate-component';
 export { CheckboxItem } from './checkbox-item';
+export { CheckboxComponent } from './checkbox-component';
