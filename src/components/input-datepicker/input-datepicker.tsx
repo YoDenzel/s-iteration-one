@@ -13,6 +13,7 @@ export function InputDatePicker({
   minDate,
   isDisabled,
   clearInputClickHandler,
+  maxTime,
 }: TInputDatePicker) {
   registerLocale('ru', ru);
 
@@ -31,8 +32,12 @@ export function InputDatePicker({
           placeholderText="Введите дату и время"
           dateFormat="dd/MM/yyyy HH:mm"
           minDate={minDate}
-          minTime={minDate !== null ? minDate : undefined}
-          maxTime={minDate !== null ? new Date() : undefined}
+          minTime={
+            minDate !== null && minDate !== undefined ? minDate : undefined
+          }
+          maxTime={
+            minDate !== null && minDate !== undefined ? maxTime : undefined
+          }
           disabled={isDisabled}
           customInput={
             <MaskedInput

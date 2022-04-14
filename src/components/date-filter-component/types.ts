@@ -7,4 +7,5 @@ export type TDateFilterComponent = {
   clearInputClickHandler: () => void;
   firstInputTitle: string;
   secondInputTitle: string;
+  maxTime: Date;
 };

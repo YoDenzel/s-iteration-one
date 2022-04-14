@@ -1,19 +1,20 @@
 import { useMemo, useState } from 'react';
+import setHours from 'date-fns/setHours';
 import { useAppSelector } from '../../shared/custom-hooks';
 import { CarRateComponent } from '../car-rate-component';
-import { CheckboxItem } from '../checkbox-item';
+import { CheckboxComponent } from '../checkbox-component';
 import { ColorFilterForm } from '../color-filter-form';
 import { DateFilterComponent } from '../date-filter-component';
-import { carsRateTitleArr } from './constants';
-import compareAsc from 'date-fns/compareAsc';
+import { carsRateTitleArr, checkboxArrState } from './constants';
 import styles from './order-addition-settings-component.module.scss';
 
 export function OrderAdditionSettingsComponent() {
-  const [activeColorButtonName, setActiveColorButtonName] = useState('Любой');
+  const [activeColorButtonName, setActiveColorButtonName] = useState('');
   const [dateFrom, setDateFrom] = useState<Date | null>(null);
   const [dateTo, setDateTo] = useState<Date | null>(null);
-  const [activeCarRateButtonName, setActiveCarRateButtonName] =
-    useState('Поминутно, 7₽/мин');
+  const [checkboxArr, setCheckbox] = useState(checkboxArrState);
+  const [activeCarRateButtonName, setActiveCarRateButtonName] = useState('');
+  const maxTime = setHours(dateFrom || 0, 23);
   const carColors = useAppSelector(state =>
     useMemo(
       () =>
@@ -23,11 +24,25 @@ export function OrderAdditionSettingsComponent() {
       [],
     ),
   );
+
   const filterRadioButtonTitlesArr = ['Любой'].concat(carColors);
 
   const clearInputClickHandler = () => {
     setDateFrom(null);
     setDateTo(null);
+  };
+
+  const checkboxActivity = (
+    checkboxArray: typeof checkboxArr,
+    activeTitle: string,
+  ) => {
+    setCheckbox(
+      checkboxArray.map(item =>
+        item.title === activeTitle
+          ? { ...item, isActive: !item.isActive }
+          : item,
+      ),
+    );
   };
 
   return (
@@ -49,6 +64,7 @@ export function OrderAdditionSettingsComponent() {
         firstInputTitle="С"
         secondInputTitle="По"
         minDate={dateFrom}
+        maxTime={maxTime}
       />
       <div className={styles.car_rate_wrapper}>
         <CarRateComponent
@@ -57,7 +73,10 @@ export function OrderAdditionSettingsComponent() {
           setActiveButtonName={setActiveCarRateButtonName}
         />
       </div>
-      <CheckboxItem />
+      <CheckboxComponent
+        checkboxArr={checkboxArr}
+        setCheckboxItem={checkboxActivity}
+      />
     </section>
   );
 }
