@@ -5,4 +5,5 @@ export type TInputDatePicker = {
   minDate?: Date | null;
   isDisabled: boolean;
   clearInputClickHandler: () => void;
+  maxTime?: Date;
 };
