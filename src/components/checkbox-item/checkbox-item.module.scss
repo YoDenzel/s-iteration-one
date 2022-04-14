@@ -38,10 +38,15 @@
 }
 
 .checkbox_title {
+  color: var(--black);
   margin: 0;
   font-size: 14px;
   font-weight: 300;
   line-height: 16px;
   letter-spacing: 0em;
   text-align: left;
+}
+
+.checkbox_inactive {
+  color: var(--gray);
 }
