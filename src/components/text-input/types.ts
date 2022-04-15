@@ -7,8 +7,8 @@ export type TTextInput = {
   setInputValue: (v: string) => void;
   listItems?: string[];
   isDropDownOpen?: boolean;
-  setDropdownOpen?: (v: boolean) => void;
   clearInputHandler: () => void;
   inputClickHandler: () => void;
   referal: LegacyRef<HTMLDivElement> | undefined;
+  onClickLi: (v: string) => void;
 };
