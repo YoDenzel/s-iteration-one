@@ -12,6 +12,7 @@ export function DateFilterComponent({
   firstInputTitle,
   secondInputTitle,
   maxTime,
+  minTime,
 }: TDateFilterComponent) {
   return (
     <section className={styles.date_form_wrapper}>
@@ -29,6 +30,7 @@ export function DateFilterComponent({
           date={dateTo}
           setDate={setDateTo}
           minDate={minDate}
+          minTime={minTime}
           maxTime={maxTime}
           isDisabled={dateFrom ? false : true}
           clearInputClickHandler={() => setDateTo(null)}

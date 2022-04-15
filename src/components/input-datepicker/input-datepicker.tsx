@@ -14,6 +14,7 @@ export function InputDatePicker({
   isDisabled,
   clearInputClickHandler,
   maxTime,
+  minTime,
 }: TInputDatePicker) {
   registerLocale('ru', ru);
 
@@ -23,6 +24,7 @@ export function InputDatePicker({
       <div className={styles.input_container}>
         <DatePicker
           selected={date}
+          openToDate={minDate || undefined}
           onChange={(date: Date) => setDate(date)}
           className={styles.datepicker}
           timeCaption="Время"
@@ -33,10 +35,10 @@ export function InputDatePicker({
           dateFormat="dd/MM/yyyy HH:mm"
           minDate={minDate}
           minTime={
-            minDate !== null && minDate !== undefined ? minDate : undefined
+            minTime !== null && minTime !== undefined ? minTime : undefined
           }
           maxTime={
-            minDate !== null && minDate !== undefined ? maxTime : undefined
+            minTime !== null && minTime !== undefined ? maxTime : undefined
           }
           disabled={isDisabled}
           customInput={

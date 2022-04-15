@@ -6,4 +6,5 @@ export type TInputDatePicker = {
   isDisabled: boolean;
   clearInputClickHandler: () => void;
   maxTime?: Date;
+  minTime?: Date | null;
 };

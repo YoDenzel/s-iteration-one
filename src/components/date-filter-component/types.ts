@@ -1,11 +1,12 @@
 export type TDateFilterComponent = {
-  dateFrom: Date | undefined | null;
+  dateFrom?: Date | null;
   setDateFrom: (v: Date | null) => void;
-  dateTo: Date | undefined | null;
+  dateTo?: Date | null;
   setDateTo: (v: Date | null) => void;
   minDate?: Date | null;
   clearInputClickHandler: () => void;
   firstInputTitle: string;
   secondInputTitle: string;
-  maxTime: Date;
+  maxTime?: Date;
+  minTime?: Date | null;
 };
