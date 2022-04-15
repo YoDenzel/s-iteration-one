@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
   useAppSelector,
   useClickOutside,
@@ -13,7 +13,6 @@ import { TextInput } from '../text-input';
 import styles from './order-geolocation-component.module.scss';
 
 export function OrderGeolocationComponent() {
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [inputCity, setInputCity] = useState('');
   const [inputStreet, setInputStreet] = useState('');
   const [isFirstDropdownOpen, setFirstDropdownOpen] = useState(false);
@@ -25,43 +24,35 @@ export function OrderGeolocationComponent() {
     setSecondDropdownOpen(false);
   });
   const addressesArr = useAppSelector(state => state.mapPoints);
-
   const dispatch = useAppDispatch();
 
-  const checkCityInputValidity = useMemo(() => {
-    return addressesArr.filter(
-      item => item.city.toLowerCase() === inputCity.toLowerCase(),
-    );
-  }, [inputCity]);
-
-  const checkStreetInputValidity = useMemo(() => {
-    return checkCityInputValidity[0]?.address.filter(
-      item => item.title === inputStreet,
-    );
-  }, [inputStreet]);
-
-  const setInputCityReducer = (input: string) => {
+  const dispatchInputCity = (value: string) => {
     dispatch(
       setCityInput({
-        cityInput: input,
+        cityInput: value,
       }),
     );
   };
 
-  const setInputStreetReducer = (input: string) => {
+  const dispatchInputStreet = (value: string) => {
     dispatch(
       setStreetInput({
-        streetInput: input,
+        streetInput: value,
       }),
     );
   };
 
-  useEffect(() => {
-    if (checkCityInputValidity?.length > 0 || !inputCity)
-      setInputCityReducer(inputCity);
-    if (checkStreetInputValidity?.length > 0 || !inputStreet)
-      setInputStreetReducer(inputStreet);
-  }, [inputCity, inputStreet]);
+  const inputLiClickhandler = (value: string, inputCase: number) => {
+    switch (inputCase) {
+      case 1:
+        dispatchInputCity(value);
+        setInputCity(value);
+        break;
+      case 2:
+        dispatchInputStreet(value);
+        setInputStreet(value);
+    }
+  };
 
   const citiesArr = useMemo(
     () =>
@@ -101,12 +92,24 @@ export function OrderGeolocationComponent() {
 
   const mapClickHandler = (city: string, street?: string) => {
     setInputCity(city);
+    dispatchInputCity(city);
     street && setInputStreet(street);
+    street && dispatchInputStreet(street);
   };
 
-  const clearInputHandler = () => {
-    setInputCity('');
-    setInputStreet('');
+  const clearInputHandler = (inputCase: number) => {
+    switch (inputCase) {
+      case 1:
+        dispatchInputCity('');
+        setInputCity('');
+        dispatchInputStreet('');
+        setInputStreet('');
+        break;
+      case 2:
+        dispatchInputStreet('');
+        setInputStreet('');
+        break;
+    }
   };
 
   return (
@@ -118,11 +121,11 @@ export function OrderGeolocationComponent() {
           inputValue={inputCity}
           setInputValue={setInputCity}
           listItems={citiesArr}
-          setDropdownOpen={setFirstDropdownOpen}
           isDropDownOpen={isFirstDropdownOpen}
-          clearInputHandler={() => clearInputHandler()}
+          clearInputHandler={() => clearInputHandler(1)}
           inputClickHandler={() => setFirstDropdownOpen(!isFirstDropdownOpen)}
           referal={firstInputRef}
+          onClickLi={(value: string) => inputLiClickhandler(value, 1)}
         />
         <TextInput
           title="Пункт выдачи"
@@ -130,11 +133,11 @@ export function OrderGeolocationComponent() {
           inputValue={inputStreet}
           setInputValue={setInputStreet}
           listItems={addresses}
-          setDropdownOpen={setSecondDropdownOpen}
           isDropDownOpen={isSecondDropdownOpen}
-          clearInputHandler={() => setInputStreet('')}
+          clearInputHandler={() => clearInputHandler(2)}
           inputClickHandler={() => setSecondDropdownOpen(!isSecondDropdownOpen)}
           referal={secondInputRef}
+          onClickLi={(value: string) => inputLiClickhandler(value, 2)}
         />
       </form>
       <div className={styles.map_wrapper}>
