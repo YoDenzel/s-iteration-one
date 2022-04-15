@@ -7,4 +7,5 @@ export type TCheckoutForm = {
   buttonTitle: string;
   clickHandler: () => void;
   secondStepObj: TFirstStepObj;
+  thirdStepObj: TFirstStepObj[];
 };
