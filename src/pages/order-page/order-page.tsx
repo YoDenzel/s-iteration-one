@@ -15,9 +15,10 @@ export function OrderPage() {
   const stepOne = useAppSelector(state => state.stepOneOrderForm);
   const firstStepObj = {
     title: 'Пункт выдачи',
-    information: `${stepOne.inputCity}${
-      stepOne.inputStreet.length > 6 ? ', ' + stepOne.inputStreet : ''
-    }`,
+    information:
+      stepOne.inputCity && stepOne.inputStreet
+        ? `${stepOne.inputCity}, ${stepOne.inputStreet}`
+        : '',
   };
   const buttonActive = isButtonActive({
     activeIndex: activeComponentIndex,
