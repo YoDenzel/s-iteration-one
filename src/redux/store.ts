@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import mapPointsReducer from './map-points-slice/map-points-slice';
 import stepOneOrderFormReducer from './step-one-order-form-slice/step-one-order-form-slice';
 import stepTwoOrderFormReducer from './step-two-order-form-slice/step-two-order-form-slice';
+import stepThreeOrderFormReducer from './step-three-order-form-slice/step-three-order-form-slice';
 import sidebarSliceReducer from './sidebar-slice/sidebar-slice';
 
 export const store = configureStore({
@@ -9,6 +10,7 @@ export const store = configureStore({
     mapPoints: mapPointsReducer,
     stepOneOrderForm: stepOneOrderFormReducer,
     stepTwoOrderForm: stepTwoOrderFormReducer,
+    stepThreeOrderForm: stepThreeOrderFormReducer,
     sidebarSlide: sidebarSliceReducer,
   },
 });
