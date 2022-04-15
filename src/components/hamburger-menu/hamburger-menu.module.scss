@@ -28,3 +28,11 @@
     margin-left: 16px;
   }
 }
+
+@media (min-width: 2042px) {
+  .container {
+    z-index: 1;
+    min-height: 100%;
+    position: fixed;
+  }
+}

@@ -20,6 +20,12 @@
   @include input_font_type;
 }
 
+@media (min-width: 2042px) {
+  .container {
+    width: 735px;
+  }
+}
+
 @media (max-width: 767px) {
   .form {
     align-items: unset;

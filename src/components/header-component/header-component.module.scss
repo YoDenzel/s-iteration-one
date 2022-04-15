@@ -29,6 +29,12 @@
   padding-left: 7px;
 }
 
+@media (min-width: 2042px) {
+  .header {
+    width: 1024px;
+  }
+}
+
 @media (max-width: 767px) {
   .header {
     justify-content: flex-end;

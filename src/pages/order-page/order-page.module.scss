@@ -25,6 +25,12 @@ $side-padding_mobile: 0 16px;
   display: flex;
 }
 
+@media (min-width: 2042px) {
+  .order_container {
+    align-items: center;
+  }
+}
+
 @media (max-width: 1439px) {
   .wrapper {
     padding: $side_padding_tablet;

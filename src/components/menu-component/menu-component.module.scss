@@ -22,6 +22,7 @@
   transform: translateX(0%);
   transition: ease-in 0.5s;
   z-index: 2;
+  position: fixed;
 }
 
 .menu {
@@ -67,6 +68,14 @@
 
 .social_media__item {
   margin-right: 24px;
+}
+
+@media (min-width: 2042px) {
+  .menu_container__active {
+    position: fixed;
+    min-height: 100%;
+    width: 60%;
+  }
 }
 
 @media (max-width: 1023px) {
