@@ -71,3 +71,17 @@ export type TCarThumbnail = {
   path: string;
   size: number;
 };
+
+export type TStepThree = {
+  color: string;
+  rentalDuration: string;
+  rate: string;
+  fullTank: boolean;
+  babyChair: boolean;
+  rightHandDrive: boolean;
+};
+
+export type TCheckboxItem = {
+  title: string;
+  isActive: boolean;
+};
