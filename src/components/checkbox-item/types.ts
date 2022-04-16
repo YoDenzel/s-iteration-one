@@ -5,4 +5,4 @@ export type TCheckboxItem = {
   checkboxArr: checkboxArray[];
 };
 
-type checkboxArray = { title: string; isActive: boolean };
+type checkboxArray = { title: string; isActive: boolean; price: number };
