@@ -49,6 +49,14 @@ export function OrderPage() {
     }
   }
 
+  const isBreadcrumbDisabled = (index: number) => {
+    return isButtonActive({
+      activeIndex: index - 1,
+      firstStep: firstStepObj,
+      secondStep: secondStepObj,
+    });
+  };
+
   return (
     <section className={styles.order_container}>
       <div className={styles.wrapper}>
@@ -58,6 +66,7 @@ export function OrderPage() {
         breadcrumbsArr={breadcrumbsArr}
         activeComponentIndex={activeComponentIndex}
         setActiveIndex={setActiveComponentIndex}
+        isButtonActive={isBreadcrumbDisabled}
       />
       <main className={styles.main_container}>
         {showComponent(activeComponentIndex)}

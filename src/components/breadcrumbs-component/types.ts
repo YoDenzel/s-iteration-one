@@ -5,4 +5,5 @@ export type TBreadcrumbsComponent = {
   }>;
   activeComponentIndex: number;
   setActiveIndex: (v: number) => void;
+  isButtonActive: (v: number) => boolean;
 };

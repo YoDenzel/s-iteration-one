@@ -20,8 +20,10 @@ $border: 1px solid var(--light-gray);
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
+  color: var(--black);
   &:disabled {
     color: var(--light-gray);
+    cursor: default;
   }
 }
 
