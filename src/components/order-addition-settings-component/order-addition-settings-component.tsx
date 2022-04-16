@@ -19,7 +19,14 @@ import {
   setRate,
   setRentalDuration,
 } from '../../redux/step-three-order-form-slice/step-three-order-form-slice';
-import { additionalServicesCheck } from '../../shared/functions';
+import {
+  additionalServicesCheck,
+  calculatePriceDependOnRate,
+} from '../../shared/functions';
+import {
+  setMinMaxPrice,
+  setPrice,
+} from '../../redux/checkout-price-slice/checkout-price-slice';
 
 export function OrderAdditionSettingsComponent() {
   const [activeColorButtonName, setActiveColorButtonName] = useState('');
@@ -29,6 +36,7 @@ export function OrderAdditionSettingsComponent() {
   const [activeCarRateButtonName, setActiveCarRateButtonName] = useState('');
   const dispatch = useAppDispatch();
   const maxTime = setHours(dateFrom || 0, 23);
+  const price = useAppSelector(state => state.checkoutPrice);
   const carColors = useAppSelector(state =>
     useMemo(
       () =>
@@ -75,6 +83,16 @@ export function OrderAdditionSettingsComponent() {
     }
   }, [dateFrom, dateTo]);
 
+  useEffect(() => {
+    calculatePriceDependOnRate({
+      activeCarRateButtonName: activeCarRateButtonName,
+      dateFrom: dateFrom,
+      dateTo: dateTo,
+      dispatch: dispatch,
+      minPrice: price.minPrice,
+    });
+  }, [dateFrom, dateTo, activeCarRateButtonName, price.minPrice]);
+
   const filterRadioButtonTitlesArr = ['Любой'].concat(carColors);
 
   const clearInputClickHandler = () => {
@@ -90,6 +108,21 @@ export function OrderAdditionSettingsComponent() {
       checkboxArray.map(item => {
         if (item.title === activeTitle) {
           additionalServicesCheck(activeTitle, item, dispatch);
+          if (item.isActive) {
+            dispatch(
+              setMinMaxPrice({
+                minPrice: price.minPrice - item.price,
+                maxPrice: price.maxPrice,
+              }),
+            );
+          } else {
+            dispatch(
+              setMinMaxPrice({
+                minPrice: price.minPrice + item.price,
+                maxPrice: price.maxPrice,
+              }),
+            );
+          }
           return { ...item, isActive: !item.isActive };
         } else return item;
       }),
