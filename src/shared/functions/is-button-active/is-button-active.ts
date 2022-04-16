@@ -20,7 +20,10 @@ export function isButtonActive({
       if (secondStep.information) return false;
       else return true;
     }
-    default:
+    case 2: {
       return true;
+    }
+    default:
+      return false;
   }
 }
