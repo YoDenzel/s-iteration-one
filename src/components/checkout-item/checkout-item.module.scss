@@ -12,24 +12,26 @@
   text-align: right;
   margin-bottom: 16px;
   justify-content: space-between;
+  width: 100%;
 }
 
 .item_title {
   text-align: left;
   @include default_font;
   align-self: flex-end;
+  min-width: max-content;
+  margin-right: 5px;
 }
 
 .item_text {
   @include default_font;
   text-align: right;
   color: var(--gray);
+  margin-left: 5px;
 }
 
 .dots {
   border-bottom: 2px dotted var(--gray);
   width: 100%;
-  flex-shrink: 2;
-  margin-left: 12px;
   margin-bottom: 3px;
 }
