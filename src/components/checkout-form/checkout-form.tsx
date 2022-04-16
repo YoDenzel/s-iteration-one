@@ -39,7 +39,7 @@ export function CheckoutForm({
         )}
         <div className={styles.summary_block}>
           <h4 className={styles.summary_title}>Цена:</h4>
-          <p className={styles.summary_price}> от {price} ₽</p>
+          <p className={styles.summary_price}>{price}</p>
         </div>
         <button
           className={styles.checkout_button}
