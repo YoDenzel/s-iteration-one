@@ -6,13 +6,16 @@ export const checkboxArrState = [
   {
     title: 'Полный бак, 500р',
     isActive: false,
+    price: 500,
   },
   {
     title: 'Детское кресло, 200р',
     isActive: false,
+    price: 200,
   },
   {
     title: 'Правый руль, 1600р',
     isActive: false,
+    price: 1600,
   },
 ];
