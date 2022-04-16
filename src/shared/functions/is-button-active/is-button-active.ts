@@ -28,6 +28,6 @@ export function isButtonActive({
       else return true;
     }
     default:
-      return true;
+      return false;
   }
 }
