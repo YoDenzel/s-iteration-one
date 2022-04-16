@@ -9,14 +9,15 @@ import {
 } from '../../components';
 import { useAppSelector } from '../../shared/custom-hooks';
 import { isButtonActive } from '../../shared/functions';
-import { breadcrumbsArr, buttonTitle } from './constants';
+import { breadcrumbsArr, buttonTitle, thirdStepArrObj } from './constants';
 import styles from './order-page.module.scss';
 
 export function OrderPage() {
-  const [activeComponentIndex, setActiveComponentIndex] = useState(1);
+  const [activeComponentIndex, setActiveComponentIndex] = useState(0);
   const stepOne = useAppSelector(state => state.stepOneOrderForm);
   const stepTwo = useAppSelector(state => state.stepTwoOrderForm.carName);
   const stepThree = useAppSelector(state => state.stepThreeOrderForm);
+  const checkoutPrice = useAppSelector(state => state.checkoutPrice.price);
   const firstStepObj = {
     title: 'Пункт выдачи',
     information: `${stepOne.inputCity}${
@@ -28,33 +29,6 @@ export function OrderPage() {
     title: 'Модель',
     information: stepTwo,
   };
-
-  const thirdStepArrObj = [
-    {
-      title: 'Цвет',
-      information: stepThree.color,
-    },
-    {
-      title: 'Длительность аренды',
-      information: stepThree.rentalDuration,
-    },
-    {
-      title: 'Тариф',
-      information: stepThree.rate,
-    },
-    {
-      title: 'Полный бак',
-      information: stepThree.fullTank ? 'Да' : '',
-    },
-    {
-      title: 'Детское кресло',
-      information: stepThree.babyChair ? 'Да' : '',
-    },
-    {
-      title: 'Правый руль',
-      information: stepThree.rightHandDrive ? 'Да' : '',
-    },
-  ];
 
   const buttonActive = isButtonActive({
     activeIndex: activeComponentIndex,
@@ -81,6 +55,15 @@ export function OrderPage() {
     }
   }
 
+  const isBreadcrumbDisabled = (index: number) => {
+    return isButtonActive({
+      activeIndex: index - 1,
+      firstStep: firstStepObj,
+      secondStep: secondStepObj,
+      stepThree: stepThree,
+    });
+  };
+
   return (
     <section className={styles.order_container}>
       <div className={styles.wrapper}>
@@ -90,17 +73,18 @@ export function OrderPage() {
         breadcrumbsArr={breadcrumbsArr}
         activeComponentIndex={activeComponentIndex}
         setActiveIndex={setActiveComponentIndex}
+        isButtonActive={isBreadcrumbDisabled}
       />
       <main className={styles.main_container}>
         {showComponent(activeComponentIndex)}
         <CheckoutForm
-          price="8000 до 12000"
+          price={checkoutPrice}
           isButtonActive={buttonActive}
           buttonTitle={buttonTitle[activeComponentIndex]}
           firstStepObj={firstStepObj}
           secondStepObj={secondStepObj}
           clickHandler={clickHandler}
-          thirdStepObj={thirdStepArrObj}
+          thirdStepObj={thirdStepArrObj(stepThree)}
         />
       </main>
     </section>
