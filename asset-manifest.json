@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/s-iteration-one/static/css/main.147942f3.css",
-    "main.js": "/s-iteration-one/static/js/main.5337f4be.js",
+    "main.css": "/s-iteration-one/static/css/main.e16a3d0b.css",
+    "main.js": "/s-iteration-one/static/js/main.8111450d.js",
     "static/media/slide-4.png": "/s-iteration-one/static/media/slide-4.d6a2ffb22256c6daa670.png",
     "static/media/slide-2.png": "/s-iteration-one/static/media/slide-2.2030dc1de580c4674952.png",
     "static/media/slide-3.png": "/s-iteration-one/static/media/slide-3.d48fb794b61b0ca03ff8.png",
@@ -12,11 +12,11 @@
     "static/media/Roboto-Bold.ttf": "/s-iteration-one/static/media/Roboto-Bold.75371f53f06181df75f1.ttf",
     "static/media/Roboto-Light.ttf": "/s-iteration-one/static/media/Roboto-Light.8be2d1487420548b3b8d.ttf",
     "index.html": "/s-iteration-one/index.html",
-    "main.147942f3.css.map": "/s-iteration-one/static/css/main.147942f3.css.map",
-    "main.5337f4be.js.map": "/s-iteration-one/static/js/main.5337f4be.js.map"
+    "main.e16a3d0b.css.map": "/s-iteration-one/static/css/main.e16a3d0b.css.map",
+    "main.8111450d.js.map": "/s-iteration-one/static/js/main.8111450d.js.map"
   },
   "entrypoints": [
-    "static/css/main.147942f3.css",
-    "static/js/main.5337f4be.js"
+    "static/css/main.e16a3d0b.css",
+    "static/js/main.8111450d.js"
   ]
 }
