@@ -20,9 +20,10 @@ export function OrderPage() {
   const checkoutPrice = useAppSelector(state => state.checkoutPrice.price);
   const firstStepObj = {
     title: 'Пункт выдачи',
-    information: `${stepOne.inputCity}${
-      stepOne.inputStreet.length > 6 ? ', ' + stepOne.inputStreet : ''
-    }`,
+    information:
+      stepOne.inputCity && stepOne.inputStreet
+        ? `${stepOne.inputCity}, ${stepOne.inputStreet}`
+        : '',
   };
 
   const secondStepObj = {

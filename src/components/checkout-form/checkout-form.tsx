@@ -15,7 +15,7 @@ export function CheckoutForm({
     <form className={styles.form_wrapper}>
       <div className={styles.container}>
         <h4 className={styles.title}>Ваш заказ</h4>
-        {(!firstStepObj.information || firstStepObj.information.length > 5) && (
+        {firstStepObj.information && (
           <CheckoutItem
             title={firstStepObj.title}
             information={firstStepObj.information}

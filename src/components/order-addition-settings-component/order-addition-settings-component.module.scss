@@ -11,3 +11,9 @@ $wrapper_margin: 32px 0;
 .car_rate_wrapper {
   margin: $wrapper_margin;
 }
+
+@media (min-width: 2042px) {
+  .settings_container {
+    width: 973px;
+  }
+}

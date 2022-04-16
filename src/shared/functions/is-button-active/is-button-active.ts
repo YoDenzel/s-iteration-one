@@ -15,7 +15,7 @@ export function isButtonActive({
 }: TIsButtonActive) {
   switch (activeIndex) {
     case 0: {
-      if (firstStep.information.length > 10) return false;
+      if (firstStep.information) return false;
       else return true;
     }
     case 1: {

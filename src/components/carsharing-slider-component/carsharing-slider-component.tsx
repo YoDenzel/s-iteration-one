@@ -14,11 +14,18 @@ export function CarsharingSliderComponent({
   setAutoPlayEnabled,
   isMenuActive,
 }: TCarsharingSliderComponent) {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   return (
-    <section className={styles.container} onClick={() => dispatch(setMenuActive({
-      menuActive: false
-    }))}>
+    <section
+      className={styles.container}
+      onClick={() =>
+        dispatch(
+          setMenuActive({
+            menuActive: false,
+          }),
+        )
+      }
+    >
       <CarsharingSliderArrows
         prevSlide={prevSlide}
         nextSlide={nextSlide}
