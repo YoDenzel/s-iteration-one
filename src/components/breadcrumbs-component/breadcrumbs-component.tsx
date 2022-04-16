@@ -6,6 +6,8 @@ export function BreadcrumbsComponent({
   breadcrumbsArr,
   activeComponentIndex,
   setActiveIndex,
+  checkBreadcrumbColor,
+  isButtonActive,
 }: TBreadcrumbsComponent) {
   return (
     <nav className={styles.breadcrumbs_container}>
@@ -14,14 +16,10 @@ export function BreadcrumbsComponent({
           <button
             onClick={() => setActiveIndex(index)}
             className={styles.button_link}
-            disabled={!(activeComponentIndex >= index)}
+            disabled={isButtonActive(index)}
             style={{
-              color: `${
-                !(activeComponentIndex >= index) ? '#999999' : '#0EC261'
-              }`,
-              cursor: `${
-                !(activeComponentIndex >= index) ? 'default' : 'pointer'
-              }`,
+              color: activeComponentIndex === index ? '#0EC261' : '',
+              // cursor: `${isButtonActive(index) ? 'default' : 'pointer'}`,
             }}
           >
             {item.title}
