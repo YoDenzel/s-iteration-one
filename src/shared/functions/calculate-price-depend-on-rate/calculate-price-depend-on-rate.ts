@@ -1,4 +1,4 @@
-import { differenceInHours, differenceInMinutes } from 'date-fns';
+import { differenceInMinutes } from 'date-fns';
 import { setPrice } from '../../../redux/checkout-price-slice/checkout-price-slice';
 import { TCalculatePriceDependOnRate } from './types';
 
@@ -21,7 +21,8 @@ export const calculatePriceDependOnRate = ({
     dateFrom &&
     dateTo
   ) {
-    const resPrice = Math.ceil(differenceInHours(dateTo, dateFrom) / 24) * 1999;
+    const resPrice =
+      Math.ceil(differenceInMinutes(dateTo, dateFrom) / 1440) * 1999;
     dispatch(
       setPrice({
         price: `${resPrice + minPrice} ₽`,
