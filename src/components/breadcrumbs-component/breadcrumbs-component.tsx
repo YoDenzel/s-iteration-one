@@ -8,7 +8,8 @@ export function BreadcrumbsComponent({
   setActiveIndex,
 }: TBreadcrumbsComponent) {
   return (
-    <nav className={styles.breadcrumbs_container}>
+    <nav className={styles.breadcrumbs_wrapper}>
+      <article className={styles.breadcrumbs_container}>
       {breadcrumbsArr.map((item, index, arr) => (
         <span key={item.title + index}>
           <button
@@ -33,6 +34,7 @@ export function BreadcrumbsComponent({
           )}
         </span>
       ))}
+      </article>
     </nav>
   );
 }

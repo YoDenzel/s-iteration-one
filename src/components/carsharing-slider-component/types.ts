@@ -8,5 +8,4 @@ export type TCarsharingSliderComponent = {
   prevSlide: () => void;
   setAutoPlayEnabled: (v: boolean) => void;
   isMenuActive: boolean;
-  setMenu: (v: boolean) => void;
 };

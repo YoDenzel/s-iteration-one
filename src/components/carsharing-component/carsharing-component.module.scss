@@ -1,6 +1,13 @@
 $fullHeight: 100vh;
 $fullWidth: 100%;
 
+@mixin standart_font {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 70px;
+  line-height: 66px;
+}
+
 .carsharing {
   min-height: $fullHeight;
   background-color: var(--white);
@@ -12,7 +19,7 @@ $fullWidth: 100%;
   height: $fullHeight;
   display: flex;
   flex-direction: column;
-  padding-left: 64px;
+  padding-left: 121px;
   padding-right: 64px;
   width: $fullWidth;
 }
@@ -25,19 +32,13 @@ $fullWidth: 100%;
 }
 
 .main_header {
-  font-style: normal;
-  font-weight: 700;
-  font-size: 70px;
-  line-height: 66px;
+  @include standart_font;
   color: var(--black);
   margin: 0;
 }
 
 .main_tagline {
-  font-style: normal;
-  font-weight: 700;
-  font-size: 70px;
-  line-height: 66px;
+  @include standart_font;
   color: var(--main-accent);
   margin: 0px;
 }
@@ -104,6 +105,9 @@ $fullWidth: 100%;
   font-size: 13px;
   line-height: 15px;
   color: var(--black);
+}
+
+@media (min-width: 2042px) {
 }
 
 @media (max-width: 1439px) {

@@ -1,54 +1,58 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
+import {
+  useAppSelector,
+  useClickOutside,
+  useAppDispatch,
+} from '../../shared/custom-hooks';
 import {
   setCityInput,
   setStreetInput,
 } from '../../redux/step-one-order-form-slice/step-one-order-form-slice';
-import { useAppDispatch, useAppSelector } from '../../shared/custom-hooks';
 import { MapComponent } from '../map-component';
 import { TextInput } from '../text-input';
 import styles from './order-geolocation-component.module.scss';
 
 export function OrderGeolocationComponent() {
-  const [isFirstDropdownOpen, setFirstDropdownOpen] = useState(false);
-  const [isSecondDropdownOpen, setSecondDropdownOpen] = useState(false);
   const [inputCity, setInputCity] = useState('');
   const [inputStreet, setInputStreet] = useState('');
-  const dispatch = useAppDispatch();
+  const [isFirstDropdownOpen, setFirstDropdownOpen] = useState(false);
+  const [isSecondDropdownOpen, setSecondDropdownOpen] = useState(false);
+  const firstInputRef = useClickOutside<HTMLDivElement>(() => {
+    setFirstDropdownOpen(false);
+  });
+  const secondInputRef = useClickOutside<HTMLDivElement>(() => {
+    setSecondDropdownOpen(false);
+  });
   const addressesArr = useAppSelector(state => state.mapPoints);
-  const checkCityInputValidity = useMemo(() => {
-    return addressesArr.filter(
-      item => item.city.toLowerCase() === inputCity.toLowerCase(),
-    );
-  }, [inputCity]);
+  const dispatch = useAppDispatch();
 
-  const checkStreetInputValidity = useMemo(() => {
-    return checkCityInputValidity[0]?.address.filter(
-      item => item.title === inputStreet,
-    );
-  }, [inputStreet]);
-
-  const setInputCityReducer = (input: string) => {
+  const dispatchInputCity = (value: string) => {
     dispatch(
       setCityInput({
-        cityInput: input,
+        cityInput: value,
       }),
     );
   };
 
-  const setInputStreetReducer = (input: string) => {
+  const dispatchInputStreet = (value: string) => {
     dispatch(
       setStreetInput({
-        streetInput: input,
+        streetInput: value,
       }),
     );
   };
 
-  useEffect(() => {
-    if (checkCityInputValidity?.length > 0 || !inputCity)
-      setInputCityReducer(inputCity);
-    if (checkStreetInputValidity?.length > 0 || !inputStreet)
-      setInputStreetReducer(inputStreet);
-  }, [inputCity, inputStreet]);
+  const inputLiClickhandler = (value: string, inputCase: number) => {
+    switch (inputCase) {
+      case 1:
+        dispatchInputCity(value);
+        setInputCity(value);
+        break;
+      case 2:
+        dispatchInputStreet(value);
+        setInputStreet(value);
+    }
+  };
 
   const citiesArr = useMemo(
     () =>
@@ -56,6 +60,7 @@ export function OrderGeolocationComponent() {
         .filter(item => {
           return item.city
             .toUpperCase()
+            .replace(/\s/g, '')
             .includes(inputCity.toUpperCase().replace(/\s/g, ''));
         })
         .map(({ city }) => city),
@@ -85,14 +90,26 @@ export function OrderGeolocationComponent() {
     [inputStreet, isFirstDropdownOpen, isSecondDropdownOpen],
   );
 
-  const clickHandler = (city: string, street?: string) => {
+  const mapClickHandler = (city: string, street?: string) => {
     setInputCity(city);
+    dispatchInputCity(city);
     street && setInputStreet(street);
+    street && dispatchInputStreet(street);
   };
 
-  const clearInputHandler = () => {
-    setInputCity('');
-    setInputStreet('');
+  const clearInputHandler = (inputCase: number) => {
+    switch (inputCase) {
+      case 1:
+        dispatchInputCity('');
+        setInputCity('');
+        dispatchInputStreet('');
+        setInputStreet('');
+        break;
+      case 2:
+        dispatchInputStreet('');
+        setInputStreet('');
+        break;
+    }
   };
 
   const inputClickHandler = (variant: number) => {
@@ -119,10 +136,11 @@ export function OrderGeolocationComponent() {
           inputValue={inputCity}
           setInputValue={setInputCity}
           listItems={citiesArr}
-          setDropdownOpen={setFirstDropdownOpen}
           isDropDownOpen={isFirstDropdownOpen}
-          clearInputHandler={() => clearInputHandler()}
-          inputClickHandler={() => inputClickHandler(1)}
+          clearInputHandler={() => clearInputHandler(1)}
+          inputClickHandler={() => setFirstDropdownOpen(!isFirstDropdownOpen)}
+          referal={firstInputRef}
+          onClickLi={(value: string) => inputLiClickhandler(value, 1)}
         />
         <TextInput
           title="Пункт выдачи"
@@ -130,10 +148,11 @@ export function OrderGeolocationComponent() {
           inputValue={inputStreet}
           setInputValue={setInputStreet}
           listItems={addresses}
-          setDropdownOpen={setSecondDropdownOpen}
           isDropDownOpen={isSecondDropdownOpen}
-          clearInputHandler={() => setInputStreet('')}
-          inputClickHandler={() => inputClickHandler(2)}
+          clearInputHandler={() => clearInputHandler(2)}
+          inputClickHandler={() => setSecondDropdownOpen(!isSecondDropdownOpen)}
+          referal={secondInputRef}
+          onClickLi={(value: string) => inputLiClickhandler(value, 2)}
         />
       </form>
       <div className={styles.map_wrapper}>
@@ -144,7 +163,7 @@ export function OrderGeolocationComponent() {
           cityTitle={inputCity}
           infoArr={addressesArr}
           streetTitle={inputStreet}
-          clickHandler={clickHandler}
+          clickHandler={mapClickHandler}
         />
       </div>
     </section>

@@ -17,9 +17,10 @@ export function OrderPage() {
   const stepTwo = useAppSelector(state => state.stepTwoOrderForm.carName);
   const firstStepObj = {
     title: 'Пункт выдачи',
-    information: `${stepOne.inputCity}${
-      stepOne.inputStreet.length > 6 ? ', ' + stepOne.inputStreet : ''
-    }`,
+    information:
+      stepOne.inputCity && stepOne.inputStreet
+        ? `${stepOne.inputCity}, ${stepOne.inputStreet}`
+        : '',
   };
 
   const secondStepObj = {

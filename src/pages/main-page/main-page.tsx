@@ -17,14 +17,6 @@ export function MainPage() {
   const [autoPlayEnabled, setAutoPlayEnabled] = useState(true);
   const { windowWidth } = useWindowWidth();
   const isMenuActive = useAppSelector(state => state.sidebarSlide.isMenuActive);
-  const dispatch = useAppDispatch();
-  const setMenu = (value: boolean) => {
-    dispatch(
-      setMenuActive({
-        menuActive: value,
-      }),
-    );
-  };
 
   const autoPlayRef = useRef<() => void>();
 
@@ -67,7 +59,6 @@ export function MainPage() {
           setActiveIndex={setActiveIndex}
           setAutoPlayEnabled={setAutoPlayEnabled}
           isMenuActive={isMenuActive}
-          setMenu={setMenu}
         />
       ) : null}
     </div>
