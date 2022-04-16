@@ -1,11 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import {
+  setMinMaxPrice,
+  setPrice,
+} from '../../redux/checkout-price-slice/checkout-price-slice';
 import {
   setCarColors,
   setCarName,
 } from '../../redux/step-two-order-form-slice/step-two-order-form-slice';
 import {
   useAppDispatch,
-  useAppSelector,
   useGetData,
   usePagination,
 } from '../../shared/custom-hooks';
@@ -34,6 +37,10 @@ export function OrderCarListComponent() {
     siblingCount: 1,
   });
 
+  const activeCarItem = useMemo(() => {
+    return data?.data.filter(item => (item.name === car ? item : null))[0];
+  }, [car]);
+
   useEffect(() => {
     dispatch(
       setCarName({
@@ -42,9 +49,20 @@ export function OrderCarListComponent() {
     );
     dispatch(
       setCarColors({
-        carColors: data?.data
-          .filter(item => (item.name === car ? item : null))
-          .map(val => val.colors)[0],
+        carColors: activeCarItem?.colors,
+      }),
+    );
+    dispatch(
+      setPrice({
+        price: `от ${(activeCarItem?.priceMin || 0) + 8000} до ${
+          (activeCarItem?.priceMax || 0) + 12000
+        } ₽`,
+      }),
+    );
+    dispatch(
+      setMinMaxPrice({
+        minPrice: (activeCarItem?.priceMin || 0) + 8000,
+        maxPrice: (activeCarItem?.priceMax || 0) + 12000,
       }),
     );
   }, [car]);
@@ -76,11 +94,12 @@ export function OrderCarListComponent() {
   return (
     <section className={styles.container}>
       <div className={styles.margin_wrapper}>
-      <FilterRadioForm
-        activeButtonName={activeButtonName}
-        clickRadioButtonHandler={clickRadioButtonHandler}
-        titleArr={radioFilterButtonsArr}
-      /></div>
+        <FilterRadioForm
+          activeButtonName={activeButtonName}
+          clickRadioButtonHandler={clickRadioButtonHandler}
+          titleArr={radioFilterButtonsArr}
+        />
+      </div>
       {isError && <ErrorComponent />}
       {isLoading && <LoadingComponent />}
       {!isError && !isLoading && (
