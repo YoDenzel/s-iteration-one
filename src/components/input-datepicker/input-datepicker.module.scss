@@ -48,3 +48,13 @@
     cursor: default;
   }
 }
+
+@media (max-width: 330px) {
+  .datepicker {
+    width: 180px;
+  }
+
+  .calendar {
+    display: none;
+  }
+}

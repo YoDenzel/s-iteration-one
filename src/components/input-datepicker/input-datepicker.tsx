@@ -30,6 +30,7 @@ export function InputDatePicker({
           timeCaption="Время"
           showPopperArrow={false}
           showTimeSelect
+          calendarClassName={styles.calendar}
           locale="ru"
           placeholderText="Введите дату и время"
           dateFormat="dd/MM/yyyy HH:mm"
