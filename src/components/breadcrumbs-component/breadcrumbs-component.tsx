@@ -6,7 +6,6 @@ export function BreadcrumbsComponent({
   breadcrumbsArr,
   activeComponentIndex,
   setActiveIndex,
-  checkBreadcrumbColor,
   isButtonActive,
 }: TBreadcrumbsComponent) {
   return (
@@ -19,7 +18,6 @@ export function BreadcrumbsComponent({
             disabled={isButtonActive(index)}
             style={{
               color: activeComponentIndex === index ? '#0EC261' : '',
-              // cursor: `${isButtonActive(index) ? 'default' : 'pointer'}`,
             }}
           >
             {item.title}

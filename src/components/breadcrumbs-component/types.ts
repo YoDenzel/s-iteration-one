@@ -5,6 +5,5 @@ export type TBreadcrumbsComponent = {
   }>;
   activeComponentIndex: number;
   setActiveIndex: (v: number) => void;
-  checkBreadcrumbColor?: (v1: number, v2: number) => string;
   isButtonActive: (v: number) => boolean;
 };
