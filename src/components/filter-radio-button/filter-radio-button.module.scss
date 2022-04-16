@@ -35,3 +35,9 @@
 .radio_button_inactive {
   color: var(--gray);
 }
+
+@media (max-width: 430px) {
+  .radio_button_container {
+    flex: 40%;
+  }
+}

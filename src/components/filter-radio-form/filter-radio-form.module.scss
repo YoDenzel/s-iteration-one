@@ -1,9 +1,16 @@
 .form_wrapper {
   display: flex;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 767px) {
   .form_wrapper {
-    flex-wrap: wrap;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 330px) {
+  .form_wrapper {
+    gap: 10px;
   }
 }
