@@ -85,3 +85,23 @@ export type TCheckboxItem = {
   title: string;
   isActive: boolean;
 };
+
+export type TCarRate = {
+  count: number;
+  data: TCarRateData[];
+  fields: {};
+};
+
+export type TCarRateData = {
+  createdAt: number;
+  id: string;
+  price: number;
+  rateTypeId: TCarRateTypeId;
+  updatedAt: number;
+};
+
+type TCarRateTypeId = {
+  id: string;
+  name: string;
+  unit: string;
+};
