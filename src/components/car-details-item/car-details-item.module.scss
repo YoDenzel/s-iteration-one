@@ -1,0 +1,23 @@
+@mixin font {
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--black);
+}
+
+.info_block {
+  display: flex;
+  gap: 7px;
+  margin-bottom: 8px;
+}
+
+.info_title {
+  @include font;
+  font-weight: 700;
+  margin: 0;
+}
+
+.info_text {
+  @include font;
+  font-weight: 300;
+  margin: 0;
+}
