@@ -78,7 +78,7 @@ export function OrderCarListComponent() {
     setFilter(() => {
       if (name === 'Эконом') return 'priceMin[$lt]=20000';
       else if (name === 'Премиум') return 'priceMin[$gt]=20000';
-      else return 'priceMin[$gt]=20000';
+      else return '';
     });
     setCurrentPage(1);
   };
