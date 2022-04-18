@@ -9,7 +9,6 @@
 .wrapper {
   display: flex;
   margin-bottom: 13px;
-  z-index: 2;
 }
 
 .input_container {
@@ -17,6 +16,7 @@
   display: flex;
   width: 224px;
   align-items: center;
+  z-index: 3;
 }
 
 .input_bar {
@@ -55,6 +55,7 @@
   width: 214px;
   height: 80px;
   position: absolute;
+  z-index: 3;
   li {
     height: 18px;
     padding-top: 6px;
