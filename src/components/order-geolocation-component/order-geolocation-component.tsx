@@ -112,21 +112,6 @@ export function OrderGeolocationComponent() {
     }
   };
 
-  const inputClickHandler = (variant: number) => {
-    switch (variant) {
-      case 1: {
-        setFirstDropdownOpen(!isFirstDropdownOpen);
-        setSecondDropdownOpen(false);
-        break;
-      }
-      case 2: {
-        setFirstDropdownOpen(false);
-        setSecondDropdownOpen(!isSecondDropdownOpen);
-        break;
-      }
-    }
-  };
-
   return (
     <section className={styles.container}>
       <form className={styles.form}>
