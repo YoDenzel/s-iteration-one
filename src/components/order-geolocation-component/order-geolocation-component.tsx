@@ -53,7 +53,6 @@ export function OrderGeolocationComponent() {
         setInputStreet(value);
     }
   };
-
   const citiesArr = useMemo(
     () =>
       addressesArr
