@@ -6,4 +6,5 @@ export type TCalculatePriceDependOnRate = {
   dateTo: Date | null;
   minPrice: number;
   dispatch: ReturnType<typeof useAppDispatch>;
+  price?: number;
 };

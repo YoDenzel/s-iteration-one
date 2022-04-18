@@ -8,21 +8,47 @@ export const calculatePriceDependOnRate = ({
   dateTo,
   minPrice,
   dispatch,
+  price,
 }: TCalculatePriceDependOnRate) => {
-  if (activeCarRateButtonName === 'Поминутно, 7₽/мин' && dateFrom && dateTo) {
-    const resPrice = differenceInMinutes(dateTo, dateFrom) * 7;
-    dispatch(
-      setPrice({
-        price: `${resPrice + minPrice} ₽`,
-      }),
-    );
-  } else if (
-    activeCarRateButtonName === 'На сутки, 1999 ₽/сутки' &&
-    dateFrom &&
-    dateTo
-  ) {
-    const resPrice =
-      Math.ceil(differenceInMinutes(dateTo, dateFrom) / 1440) * 1999;
+  if (dateFrom && dateTo && price) {
+    let resPrice = 0;
+    switch (activeCarRateButtonName) {
+      case 'Месячный, 1000 ₽': {
+        resPrice =
+          Math.ceil(differenceInMinutes(dateTo, dateFrom) / 43800) * price;
+
+        break;
+      }
+      case 'Поминутно, 10 ₽': {
+        resPrice = differenceInMinutes(dateTo, dateFrom) * price;
+        break;
+      }
+      case 'Суточный, 2500 ₽': {
+        resPrice =
+          Math.ceil(differenceInMinutes(dateTo, dateFrom) / 1440) * price;
+        break;
+      }
+      case 'Недельный, 15000 ₽': {
+        resPrice =
+          Math.ceil(differenceInMinutes(dateTo, dateFrom) / 10080) * price;
+        break;
+      }
+      case 'Недельный (Акция!), 13500 ₽': {
+        resPrice =
+          Math.ceil(differenceInMinutes(dateTo, dateFrom) / 10080) * price;
+        break;
+      }
+      case '3 Месяца, 51000 ₽': {
+        resPrice =
+          Math.ceil(differenceInMinutes(dateTo, dateFrom) / 131400) * price;
+        break;
+      }
+      case 'Годовой, 200000 ₽': {
+        resPrice =
+          Math.ceil(differenceInMinutes(dateTo, dateFrom) / 525600) * price;
+        break;
+      }
+    }
     dispatch(
       setPrice({
         price: `${resPrice + minPrice} ₽`,
