@@ -107,6 +107,12 @@ $top_margin: 32px;
   }
 }
 
+@media (max-width: 1023px) {
+  .form_wrapper {
+    width: 75%;
+  }
+}
+
 @media (max-width: 767px) {
   .form_wrapper {
     width: 100%;
