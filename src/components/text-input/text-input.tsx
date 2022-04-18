@@ -36,7 +36,11 @@ export function TextInput({
           </button>
         </div>
         {isDropDownOpen && listItems && (
-          <ul className={styles.dropdown}>
+          <ul
+            className={`${styles.dropdown} ${
+              listItems.length > 3 ? styles.list_element_overflow : ''
+            }`}
+          >
             {listItems.map((item, index) => {
               return (
                 <li
