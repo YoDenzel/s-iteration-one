@@ -1,5 +1,7 @@
+import { TCarRateData } from '../../shared/types';
+
 export type TCarRateComponent = {
-  carsRateTitleArr: string[];
+  carsRateTitleArr?: TCarRateData[];
   activeButtonName: string;
-  setActiveButtonName: (v: string) => void;
+  setActiveButtonName: (v: TCarRateData) => void;
 };
