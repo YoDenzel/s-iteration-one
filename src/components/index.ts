@@ -27,3 +27,7 @@ export { InputDatePicker } from './input-datepicker';
 export { CarRateComponent } from './car-rate-component';
 export { CheckboxItem } from './checkbox-item';
 export { CheckboxComponent } from './checkbox-component';
+export { OrderFinalStepComponent } from './order-final-step-component';
+export { FinalInfoComponent } from './final-info-component';
+export { CarDetailsItem } from './car-details-item';
+export { OrderConfirmationPopup } from './order-confirmation-popup';
