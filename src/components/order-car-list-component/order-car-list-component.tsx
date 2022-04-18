@@ -3,10 +3,7 @@ import {
   setMinMaxPrice,
   setPrice,
 } from '../../redux/checkout-price-slice/checkout-price-slice';
-import {
-  setCarColors,
-  setCarName,
-} from '../../redux/step-two-order-form-slice/step-two-order-form-slice';
+import { setCarItem } from '../../redux/step-two-order-form-slice/step-two-order-form-slice';
 import {
   useAppDispatch,
   useGetData,
@@ -43,13 +40,8 @@ export function OrderCarListComponent() {
 
   useEffect(() => {
     dispatch(
-      setCarName({
-        carInput: car,
-      }),
-    );
-    dispatch(
-      setCarColors({
-        carColors: activeCarItem?.colors,
+      setCarItem({
+        car: activeCarItem,
       }),
     );
     dispatch(
