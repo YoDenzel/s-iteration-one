@@ -5,9 +5,11 @@ import {
   HeaderComponent,
   OrderAdditionSettingsComponent,
   OrderCarListComponent,
+  OrderFinalStepComponent,
   OrderGeolocationComponent,
 } from '../../components';
-import { useAppSelector } from '../../shared/custom-hooks';
+import { setPopup } from '../../redux/order-confirmation-popup-status-slice/order-confirmation-popup-status-slice';
+import { useAppDispatch, useAppSelector } from '../../shared/custom-hooks';
 import { isButtonActive } from '../../shared/functions';
 import { breadcrumbsArr, buttonTitle, thirdStepArrObj } from './constants';
 import styles from './order-page.module.scss';
@@ -15,9 +17,10 @@ import styles from './order-page.module.scss';
 export function OrderPage() {
   const [activeComponentIndex, setActiveComponentIndex] = useState(0);
   const stepOne = useAppSelector(state => state.stepOneOrderForm);
-  const stepTwo = useAppSelector(state => state.stepTwoOrderForm.carName);
+  const stepTwo = useAppSelector(state => state.stepTwoOrderForm.car);
   const stepThree = useAppSelector(state => state.stepThreeOrderForm);
   const checkoutPrice = useAppSelector(state => state.checkoutPrice.price);
+  const dispatch = useAppDispatch();
   const firstStepObj = {
     title: 'Пункт выдачи',
     information:
@@ -28,7 +31,7 @@ export function OrderPage() {
 
   const secondStepObj = {
     title: 'Модель',
-    information: stepTwo,
+    information: stepTwo?.name,
   };
 
   const buttonActive = isButtonActive({
@@ -39,7 +42,13 @@ export function OrderPage() {
   });
 
   const clickHandler = () => {
-    setActiveComponentIndex(prevState => prevState + 1);
+    if (activeComponentIndex === 3) {
+      dispatch(
+        setPopup({
+          isPopupActive: true,
+        }),
+      );
+    } else setActiveComponentIndex(prevState => prevState + 1);
   };
 
   function showComponent(activeIndex: number) {
@@ -52,6 +61,9 @@ export function OrderPage() {
       }
       case 2: {
         return <OrderAdditionSettingsComponent />;
+      }
+      case 3: {
+        return <OrderFinalStepComponent />;
       }
     }
   }
