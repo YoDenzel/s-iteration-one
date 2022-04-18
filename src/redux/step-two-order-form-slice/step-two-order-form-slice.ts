@@ -1,21 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { TCarsData } from '../../shared/types';
 
 export const stepTwoOrderForm = createSlice({
   name: 'stepTwoOrderForm',
   initialState: {
-    carName: '',
-    carColors: [],
+    car: {} as TCarsData,
   },
   reducers: {
-    setCarName: (state, action) => {
-      state.carName = action.payload.carInput;
-    },
-    setCarColors: (state, action) => {
-      state.carColors = action.payload.carColors;
+    setCarItem: (state, action) => {
+      state.car = action.payload.car;
     },
   },
 });
 
-export const { setCarName, setCarColors } = stepTwoOrderForm.actions;
+export const { setCarItem } = stepTwoOrderForm.actions;
 
 export default stepTwoOrderForm.reducer;
