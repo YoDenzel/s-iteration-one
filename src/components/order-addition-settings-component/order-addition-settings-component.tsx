@@ -7,12 +7,16 @@ import {
   addMinutes,
 } from 'date-fns';
 import ru from 'date-fns/locale/ru';
-import { useAppDispatch, useAppSelector } from '../../shared/custom-hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useGetData,
+} from '../../shared/custom-hooks';
 import { CarRateComponent } from '../car-rate-component';
 import { CheckboxComponent } from '../checkbox-component';
 import { ColorFilterForm } from '../color-filter-form';
 import { DateFilterComponent } from '../date-filter-component';
-import { carsRateTitleArr, checkboxArrState } from './constants';
+import { checkboxArrState } from './constants';
 import styles from './order-addition-settings-component.module.scss';
 import {
   setCarColor,
@@ -23,10 +27,8 @@ import {
   additionalServicesCheck,
   calculatePriceDependOnRate,
 } from '../../shared/functions';
-import {
-  setMinMaxPrice,
-  setPrice,
-} from '../../redux/checkout-price-slice/checkout-price-slice';
+import { setMinMaxPrice } from '../../redux/checkout-price-slice/checkout-price-slice';
+import { TCarRate, TCarRateData } from '../../shared/types';
 
 export function OrderAdditionSettingsComponent() {
   const [activeColorButtonName, setActiveColorButtonName] = useState('');
@@ -34,13 +36,18 @@ export function OrderAdditionSettingsComponent() {
   const [dateTo, setDateTo] = useState<Date | null>(null);
   const [checkboxArr, setCheckbox] = useState(checkboxArrState);
   const [activeCarRateButtonName, setActiveCarRateButtonName] = useState('');
+  const [activeCarRatePrice, setActiveCarRatePrice] = useState<number>();
+  const { data } = useGetData<TCarRate>({
+    QUERY_KEY: 'rate',
+    url: `rate`,
+  });
   const dispatch = useAppDispatch();
   const maxTime = setHours(dateFrom || 0, 23);
   const price = useAppSelector(state => state.checkoutPrice);
   const carColors = useAppSelector(state =>
     useMemo(
       () =>
-        state.stepTwoOrderForm.carColors.filter(
+        state.stepTwoOrderForm.car.colors.filter(
           (item, index, arr) => arr.indexOf(item) === index,
         ),
       [],
@@ -56,21 +63,24 @@ export function OrderAdditionSettingsComponent() {
     );
   };
 
-  const rateClickhandler = (rateProp: string) => {
-    setActiveCarRateButtonName(rateProp);
+  const rateClickhandler = (rateProp: TCarRateData) => {
+    setActiveCarRatePrice(rateProp.price);
+    setActiveCarRateButtonName(
+      `${rateProp.rateTypeId.name}, ${rateProp.price} ₽`,
+    );
     dispatch(
       setRate({
-        rate: rateProp === 'Поминутно, 7₽/мин' ? 'Поминутно' : 'На сутки',
+        rate: rateProp.rateTypeId.name,
       }),
     );
   };
 
-  const interval = intervalToDuration({
-    start: dateFrom || 0,
-    end: dateTo || 0,
-  });
-
   useEffect(() => {
+    const interval = intervalToDuration({
+      start: dateFrom || 0,
+      end: dateTo || 0,
+    });
+
     if ((dateFrom && dateTo) || (!dateFrom && !dateTo)) {
       dispatch(
         setRentalDuration({
@@ -86,6 +96,7 @@ export function OrderAdditionSettingsComponent() {
   useEffect(() => {
     calculatePriceDependOnRate({
       activeCarRateButtonName: activeCarRateButtonName,
+      price: activeCarRatePrice,
       dateFrom: dateFrom,
       dateTo: dateTo,
       dispatch: dispatch,
@@ -160,7 +171,7 @@ export function OrderAdditionSettingsComponent() {
       <div className={styles.car_rate_wrapper}>
         <CarRateComponent
           activeButtonName={activeCarRateButtonName}
-          carsRateTitleArr={carsRateTitleArr}
+          carsRateTitleArr={data?.data}
           setActiveButtonName={rateClickhandler}
         />
       </div>
