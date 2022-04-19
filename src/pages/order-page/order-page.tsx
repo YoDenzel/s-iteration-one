@@ -8,7 +8,12 @@ import {
   OrderFinalStepComponent,
   OrderGeolocationComponent,
 } from '../../components';
+import { getCheckoutPrice } from '../../redux/checkout-price-slice/checkout-price-slice';
 import { setPopup } from '../../redux/order-confirmation-popup-status-slice/order-confirmation-popup-status-slice';
+import { getStepOneObj } from '../../redux/step-one-order-form-slice/step-one-order-form-slice';
+import { getStepThreeObj } from '../../redux/step-three-order-form-slice/step-three-order-form-slice';
+import { getCarItem } from '../../redux/step-two-order-form-slice/step-two-order-form-slice';
+import { RootState } from '../../redux/store';
 import { useAppDispatch, useAppSelector } from '../../shared/custom-hooks';
 import { isButtonActive } from '../../shared/functions';
 import { breadcrumbsArr, buttonTitle, thirdStepArrObj } from './constants';
@@ -16,10 +21,14 @@ import styles from './order-page.module.scss';
 
 export function OrderPage() {
   const [activeComponentIndex, setActiveComponentIndex] = useState(0);
-  const stepOne = useAppSelector(state => state.stepOneOrderForm);
-  const stepTwo = useAppSelector(state => state.stepTwoOrderForm.car);
-  const stepThree = useAppSelector(state => state.stepThreeOrderForm);
-  const checkoutPrice = useAppSelector(state => state.checkoutPrice.price);
+  const mapState = (state: RootState) => ({
+    stepOne: getStepOneObj(state),
+    stepTwo: getCarItem(state),
+    stepThree: getStepThreeObj(state),
+    checkoutPrice: getCheckoutPrice(state),
+  });
+  const { checkoutPrice, stepOne, stepThree, stepTwo } =
+    useAppSelector(mapState);
   const dispatch = useAppDispatch();
   const firstStepObj = {
     title: 'Пункт выдачи',
