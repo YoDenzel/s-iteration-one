@@ -1,4 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../store';
 
 export const stepOneOrderForm = createSlice({
   name: 'stepOneOrderForm',
@@ -7,10 +8,10 @@ export const stepOneOrderForm = createSlice({
     inputStreet: '',
   },
   reducers: {
-    setCityInput: (state, action) => {
+    setCityInput: (state, action: PayloadAction<{ cityInput: string }>) => {
       state.inputCity = action.payload.cityInput;
     },
-    setStreetInput: (state, action) => {
+    setStreetInput: (state, action: PayloadAction<{ streetInput: string }>) => {
       state.inputStreet = action.payload.streetInput;
     },
   },
@@ -19,3 +20,5 @@ export const stepOneOrderForm = createSlice({
 export const { setCityInput, setStreetInput } = stepOneOrderForm.actions;
 
 export default stepOneOrderForm.reducer;
+
+export const getStepOneObj = (state: RootState) => state.stepOneOrderForm;

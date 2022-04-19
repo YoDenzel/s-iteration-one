@@ -1,4 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../store';
+import { TSetMinMaxPrice } from './types';
 
 export const checkoutPrice = createSlice({
   name: 'checkoutPrice',
@@ -8,10 +10,10 @@ export const checkoutPrice = createSlice({
     price: 'от 8000 до 12000 ₽',
   },
   reducers: {
-    setPrice: (state, action) => {
+    setPrice: (state, action: PayloadAction<{ price: string }>) => {
       state.price = action.payload.price;
     },
-    setMinMaxPrice: (state, action) => {
+    setMinMaxPrice: (state, action: PayloadAction<TSetMinMaxPrice>) => {
       state.minPrice = action.payload.minPrice;
       state.maxPrice = action.payload.maxPrice;
     },
@@ -21,3 +23,5 @@ export const checkoutPrice = createSlice({
 export const { setPrice, setMinMaxPrice } = checkoutPrice.actions;
 
 export default checkoutPrice.reducer;
+
+export const getCheckoutPrice = (state: RootState) => state.checkoutPrice.price;

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export const orderConfirmationPopupStatusSlice = createSlice({
   name: 'orderConfirmationPopupSlice',
@@ -6,7 +6,7 @@ export const orderConfirmationPopupStatusSlice = createSlice({
     isPopupActive: false,
   },
   reducers: {
-    setPopup: (state, action) => {
+    setPopup: (state, action: PayloadAction<{ isPopupActive: boolean }>) => {
       state.isPopupActive = action.payload.isPopupActive;
     },
   },
