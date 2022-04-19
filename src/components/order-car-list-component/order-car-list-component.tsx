@@ -39,11 +39,13 @@ export function OrderCarListComponent() {
   }, [car]);
 
   useEffect(() => {
-    dispatch(
-      setCarItem({
-        car: activeCarItem,
-      }),
-    );
+    if (activeCarItem) {
+      dispatch(
+        setCarItem({
+          car: activeCarItem,
+        }),
+      );
+    }
     dispatch(
       setPrice({
         price: `от ${(activeCarItem?.priceMin || 0) + 8000} до ${
