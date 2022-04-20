@@ -105,3 +105,29 @@ type TCarRateTypeId = {
   name: string;
   unit: string;
 };
+
+export type TPoints = {
+  fields: {};
+  count: number;
+  data: TPointsData[];
+};
+
+export type TPointsData = {
+  address: string;
+  name: string;
+  cityId: TPointsCity | null;
+  id: number;
+};
+
+type TPointsCity = {
+  name: string;
+  id: number;
+};
+
+export type TCoordinates = {
+  x: number;
+  y: number;
+  label: string;
+  bounds: [[number, number], [number, number]];
+  raw: {};
+};
