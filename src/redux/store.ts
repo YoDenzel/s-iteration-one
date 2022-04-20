@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import mapPointsReducer from './map-points-slice/map-points-slice';
 import stepOneOrderFormReducer from './step-one-order-form-slice/step-one-order-form-slice';
 import stepTwoOrderFormReducer from './step-two-order-form-slice/step-two-order-form-slice';
 import stepThreeOrderFormReducer from './step-three-order-form-slice/step-three-order-form-slice';
@@ -9,7 +8,6 @@ import orderConfirmationPopupStatusSlice from './order-confirmation-popup-status
 
 export const store = configureStore({
   reducer: {
-    mapPoints: mapPointsReducer,
     stepOneOrderForm: stepOneOrderFormReducer,
     stepTwoOrderForm: stepTwoOrderFormReducer,
     stepThreeOrderForm: stepThreeOrderFormReducer,
