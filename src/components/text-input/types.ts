@@ -5,7 +5,7 @@ export type TTextInput = {
   placeholder: string;
   inputValue: string;
   setInputValue: (v: string) => void;
-  listItems?: string[];
+  listItems?: (string | undefined)[];
   isDropDownOpen?: boolean;
   clearInputHandler: () => void;
   inputClickHandler: () => void;

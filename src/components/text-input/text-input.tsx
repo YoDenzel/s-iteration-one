@@ -25,7 +25,6 @@ export function TextInput({
             value={inputValue}
             onClick={() => inputClickHandler()}
             onChange={e => setInputValue(e.target.value)}
-            maxLength={17}
           />
           <button
             type="button"
@@ -44,9 +43,9 @@ export function TextInput({
             {listItems.map((item, index) => {
               return (
                 <li
-                  key={item + index}
+                  key={(item || '') + index}
                   onClick={() => {
-                    onClickLi(item);
+                    onClickLi(item || '');
                     inputClickHandler();
                   }}
                 >
