@@ -1,8 +1,10 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import {
   useAppSelector,
   useClickOutside,
   useAppDispatch,
+  useGetData,
 } from '../../shared/custom-hooks';
 import {
   setCityInput,
@@ -11,19 +13,38 @@ import {
 import { MapComponent } from '../map-component';
 import { TextInput } from '../text-input';
 import styles from './order-geolocation-component.module.scss';
+import { TCoordinates, TPoints, TPointsData } from '../../shared/types';
+import { createMapCoordinatesArr } from '../../shared/functions';
 
 export function OrderGeolocationComponent() {
-  const [inputCity, setInputCity] = useState('');
-  const [inputStreet, setInputStreet] = useState('');
+  const { inputCity: inputCityRedux, inputStreet: inputStreetRedux } =
+    useAppSelector(state => state.stepOneOrderForm);
+  const { data } = useGetData<TPointsData[]>({
+    QUERY_KEY: 'points',
+    url: 'point',
+    selectorFunction: (state: TPoints) =>
+      state.data.filter(item => item.cityId !== null),
+  });
+  const [inputCity, setInputCity] = useState(inputCityRedux);
+  const [cityArr, setCityArr] = useState<TCoordinates[]>([]);
+  const [streetsArr, setStreets] = useState<TCoordinates[]>([]);
+  const [inputStreet, setInputStreet] = useState(inputStreetRedux);
   const [isFirstDropdownOpen, setFirstDropdownOpen] = useState(false);
   const [isSecondDropdownOpen, setSecondDropdownOpen] = useState(false);
+  const provider = new OpenStreetMapProvider({
+    params: {
+      email: 'kombogame6@gmail.com',
+      'accept-language': 'ru-RU',
+      countrycodes: 'ru',
+      addressdetails: 0,
+    },
+  });
   const firstInputRef = useClickOutside<HTMLDivElement>(() => {
     setFirstDropdownOpen(false);
   });
   const secondInputRef = useClickOutside<HTMLDivElement>(() => {
     setSecondDropdownOpen(false);
   });
-  const addressesArr = useAppSelector(state => state.mapPoints);
   const dispatch = useAppDispatch();
 
   const dispatchInputCity = (value: string) => {
@@ -53,41 +74,59 @@ export function OrderGeolocationComponent() {
         setInputStreet(value);
     }
   };
+
   const citiesArr = useMemo(
     () =>
-      addressesArr
-        .filter(item => {
-          return item.city
+      data
+        ?.filter(item => {
+          return item.cityId?.name
             .toUpperCase()
             .replace(/\s/g, '')
             .includes(inputCity.toUpperCase().replace(/\s/g, ''));
         })
-        .map(({ city }) => city),
-    [inputCity],
+        .map(item => item.cityId?.name),
+    [inputCity, data],
   );
 
-  // addresses я решил оставить так как было, потому что нужное мне значние (title) находится глубоко внутри массива,
-  // а я честно говоряю не знаю, как это сделать красиво, думал над flatmap и reduce, но не получилось
-
-  const addresses: string[] = [];
-  useMemo(
+  const addresses = useMemo(
     () =>
-      addressesArr.filter(val =>
-        val.address
-          .filter(item => {
-            return item.title
+      data
+        ?.filter(val => {
+          return (
+            val.cityId?.name === inputCity &&
+            val.address
               .toLowerCase()
               .replace(/\s/g, '')
-              .includes(inputStreet.toLowerCase().replace(/\s/g, ''));
-          })
-          .map(value => {
-            if (val.city === inputCity) {
-              addresses.push(value.title);
-            }
-          }),
-      ),
-    [inputStreet, isFirstDropdownOpen, isSecondDropdownOpen],
+              .includes(inputStreet.toLowerCase().replace(/\s/g, ''))
+          );
+        })
+        .map(value => {
+          return value.address;
+        }),
+    [
+      inputStreetRedux,
+      isFirstDropdownOpen,
+      isSecondDropdownOpen,
+      inputCityRedux,
+    ],
   );
+
+  useEffect(() => {
+    cityArr.length === 0
+      ? citiesArr?.map(item =>
+          createMapCoordinatesArr(item || '', setCityArr, provider),
+        )
+      : null;
+    streetsArr.length === 0 && cityArr.length > 0 && inputCity
+      ? addresses?.map(item =>
+          createMapCoordinatesArr(
+            ` ${inputCityRedux} ${item}` || '',
+            setStreets,
+            provider,
+          ),
+        )
+      : null;
+  }, [citiesArr, addresses, inputCity, inputStreet]);
 
   const mapClickHandler = (city: string, street?: string) => {
     setInputCity(city);
@@ -103,10 +142,12 @@ export function OrderGeolocationComponent() {
         setInputCity('');
         dispatchInputStreet('');
         setInputStreet('');
+        setStreets([]);
         break;
       case 2:
         dispatchInputStreet('');
         setInputStreet('');
+        setStreets([]);
         break;
     }
   };
@@ -142,12 +183,13 @@ export function OrderGeolocationComponent() {
       <div className={styles.map_wrapper}>
         <p className={styles.title}>Выбрать на карте:</p>
         <MapComponent
-          zoom={6}
+          zoom={2}
           center={[54.233722, 47.962227]}
-          cityTitle={inputCity}
-          infoArr={addressesArr}
-          streetTitle={inputStreet}
+          cityTitle={inputCityRedux}
+          streetTitle={inputStreetRedux}
           clickHandler={mapClickHandler}
+          cityCoordinatesArr={cityArr}
+          streetsCoordinatesArr={streetsArr}
         />
       </div>
     </section>
