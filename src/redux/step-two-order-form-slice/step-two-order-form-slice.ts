@@ -11,10 +11,13 @@ export const stepTwoOrderForm = createSlice({
     setCarItem: (state, action: PayloadAction<{ car: TCarsData }>) => {
       state.car = action.payload.car;
     },
+    clearStepTwoStore: (state) => {
+      state.car = {} as TCarsData
+    }
   },
 });
 
-export const { setCarItem } = stepTwoOrderForm.actions;
+export const { setCarItem, clearStepTwoStore } = stepTwoOrderForm.actions;
 
 export default stepTwoOrderForm.reducer;
 

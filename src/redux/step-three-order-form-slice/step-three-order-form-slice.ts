@@ -36,6 +36,14 @@ export const stepThreeOrderFormSlice = createSlice({
     setBabyChair: (state, action: PayloadAction<{ babyChair: boolean }>) => {
       state.babyChair = action.payload.babyChair;
     },
+    clearStepThreeStore: state => {
+      (state.color = ''),
+        (state.rentalDuration = ''),
+        (state.rate = ''),
+        (state.fullTank = false),
+        (state.rightHandDrive = false),
+        (state.babyChair = false);
+    },
   },
 });
 
@@ -46,6 +54,7 @@ export const {
   setRentalDuration,
   setRightHandDrive,
   setBabyChair,
+  clearStepThreeStore,
 } = stepThreeOrderFormSlice.actions;
 
 export default stepThreeOrderFormSlice.reducer;
