@@ -7,6 +7,8 @@ import {
   useGetData,
 } from '../../shared/custom-hooks';
 import {
+  getCityInput,
+  getStreetInput,
   setCityInput,
   setStreetInput,
 } from '../../redux/step-one-order-form-slice/step-one-order-form-slice';
@@ -18,14 +20,22 @@ import {
   createMapCoordinatesArr,
   filterArrayOfObjects,
 } from '../../shared/functions';
-import { setStreetsCoordinates } from '../../redux/coordinates-slice/coordinates-slice';
+import {
+  getCoordinates,
+  setStreetsCoordinates,
+} from '../../redux/coordinates-slice/coordinates-slice';
+import { RootState } from '../../redux/store';
+import { clearStepTwoStore } from '../../redux/step-two-order-form-slice/step-two-order-form-slice';
+import { clearStepThreeStore } from '../../redux/step-three-order-form-slice/step-three-order-form-slice';
 
 export function OrderGeolocationComponent() {
-  const { inputCity: inputCityRedux, inputStreet: inputStreetRedux } =
-    useAppSelector(state => state.stepOneOrderForm);
-  const streetsCoordinates = useAppSelector(
-    state => state.coordinatesSlice.streetsCoordinates,
-  );
+  const mapState = (state: RootState) => ({
+    inputCityRedux: getCityInput(state),
+    inputStreetRedux: getStreetInput(state),
+    streetsCoordinates: getCoordinates(state),
+  });
+  const { streetsCoordinates, inputCityRedux, inputStreetRedux } =
+    useAppSelector(mapState);
   const { data } = useGetData<TPointsData[]>({
     QUERY_KEY: 'points',
     url: 'point',
@@ -63,6 +73,13 @@ export function OrderGeolocationComponent() {
     );
   };
 
+  useEffect(() => {
+    if (inputCity !== inputCityRedux || inputStreet !== inputStreetRedux) {
+      dispatch(clearStepTwoStore());
+      dispatch(clearStepThreeStore());
+    }
+  }, [inputCity, inputStreet]);
+
   const dispatchInputStreet = (value: string) => {
     dispatch(
       setStreetInput({
@@ -95,8 +112,6 @@ export function OrderGeolocationComponent() {
         .map(item => item.cityId?.name),
     [inputCityRedux, data, isFirstDropdownOpen],
   );
-
-  console.log(streetsArr);
 
   const addresses = useMemo(
     () =>
