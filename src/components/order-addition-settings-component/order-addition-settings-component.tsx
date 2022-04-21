@@ -16,26 +16,53 @@ import { CarRateComponent } from '../car-rate-component';
 import { CheckboxComponent } from '../checkbox-component';
 import { ColorFilterForm } from '../color-filter-form';
 import { DateFilterComponent } from '../date-filter-component';
-import { checkboxArrState } from './constants';
 import styles from './order-addition-settings-component.module.scss';
 import {
   setCarColor,
   setRate,
   setRentalDuration,
 } from '../../redux/step-three-order-form-slice/step-three-order-form-slice';
-import {
-  additionalServicesCheck,
-  calculatePriceDependOnRate,
-} from '../../shared/functions';
-import { setMinMaxPrice } from '../../redux/checkout-price-slice/checkout-price-slice';
+import { calculatePriceDependOnRate } from '../../shared/functions';
 import { TCarRate, TCarRateData } from '../../shared/types';
+import { RootState } from '../../redux/store';
+import {
+  getDateFrom,
+  getDateTo,
+  setDateFromRedux,
+  setDateToRedux,
+} from '../../redux/rent-date/rent-date';
 
 export function OrderAdditionSettingsComponent() {
-  const [activeColorButtonName, setActiveColorButtonName] = useState('');
-  const [dateFrom, setDateFrom] = useState<Date | null>(null);
-  const [dateTo, setDateTo] = useState<Date | null>(null);
-  const [checkboxArr, setCheckbox] = useState(checkboxArrState);
-  const [activeCarRateButtonName, setActiveCarRateButtonName] = useState('');
+  const mapState = (state: RootState) => ({
+    colorRedux: state.stepThreeOrderForm.color,
+    carRate: state.stepThreeOrderForm.rate,
+    checkboxArr: state.orderFormCheckboxArr.checkboxArr,
+    price: state.checkoutPrice,
+    dateFromRedux: getDateFrom(state),
+    dateToRedux: getDateTo(state),
+    carColors: useMemo(
+      () =>
+        state.stepTwoOrderForm.car.colors.filter(
+          (item, index, arr) => arr.indexOf(item) === index,
+        ),
+      [],
+    ),
+  });
+  const {
+    carRate,
+    colorRedux,
+    checkboxArr,
+    price,
+    carColors,
+    dateFromRedux,
+    dateToRedux,
+  } = useAppSelector(mapState);
+  const [activeColorButtonName, setActiveColorButtonName] =
+    useState(colorRedux);
+  const [dateFrom, setDateFrom] = useState<Date | null>(dateFromRedux || null);
+  const [dateTo, setDateTo] = useState<Date | null>(dateToRedux || null);
+  const [activeCarRateButtonName, setActiveCarRateButtonName] =
+    useState(carRate);
   const [activeCarRatePrice, setActiveCarRatePrice] = useState<number>();
   const { data } = useGetData<TCarRate>({
     QUERY_KEY: 'rate',
@@ -43,17 +70,6 @@ export function OrderAdditionSettingsComponent() {
   });
   const dispatch = useAppDispatch();
   const maxTime = setHours(dateFrom || 0, 23);
-  const price = useAppSelector(state => state.checkoutPrice);
-  const carColors = useAppSelector(state =>
-    useMemo(
-      () =>
-        state.stepTwoOrderForm.car.colors.filter(
-          (item, index, arr) => arr.indexOf(item) === index,
-        ),
-      [],
-    ),
-  );
-
   const colorClickhandler = (color: string) => {
     setActiveColorButtonName(color);
     dispatch(
@@ -63,6 +79,19 @@ export function OrderAdditionSettingsComponent() {
     );
   };
 
+  useEffect(() => {
+    dispatch(
+      setDateFromRedux({
+        dateFrom: dateFrom?.toString() || '',
+      }),
+    );
+    dispatch(
+      setDateToRedux({
+        dateTo: dateTo?.toString() || '',
+      }),
+    );
+  }, [dateFrom, dateTo]);
+
   const rateClickhandler = (rateProp: TCarRateData) => {
     setActiveCarRatePrice(rateProp.price);
     setActiveCarRateButtonName(
@@ -70,7 +99,7 @@ export function OrderAdditionSettingsComponent() {
     );
     dispatch(
       setRate({
-        rate: rateProp.rateTypeId.name,
+        rate: `${rateProp.rateTypeId.name}, ${rateProp.price} ₽`,
       }),
     );
   };
@@ -111,35 +140,6 @@ export function OrderAdditionSettingsComponent() {
     setDateTo(null);
   };
 
-  const checkboxActivity = (
-    checkboxArray: typeof checkboxArr,
-    activeTitle: string,
-  ) => {
-    setCheckbox(
-      checkboxArray.map(item => {
-        if (item.title === activeTitle) {
-          additionalServicesCheck(activeTitle, item, dispatch);
-          if (item.isActive) {
-            dispatch(
-              setMinMaxPrice({
-                minPrice: price.minPrice - item.price,
-                maxPrice: price.maxPrice,
-              }),
-            );
-          } else {
-            dispatch(
-              setMinMaxPrice({
-                minPrice: price.minPrice + item.price,
-                maxPrice: price.maxPrice,
-              }),
-            );
-          }
-          return { ...item, isActive: !item.isActive };
-        } else return item;
-      }),
-    );
-  };
-
   const minTime = () => {
     return isSameDay(dateFrom || 0, dateTo || dateFrom || 0)
       ? addMinutes(dateFrom || 0, 1)
@@ -175,10 +175,7 @@ export function OrderAdditionSettingsComponent() {
           setActiveButtonName={rateClickhandler}
         />
       </div>
-      <CheckboxComponent
-        checkboxArr={checkboxArr}
-        setCheckboxItem={checkboxActivity}
-      />
+      <CheckboxComponent checkboxArr={checkboxArr} />
     </section>
   );
 }
