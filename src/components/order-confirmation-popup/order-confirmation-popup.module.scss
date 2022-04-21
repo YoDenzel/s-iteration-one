@@ -54,3 +54,9 @@
   background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
   border-radius: 4px;
 }
+
+@media (max-width: 767px) {
+  .popup_wrapper {
+    position: fixed;
+  }
+}
