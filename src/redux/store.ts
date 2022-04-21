@@ -5,6 +5,7 @@ import stepThreeOrderFormReducer from './step-three-order-form-slice/step-three-
 import sidebarSliceReducer from './sidebar-slice/sidebar-slice';
 import checkoutPriceSliceReducer from './checkout-price-slice/checkout-price-slice';
 import orderConfirmationPopupStatusSlice from './order-confirmation-popup-status-slice/order-confirmation-popup-status-slice';
+import coordinatesSlice from './coordinates-slice/coordinates-slice';
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     sidebarSlide: sidebarSliceReducer,
     checkoutPrice: checkoutPriceSliceReducer,
     orderConfirmationPopupStatusSlice: orderConfirmationPopupStatusSlice,
+    coordinatesSlice: coordinatesSlice,
   },
 });
 
