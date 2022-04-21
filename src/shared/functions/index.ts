@@ -5,3 +5,4 @@ export { createPaginationArray } from './create-pagination-array';
 export { additionalServicesCheck } from './additional-services-check';
 export { calculatePriceDependOnRate } from './calculate-price-depend-on-rate';
 export { createMapCoordinatesArr } from './create-map-coordinates-arr';
+export { filterArrayOfObjects } from './filter-array-of-objects';
