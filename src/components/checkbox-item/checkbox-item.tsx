@@ -1,3 +1,5 @@
+import { useAppDispatch, useAppSelector } from '../../shared/custom-hooks';
+import { orderFormCheckboxIsActive } from '../../shared/functions';
 import { Icons } from '../../shared/icons';
 import styles from './checkbox-item.module.scss';
 import { TCheckboxItem } from './types';
@@ -8,10 +10,19 @@ export function CheckboxItem({
   setCheckboxItem,
   checkboxArr,
 }: TCheckboxItem) {
+  const dispatch = useAppDispatch();
+  const price = useAppSelector(state => state.checkoutPrice);
   return (
     <article
       className={styles.checkbox_container}
-      onClick={() => setCheckboxItem(checkboxArr, title)}
+      onClick={() =>
+        orderFormCheckboxIsActive({
+          activeTitle: title,
+          checkboxArr: checkboxArr,
+          dispatch: dispatch,
+          price: price,
+        })
+      }
     >
       <article className={styles.icon_container}>
         <span
