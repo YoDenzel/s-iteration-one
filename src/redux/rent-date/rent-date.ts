@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../store';
 
 export const rentDate = createSlice({
   name: 'rentDate',
@@ -24,3 +25,9 @@ export const { setDateFromRedux, setDateToRedux, clearDates } =
   rentDate.actions;
 
 export default rentDate.reducer;
+
+export const getDateFrom = (state: RootState) =>
+  state.rentDate.dateFrom && new Date(state.rentDate.dateFrom);
+
+export const getDateTo = (state: RootState) =>
+  state.rentDate.dateTo && new Date(state.rentDate.dateTo);
