@@ -44,7 +44,6 @@ export function MapComponent({
             })
           : cityCoordinatesArr.map(val =>
               streetsCoordinatesArr.map((item, index) => {
-                console.log(item);
                 const cityName = val.label.split(',')[0];
                 const streetName = item.label.split(',')[0];
                 if (
