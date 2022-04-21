@@ -38,7 +38,7 @@ export const thirdStepArrObj = (stepThree: TStepThree) => {
     },
     {
       title: 'Тариф',
-      information: stepThree.rate,
+      information: stepThree.rate.substring(0, stepThree.rate.indexOf(',')),
     },
     {
       title: 'Полный бак',
