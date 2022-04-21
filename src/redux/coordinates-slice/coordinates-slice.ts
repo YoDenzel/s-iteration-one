@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TCoordinates } from '../../shared/types';
+import { RootState } from '../store';
 
 export const coordinatesSlice = createSlice({
   name: 'coordinatesSlice',
@@ -19,3 +20,6 @@ export const coordinatesSlice = createSlice({
 export const { setStreetsCoordinates } = coordinatesSlice.actions;
 
 export default coordinatesSlice.reducer;
+
+export const getCoordinates = (state: RootState) =>
+  state.coordinatesSlice.streetsCoordinates;
