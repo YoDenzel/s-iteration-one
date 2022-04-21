@@ -13,12 +13,9 @@ export const ChangeStreetView = ({
   streetTitle,
 }: TChangeStreetView) => {
   const map = useMap();
-  if (streetTitle) {
-    map.setView([val.y, val.x], 14);
-    return null;
-  } else if (!streetTitle) {
-    map.setView([cityCoordinates[0], cityCoordinates[1]], 10);
-    return null;
-  }
+  streetTitle
+    ? map.setView([val.y, val.x], 14)
+    : map.setView([cityCoordinates[0], cityCoordinates[1]], 10);
+
   return null;
 };
