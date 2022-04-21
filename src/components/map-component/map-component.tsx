@@ -44,14 +44,18 @@ export function MapComponent({
             })
           : cityCoordinatesArr.map(val =>
               streetsCoordinatesArr.map((item, index) => {
+                console.log(item);
                 const cityName = val.label.split(',')[0];
                 const streetName = item.label.split(',')[0];
-                if (cityName.toLowerCase() === cityTitle.toLowerCase()) {
+                if (
+                  cityName.toLowerCase().trim() ===
+                  cityTitle.toLowerCase().trim()
+                ) {
                   return (
                     <div key={item.label + index}>
                       <ChangeStreetView
                         val={item}
-                        cityCoordinates={[item.y, item.x]}
+                        cityCoordinates={[val.y, val.x]}
                         streetTitle={streetTitle}
                       />
                       <MapMarker
