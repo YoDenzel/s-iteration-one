@@ -17,10 +17,14 @@ export const checkoutPrice = createSlice({
       state.minPrice = action.payload.minPrice;
       state.maxPrice = action.payload.maxPrice;
     },
+    setDefaultPrice: state => {
+      state.price = 'от 8000 до 12000 ₽';
+    },
   },
 });
 
-export const { setPrice, setMinMaxPrice } = checkoutPrice.actions;
+export const { setPrice, setMinMaxPrice, setDefaultPrice } =
+  checkoutPrice.actions;
 
 export default checkoutPrice.reducer;
 
