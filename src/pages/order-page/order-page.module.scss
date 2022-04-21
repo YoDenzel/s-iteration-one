@@ -29,6 +29,10 @@ $side-padding_mobile: 0 16px;
   .order_container {
     align-items: center;
   }
+
+  .main_container {
+    width: 1280px;
+  }
 }
 
 @media (max-width: 1439px) {
