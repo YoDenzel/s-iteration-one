@@ -6,6 +6,8 @@ import sidebarSliceReducer from './sidebar-slice/sidebar-slice';
 import checkoutPriceSliceReducer from './checkout-price-slice/checkout-price-slice';
 import orderConfirmationPopupStatusSlice from './order-confirmation-popup-status-slice/order-confirmation-popup-status-slice';
 import coordinatesSlice from './coordinates-slice/coordinates-slice';
+import orderFormCheckboxArr from './order-form-checkbox-arr/order-form-checkbox-arr';
+import rentDate from './rent-date/rent-date';
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +18,8 @@ export const store = configureStore({
     checkoutPrice: checkoutPriceSliceReducer,
     orderConfirmationPopupStatusSlice: orderConfirmationPopupStatusSlice,
     coordinatesSlice: coordinatesSlice,
+    orderFormCheckboxArr: orderFormCheckboxArr,
+    rentDate: rentDate,
   },
 });
 
