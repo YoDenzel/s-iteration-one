@@ -96,18 +96,6 @@ export function OrderGeolocationComponent() {
     );
   };
 
-  const inputLiClickhandler = (value: string, inputCase: number) => {
-    switch (inputCase) {
-      case 1:
-        dispatchInputCity(value);
-        setInputCity(value);
-        break;
-      case 2:
-        dispatchInputStreet(value);
-        setInputStreet(value);
-    }
-  };
-
   const citiesArr = useMemo(
     () =>
       data
@@ -195,22 +183,19 @@ export function OrderGeolocationComponent() {
     street && dispatchInputStreet(street);
   };
 
-  const clearInputHandler = (inputCase: number) => {
-    switch (inputCase) {
-      case 1:
-        dispatchInputCity('');
-        setInputCity('');
-        dispatchInputStreet('');
-        setInputStreet('');
-        setCityArr([]);
-        setStreets([]);
-        break;
-      case 2:
-        dispatchInputStreet('');
-        setInputStreet('');
-        setStreets([]);
-        setCityArr([]);
-        break;
+  const clearInputHandler = (inputCase?: number) => {
+    if (inputCase) {
+      dispatchInputCity('');
+      setInputCity('');
+      dispatchInputStreet('');
+      setInputStreet('');
+      setCityArr([]);
+      setStreets([]);
+    } else {
+      dispatchInputStreet('');
+      setInputStreet('');
+      setStreets([]);
+      setCityArr([]);
     }
   };
 
@@ -227,7 +212,10 @@ export function OrderGeolocationComponent() {
           clearInputHandler={() => clearInputHandler(1)}
           inputClickHandler={() => setFirstDropdownOpen(!isFirstDropdownOpen)}
           referal={firstInputRef}
-          onClickLi={(value: string) => inputLiClickhandler(value, 1)}
+          onClickLi={(value: string) => {
+            dispatchInputCity(value);
+            setInputCity(value);
+          }}
         />
         <TextInput
           title="Пункт выдачи"
@@ -236,10 +224,13 @@ export function OrderGeolocationComponent() {
           setInputValue={setInputStreet}
           listItems={addresses}
           isDropDownOpen={isSecondDropdownOpen}
-          clearInputHandler={() => clearInputHandler(2)}
+          clearInputHandler={() => clearInputHandler()}
           inputClickHandler={() => setSecondDropdownOpen(!isSecondDropdownOpen)}
           referal={secondInputRef}
-          onClickLi={(value: string) => inputLiClickhandler(value, 2)}
+          onClickLi={(value: string) => {
+            dispatchInputStreet(value);
+            setInputStreet(value);
+          }}
         />
       </form>
       <div className={styles.map_wrapper}>
