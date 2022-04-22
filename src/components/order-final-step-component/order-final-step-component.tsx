@@ -33,7 +33,7 @@ export function OrderFinalStepComponent() {
     pointId: getPointId(state),
   });
   const carItem = useAppSelector(state => state.stepTwoOrderForm.car);
-  const { mutateAsync, data } = usePostCarOrder();
+  const { mutateAsync } = usePostCarOrder();
   const dispatch = useAppDispatch();
   const popupRef = useClickOutside<HTMLDivElement>(() =>
     dispatch(setPopup({ isPopupActive: false })),
