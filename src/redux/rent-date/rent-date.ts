@@ -31,3 +31,13 @@ export const getDateFrom = (state: RootState) =>
 
 export const getDateTo = (state: RootState) =>
   state.rentDate.dateTo && new Date(state.rentDate.dateTo);
+
+export const getDateFromInNumber = (state: RootState) => {
+  const date = new Date(state.rentDate.dateFrom);
+  return date.getTime();
+};
+
+export const getDateToInNumber = (state: RootState) => {
+  const date = new Date(state.rentDate.dateTo);
+  return date.getTime();
+};
