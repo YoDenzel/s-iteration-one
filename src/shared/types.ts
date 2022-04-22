@@ -152,3 +152,17 @@ export type TOrderStatus = {
   count: number;
   data: TPointsCity[];
 };
+
+export type TCarCategory = {
+  fields: {};
+  count: number;
+  data: TCarCategoryData[];
+};
+
+export type TCarCategoryData = {
+  updatedAt: number;
+  createdAt: number;
+  name: string;
+  description: string;
+  id: string;
+};
