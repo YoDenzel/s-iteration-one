@@ -59,7 +59,8 @@ export function OrderFinalStepComponent() {
     url: 'orderStatus',
   });
   const finalPrice = checkoutPrice.minPrice + checkoutPrice.rentTimePrice;
-  const availableFrom = format(new Date(dateFrom), 'dd.MM.yyyy hh:mm');
+  const availableFrom = format(new Date(dateFrom), 'dd.MM.yyyy HH:mm');
+  const fuel = carItem.tank ?? 'Нет данных';
 
   const submitOrderHandler = () => {
     mutateAsync({
@@ -90,8 +91,8 @@ export function OrderFinalStepComponent() {
           carName={carItem.name}
           availableFrom={availableFrom}
           carImageUrl={carItem.thumbnail.path}
-          carNumber={carItem.number}
-          fuel={stepThree.fullTank ? '100%' : `${carItem.tank}%`}
+          carNumber={carItem.number || 'Нет данных'}
+          fuel={stepThree.fullTank ? '100%' : `${fuel}%`}
         />
       </section>
       {isPopupActive && (
