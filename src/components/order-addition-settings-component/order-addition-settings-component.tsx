@@ -19,6 +19,7 @@ import { DateFilterComponent } from '../date-filter-component';
 import styles from './order-addition-settings-component.module.scss';
 import {
   setCarColor,
+  setCarRateItem,
   setRate,
   setRentalDuration,
 } from '../../redux/step-three-order-form-slice/step-three-order-form-slice';
@@ -100,6 +101,11 @@ export function OrderAdditionSettingsComponent() {
     dispatch(
       setRate({
         rate: `${rateProp.rateTypeId.name}, ${rateProp.price} ₽`,
+      }),
+    );
+    dispatch(
+      setCarRateItem({
+        rateItem: rateProp,
       }),
     );
   };
