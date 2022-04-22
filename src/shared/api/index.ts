@@ -1,1 +1,2 @@
-export { fetchData } from './fetchData';
+export { fetchData } from './fetch-data';
+export { fetchPostCarOrder } from './fetch-post-car-order';
