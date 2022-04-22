@@ -10,6 +10,8 @@ import {
   getCityInput,
   getStreetInput,
   setCityInput,
+  setCityObj,
+  setPointId,
   setStreetInput,
 } from '../../redux/step-one-order-form-slice/step-one-order-form-slice';
 import { MapComponent } from '../map-component';
@@ -27,6 +29,7 @@ import {
 } from '../../redux/coordinates-slice/coordinates-slice';
 import { RootState } from '../../redux/store';
 import { setDefaultPrice } from '../../redux/checkout-price-slice/checkout-price-slice';
+import { TCityObj } from '../../redux/step-one-order-form-slice/types';
 
 export function OrderGeolocationComponent() {
   const mapState = (state: RootState) => ({
@@ -118,6 +121,25 @@ export function OrderGeolocationComponent() {
     [inputCityRedux, data, isFirstDropdownOpen],
   );
 
+  useEffect(() => {
+    if (inputCityRedux && data) {
+      dispatch(
+        setCityObj({
+          cityIdObj: data
+            .filter(item => item.cityId?.name === inputCityRedux)
+            .map(val => val.cityId)[0] as TCityObj,
+        }),
+      );
+      dispatch(
+        setPointId({
+          pointId: data
+            .filter(item => item.cityId?.name === inputCityRedux)
+            .map(val => val.id)[0],
+        }),
+      );
+    }
+  }, [inputCityRedux, inputStreetRedux]);
+
   const addresses = useMemo(
     () =>
       data
@@ -142,29 +164,29 @@ export function OrderGeolocationComponent() {
       cityArr,
     ],
   );
-  // useEffect(() => {
-  //   cityArr.length <= 1 &&
-  //     citiesArr?.map(item =>
-  //       createMapCoordinatesArr(item || '', setCityArr, provider),
-  //     );
-  // }, [inputCityRedux, inputStreetRedux, data]);
+  useEffect(() => {
+    cityArr.length <= 1 &&
+      citiesArr?.map(item =>
+        createMapCoordinatesArr(item || '', setCityArr, provider),
+      );
+  }, [inputCityRedux, inputStreetRedux, data]);
 
-  // useEffect(() => {
-  //   inputCity &&
-  //     streetsArr.length <= 1 &&
-  //     addresses?.map(item =>
-  //       createMapCoordinatesArr(
-  //         `${item}, ${inputCityRedux}`,
-  //         setStreets,
-  //         provider,
-  //       ),
-  //     );
-  //   dispatch(
-  //     setStreetsCoordinates({
-  //       coordinates: streetsArr,
-  //     }),
-  //   );
-  // }, [inputCityRedux, inputStreetRedux]);
+  useEffect(() => {
+    inputCity &&
+      streetsArr.length <= 1 &&
+      addresses?.map(item =>
+        createMapCoordinatesArr(
+          `${item}, ${inputCityRedux}`,
+          setStreets,
+          provider,
+        ),
+      );
+    dispatch(
+      setStreetsCoordinates({
+        coordinates: streetsArr,
+      }),
+    );
+  }, [inputCityRedux, inputStreetRedux]);
 
   const mapClickHandler = (city: string, street?: string) => {
     setInputCity(city);
