@@ -70,7 +70,13 @@ export function OrderAdditionSettingsComponent() {
     url: `rate`,
   });
   const dispatch = useAppDispatch();
-  const maxTime = setHours(dateFrom || 0, 23);
+  const maxTime = () => {
+    if (!dateFrom) {
+      return addMinutes(setHours(0, 23), 30);
+    } else {
+      return addMinutes(setHours(0, 23), 59);
+    }
+  };
   const colorClickhandler = (color: string) => {
     setActiveColorButtonName(color);
     dispatch(
@@ -171,7 +177,7 @@ export function OrderAdditionSettingsComponent() {
         firstInputTitle="С"
         secondInputTitle="По"
         minDate={dateFrom}
-        maxTime={maxTime}
+        maxTime={maxTime()}
         minTime={minTime()}
       />
       <div className={styles.car_rate_wrapper}>

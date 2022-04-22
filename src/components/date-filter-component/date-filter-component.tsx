@@ -23,6 +23,9 @@ export function DateFilterComponent({
         setDate={setDateFrom}
         isDisabled={false}
         clearInputClickHandler={() => clearInputClickHandler()}
+        minDate={new Date()}
+        minTime={new Date()}
+        maxTime={maxTime}
       />
       <article className={styles.second_input_wrapper}>
         <InputDatePicker
