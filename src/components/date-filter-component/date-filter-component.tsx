@@ -13,6 +13,7 @@ export function DateFilterComponent({
   secondInputTitle,
   maxTime,
   minTime,
+  firstInputMinTime,
 }: TDateFilterComponent) {
   return (
     <section className={styles.date_form_wrapper}>
@@ -24,7 +25,7 @@ export function DateFilterComponent({
         isDisabled={false}
         clearInputClickHandler={() => clearInputClickHandler()}
         minDate={new Date()}
-        minTime={new Date()}
+        minTime={firstInputMinTime}
         maxTime={maxTime}
       />
       <article className={styles.second_input_wrapper}>

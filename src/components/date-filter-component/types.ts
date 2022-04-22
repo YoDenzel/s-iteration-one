@@ -9,4 +9,5 @@ export type TDateFilterComponent = {
   secondInputTitle: string;
   maxTime?: Date;
   minTime?: Date | null;
+  firstInputMinTime: Date
 };
