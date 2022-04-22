@@ -3,7 +3,11 @@ import {
   setMinMaxPrice,
   setPrice,
 } from '../../redux/checkout-price-slice/checkout-price-slice';
-import { setCarItem } from '../../redux/step-two-order-form-slice/step-two-order-form-slice';
+import {
+  setCarFilter,
+  setCarItem,
+} from '../../redux/step-two-order-form-slice/step-two-order-form-slice';
+import { RootState } from '../../redux/store';
 import {
   useAppDispatch,
   useAppSelector,
@@ -20,10 +24,15 @@ import { PAGE_LIMIT } from './constants';
 import styles from './order-car-list-component.module.scss';
 
 export function OrderCarListComponent() {
-  const [activeButtonName, setActiveButtonName] = useState('Все модели');
-  const carNameRedux = useAppSelector(state => state.stepTwoOrderForm.car.name);
+  const mapState = (state: RootState) => ({
+    carNameRedux: state.stepTwoOrderForm.car.name,
+    carFilter: state.stepTwoOrderForm.carFilter,
+    carTitle: state.stepTwoOrderForm.carFilterButtonTitle,
+  });
+  const { carFilter, carNameRedux, carTitle } = useAppSelector(mapState);
+  const [activeButtonName, setActiveButtonName] = useState(carTitle);
   const [car, setCar] = useState(carNameRedux);
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState(carFilter);
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useAppDispatch();
   const { data, isError, isLoading } = useGetData<TCars>({
@@ -92,6 +101,12 @@ export function OrderCarListComponent() {
     setFilter(() => {
       return categoryId ? `categoryId=${categoryId?.id}` : '';
     });
+    dispatch(
+      setCarFilter({
+        carFilter: `categoryId=${categoryId?.id}`,
+        carFilterButtonTitle: name,
+      }),
+    );
     setCurrentPage(1);
   };
 
