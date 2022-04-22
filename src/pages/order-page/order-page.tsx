@@ -87,7 +87,7 @@ export function OrderPage() {
   };
 
   return (
-    <section className={styles.order_container}>
+    <div className={styles.order_container}>
       <div className={styles.wrapper}>
         <HeaderComponent />
       </div>
@@ -109,6 +109,6 @@ export function OrderPage() {
           thirdStepObj={thirdStepArrObj(stepThree)}
         />
       </main>
-    </section>
+    </div>
   );
 }
