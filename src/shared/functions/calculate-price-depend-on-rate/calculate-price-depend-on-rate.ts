@@ -1,5 +1,8 @@
 import { differenceInMinutes } from 'date-fns';
-import { setPrice } from '../../../redux/checkout-price-slice/checkout-price-slice';
+import {
+  setPrice,
+  setRentTimePrice,
+} from '../../../redux/checkout-price-slice/checkout-price-slice';
 import { TCalculatePriceDependOnRate } from './types';
 
 export const calculatePriceDependOnRate = ({
@@ -50,6 +53,11 @@ export const calculatePriceDependOnRate = ({
       }
     }
     dispatch(
+      setRentTimePrice({
+        rentPrice: resPrice,
+      }),
+    );
+    dispatch(
       setPrice({
         price: `${resPrice + minPrice} ₽`,
       }),
@@ -58,6 +66,11 @@ export const calculatePriceDependOnRate = ({
     dispatch(
       setPrice({
         price: `${minPrice} ₽`,
+      }),
+    );
+    dispatch(
+      setRentTimePrice({
+        rentPrice: 0,
       }),
     );
   }
