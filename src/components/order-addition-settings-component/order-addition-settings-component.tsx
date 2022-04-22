@@ -5,6 +5,8 @@ import {
   formatDuration,
   intervalToDuration,
   addMinutes,
+  isToday,
+  setMinutes,
 } from 'date-fns';
 import ru from 'date-fns/locale/ru';
 import {
@@ -70,6 +72,7 @@ export function OrderAdditionSettingsComponent() {
     url: `rate`,
   });
   const dispatch = useAppDispatch();
+
   const maxTime = () => {
     if (!dateFrom) {
       return addMinutes(setHours(0, 23), 30);
@@ -77,6 +80,15 @@ export function OrderAdditionSettingsComponent() {
       return addMinutes(setHours(0, 23), 59);
     }
   };
+
+  const firstInputMinTime = () => {
+    if (isToday(dateFrom || 0)) {
+      return new Date();
+    } else {
+      return setMinutes(setHours(new Date(), 0), 0);
+    }
+  };
+
   const colorClickhandler = (color: string) => {
     setActiveColorButtonName(color);
     dispatch(
@@ -172,6 +184,7 @@ export function OrderAdditionSettingsComponent() {
         clearInputClickHandler={clearInputClickHandler}
         dateFrom={dateFrom}
         dateTo={dateTo}
+        firstInputMinTime={firstInputMinTime()}
         setDateFrom={setDateFrom}
         setDateTo={setDateTo}
         firstInputTitle="С"
