@@ -116,12 +116,12 @@ export type TPointsData = {
   address: string;
   name: string;
   cityId: TPointsCity | null;
-  id: number;
+  id: string;
 };
 
 type TPointsCity = {
   name: string;
-  id: number;
+  id: string;
 };
 
 export type TCoordinates = {
@@ -130,4 +130,25 @@ export type TCoordinates = {
   label: string;
   bounds: [[number, number], [number, number]];
   raw: {};
+};
+
+export type TPostCarOrder = {
+  orderStatusId: {
+    name: string;
+    id: string;
+  };
+  cityId: {
+    name: string;
+    id: string;
+  };
+  pointId: string;
+  carId: string;
+  color: string;
+  dateFrom: number;
+  dateTo: number;
+  rateId: string;
+  price: number;
+  isFullTank: boolean;
+  isNeedChildChair: boolean;
+  isRightWheel: boolean;
 };
