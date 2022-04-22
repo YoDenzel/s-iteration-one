@@ -52,7 +52,7 @@ export function OrderCarListComponent() {
         }),
       );
     }
-    car !== carNameRedux &&
+    if (car !== carNameRedux) {
       dispatch(
         setPrice({
           price: `от ${(activeCarItem?.priceMin || 0) + 8000} до ${
@@ -60,14 +60,14 @@ export function OrderCarListComponent() {
           } ₽`,
         }),
       );
-    car !== carNameRedux &&
       dispatch(
         setMinMaxPrice({
           minPrice: (activeCarItem?.priceMin || 0) + 8000,
           maxPrice: (activeCarItem?.priceMax || 0) + 12000,
         }),
       );
-    car !== carNameRedux && clearOrderDataOnChange(1, dispatch);
+      clearOrderDataOnChange(1, dispatch);
+    }
   }, [car]);
 
   useEffect(() => {
