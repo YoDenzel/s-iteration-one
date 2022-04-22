@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { setPopup } from '../../redux/order-confirmation-popup-status-slice/order-confirmation-popup-status-slice';
 import { RootState } from '../../redux/store';
 import {
@@ -33,8 +34,8 @@ export function OrderFinalStepComponent() {
     rateId: getRateId(state),
     cityObj: getCityObj(state),
     pointId: getPointId(state),
+    carItem: state.stepTwoOrderForm.car,
   });
-  const carItem = useAppSelector(state => state.stepTwoOrderForm.car);
   const { mutateAsync, data } = usePostCarOrder();
   const dispatch = useAppDispatch();
   const popupRef = useClickOutside<HTMLDivElement>(() =>
@@ -48,6 +49,7 @@ export function OrderFinalStepComponent() {
     rateId,
     cityObj,
     pointId,
+    carItem,
   } = useAppSelector(mapState);
   const isPopupActive = useAppSelector(
     state => state.orderConfirmationPopupStatusSlice.isPopupActive,
@@ -57,8 +59,7 @@ export function OrderFinalStepComponent() {
     url: 'orderStatus',
   });
   const finalPrice = checkoutPrice.minPrice + checkoutPrice.rentTimePrice;
-
-  console.log(data);
+  const availableFrom = format(new Date(dateFrom), 'dd.MM.yyyy hh:mm');
 
   const submitOrderHandler = () => {
     mutateAsync({
@@ -87,7 +88,7 @@ export function OrderFinalStepComponent() {
       <section className={styles.final_step_wrapper}>
         <FinalInfoComponent
           carName={carItem.name}
-          availableFrom="12.06.2019 12:00"
+          availableFrom={availableFrom}
           carImageUrl={carItem.thumbnail.path}
           carNumber={carItem.number}
           fuel={stepThree.fullTank ? '100%' : `${carItem.tank}%`}
