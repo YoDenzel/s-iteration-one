@@ -50,6 +50,10 @@ $side-padding_mobile: 0 16px;
 }
 
 @media (max-width: 767px) {
+  .order_container {
+    margin-left: 0;
+  }
+
   .wrapper {
     padding: $side-padding_mobile;
     padding-bottom: 10px;
