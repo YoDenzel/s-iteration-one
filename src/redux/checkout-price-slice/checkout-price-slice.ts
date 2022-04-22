@@ -8,6 +8,7 @@ export const checkoutPrice = createSlice({
     minPrice: 8000,
     maxPrice: 12000,
     price: 'от 8000 до 12000 ₽',
+    rentTimePrice: 0,
   },
   reducers: {
     setPrice: (state, action: PayloadAction<{ price: string }>) => {
@@ -20,10 +21,13 @@ export const checkoutPrice = createSlice({
     setDefaultPrice: state => {
       state.price = 'от 8000 до 12000 ₽';
     },
+    setRentTimePrice: (state, action: PayloadAction<{ rentPrice: number }>) => {
+      state.rentTimePrice = action.payload.rentPrice;
+    },
   },
 });
 
-export const { setPrice, setMinMaxPrice, setDefaultPrice } =
+export const { setPrice, setMinMaxPrice, setDefaultPrice, setRentTimePrice } =
   checkoutPrice.actions;
 
 export default checkoutPrice.reducer;
