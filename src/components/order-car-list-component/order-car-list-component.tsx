@@ -3,9 +3,6 @@ import {
   setMinMaxPrice,
   setPrice,
 } from '../../redux/checkout-price-slice/checkout-price-slice';
-import { setCheckboxFalse } from '../../redux/order-form-checkbox-arr/order-form-checkbox-arr';
-import { clearDates } from '../../redux/rent-date/rent-date';
-import { clearStepThreeStore } from '../../redux/step-three-order-form-slice/step-three-order-form-slice';
 import { setCarItem } from '../../redux/step-two-order-form-slice/step-two-order-form-slice';
 import {
   useAppDispatch,
@@ -14,12 +11,12 @@ import {
   usePagination,
 } from '../../shared/custom-hooks';
 import { clearOrderDataOnChange } from '../../shared/functions';
-import { TCars } from '../../shared/types';
+import { TCarCategory, TCars } from '../../shared/types';
 import { CarsListComponent } from '../cars-list-component';
 import { ErrorComponent } from '../error-component';
 import { FilterRadioForm } from '../filter-radio-form';
 import { LoadingComponent } from '../loading-component';
-import { PAGE_LIMIT, radioFilterButtonsArr } from './constants';
+import { PAGE_LIMIT } from './constants';
 import styles from './order-car-list-component.module.scss';
 
 export function OrderCarListComponent() {
@@ -33,16 +30,21 @@ export function OrderCarListComponent() {
     QUERY_KEY: 'cars',
     url: `car?${filter}&page=${currentPage - 1}&limit=${PAGE_LIMIT}`,
   });
+  const { data: carCategory } = useGetData<TCarCategory>({
+    QUERY_KEY: 'carCategory',
+    url: 'category',
+  });
   const { paginationRange, totalPageCount } = usePagination({
     currentPage: currentPage,
     pageSize: PAGE_LIMIT,
     totalCount: data?.count ?? 1,
     siblingCount: 1,
   });
-
   const activeCarItem = useMemo(() => {
     return data?.data.filter(item => (item.name === car ? item : null))[0];
   }, [car]);
+  const carCategoryNames = carCategory?.data.map(item => item.name);
+  const radioFilterButtonsArr = ['Все модели'].concat(carCategoryNames || '');
 
   useEffect(() => {
     if (activeCarItem) {
@@ -86,14 +88,14 @@ export function OrderCarListComponent() {
 
   const clickRadioButtonHandler = (name: string) => {
     setActiveButtonName(name);
+    const categoryId = carCategory?.data.filter(item => item.name === name)[0];
     setFilter(() => {
-      if (name === 'Эконом') return 'priceMin[$lt]=20000';
-      else if (name === 'Премиум') return 'priceMin[$gt]=20000';
-      else return '';
+      return categoryId ? `categoryId=${categoryId?.id}` : '';
     });
     setCurrentPage(1);
   };
 
+  console.log(activeCarItem);
   return (
     <section className={styles.container}>
       <div className={styles.margin_wrapper}>
