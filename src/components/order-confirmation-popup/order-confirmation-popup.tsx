@@ -3,7 +3,10 @@ import { useAppDispatch } from '../../shared/custom-hooks';
 import styles from './order-confirmation-popup.module.scss';
 import { TOrderConfirmationPopup } from './types';
 
-export function OrderConfirmationPopup({ popupRef }: TOrderConfirmationPopup) {
+export function OrderConfirmationPopup({
+  popupRef,
+  clickHandler,
+}: TOrderConfirmationPopup) {
   const dispatch = useAppDispatch();
   return (
     <section className={styles.popup_wrapper}>
@@ -13,13 +16,7 @@ export function OrderConfirmationPopup({ popupRef }: TOrderConfirmationPopup) {
           <button
             type="button"
             className={styles.agree_button}
-            onClick={() =>
-              dispatch(
-                setPopup({
-                  isPopupActive: false,
-                }),
-              )
-            }
+            onClick={() => clickHandler()}
           >
             Подтвердить
           </button>
