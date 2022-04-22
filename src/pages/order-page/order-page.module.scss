@@ -8,6 +8,7 @@ $side-padding_mobile: 0 16px;
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin-left: 64px;
 }
 
 .wrapper {
@@ -25,6 +26,10 @@ $side-padding_mobile: 0 16px;
 }
 
 @media (min-width: 2042px) {
+  .wrapper {
+    width: 1280px;
+  }
+
   .order_container {
     align-items: center;
   }

@@ -1,5 +1,6 @@
 $fullHeight: 100vh;
 $fullWidth: 100%;
+$paddingSides: 64px;
 
 @mixin standart_font {
   font-style: normal;
@@ -19,8 +20,7 @@ $fullWidth: 100%;
   height: $fullHeight;
   display: flex;
   flex-direction: column;
-  padding-left: 121px;
-  padding-right: 64px;
+  padding: 0 $paddingSides;
   width: $fullWidth;
 }
 
@@ -78,6 +78,7 @@ $fullWidth: 100%;
 .link {
   text-decoration: none;
   color: var(--white);
+  width: fit-content;
 }
 
 .main_book__button__clicked {
