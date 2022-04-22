@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { TCarRateData } from '../../shared/types';
 import { RootState } from '../store';
 
 export const stepThreeOrderFormSlice = createSlice({
@@ -10,6 +11,7 @@ export const stepThreeOrderFormSlice = createSlice({
     fullTank: false,
     babyChair: false,
     rightHandDrive: false,
+    rateItem: {} as TCarRateData,
   },
   reducers: {
     setCarColor: (state, action: PayloadAction<{ carColor: string }>) => {
@@ -44,6 +46,12 @@ export const stepThreeOrderFormSlice = createSlice({
         (state.rightHandDrive = false),
         (state.babyChair = false);
     },
+    setCarRateItem: (
+      state,
+      action: PayloadAction<{ rateItem: TCarRateData }>,
+    ) => {
+      state.rateItem = action.payload.rateItem;
+    },
   },
 });
 
@@ -55,8 +63,12 @@ export const {
   setRightHandDrive,
   setBabyChair,
   clearStepThreeStore,
+  setCarRateItem,
 } = stepThreeOrderFormSlice.actions;
 
 export default stepThreeOrderFormSlice.reducer;
 
 export const getStepThreeObj = (state: RootState) => state.stepThreeOrderForm;
+
+export const getRateId = (state: RootState) =>
+  state.stepThreeOrderForm.rateItem.id;
