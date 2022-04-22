@@ -50,13 +50,14 @@ $border_padding: 16px;
 }
 
 .car_image {
-  width: auto;
-  height: 100px;
+  width: 200px;
+  height: auto;
 }
 
 @media (max-width: 1439px) {
   .car_image {
-    height: 55px;
+    height: auto;
+    width: 100px;
   }
 }
 
