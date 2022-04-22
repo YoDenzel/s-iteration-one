@@ -12,6 +12,7 @@ import {
   useAppDispatch,
   useAppSelector,
   useClickOutside,
+  useGetData,
   usePostCarOrder,
 } from '../../shared/custom-hooks';
 import { FinalInfoComponent } from '../final-info-component';
@@ -21,6 +22,7 @@ import {
   getDateFromInNumber,
   getDateToInNumber,
 } from '../../redux/rent-date/rent-date';
+import { TOrderStatus } from '../../shared/types';
 
 export function OrderFinalStepComponent() {
   const mapState = (state: RootState) => ({
@@ -33,7 +35,7 @@ export function OrderFinalStepComponent() {
     pointId: getPointId(state),
   });
   const carItem = useAppSelector(state => state.stepTwoOrderForm.car);
-  const { mutateAsync } = usePostCarOrder();
+  const { mutateAsync, data } = usePostCarOrder();
   const dispatch = useAppDispatch();
   const popupRef = useClickOutside<HTMLDivElement>(() =>
     dispatch(setPopup({ isPopupActive: false })),
@@ -50,7 +52,13 @@ export function OrderFinalStepComponent() {
   const isPopupActive = useAppSelector(
     state => state.orderConfirmationPopupStatusSlice.isPopupActive,
   );
+  const { data: orderStatus } = useGetData<TOrderStatus>({
+    QUERY_KEY: 'orderStatus',
+    url: 'orderStatus',
+  });
   const finalPrice = checkoutPrice.minPrice + checkoutPrice.rentTimePrice;
+
+  console.log(data);
 
   const submitOrderHandler = () => {
     mutateAsync({
@@ -65,10 +73,7 @@ export function OrderFinalStepComponent() {
       rateId: rateId,
       cityId: cityObj,
       pointId: pointId,
-      orderStatusId: {
-        name: 'Новые',
-        id: '61b30fe9bb7a006c05c54e2b',
-      },
+      orderStatusId: orderStatus?.data[0],
     });
     dispatch(
       setPopup({

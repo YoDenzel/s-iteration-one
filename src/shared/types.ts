@@ -133,14 +133,8 @@ export type TCoordinates = {
 };
 
 export type TPostCarOrder = {
-  orderStatusId: {
-    name: string;
-    id: string;
-  };
-  cityId: {
-    name: string;
-    id: string;
-  };
+  orderStatusId?: TPointsCity;
+  cityId: TPointsCity;
   pointId: string;
   carId: string;
   color: string;
@@ -151,4 +145,10 @@ export type TPostCarOrder = {
   isFullTank: boolean;
   isNeedChildChair: boolean;
   isRightWheel: boolean;
+};
+
+export type TOrderStatus = {
+  fields: {};
+  count: number;
+  data: TPointsCity[];
 };
