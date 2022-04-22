@@ -24,8 +24,8 @@ export const fetchPostCarOrder = async ({
     },
     body: JSON.stringify({
       orderStatusId: {
-        id: orderStatusId.id,
-        name: orderStatusId.name,
+        id: orderStatusId?.id,
+        name: orderStatusId?.name,
       },
       cityId: {
         name: cityId.name,
