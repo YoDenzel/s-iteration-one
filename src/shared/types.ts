@@ -205,5 +205,34 @@ type TPostCarOrderResponseDataCarId = {
   priceMax: number;
   priceMin: number;
   tank: 50;
-  thumnail: TCarThumbnail;
+  thumbnail: TCarThumbnail;
+};
+
+export type TGetCarOrder = {
+  fields: {};
+  data: TGetCarOrderData;
+};
+
+export type TGetCarOrderData = {
+  updatedAt: number;
+  createdAt: number;
+  id: string;
+  orderStatusId: TPointsCity;
+  color: string;
+  dateFrom: number;
+  dateTo: number;
+  isFullTank: boolean;
+  isNeedChildChair: boolean;
+  isRightWheel: boolean;
+  price: number;
+  rateId: TPostCarOrderRateId;
+  carId: TPostCarOrderResponseDataCarId;
+  cityId: TPointsCity;
+  pointId: TGetCarOrderDataPointId;
+};
+
+type TGetCarOrderDataPointId = {
+  address: string;
+  name: string;
+  id: string;
 };
