@@ -110,22 +110,35 @@ export function OrderGeolocationComponent() {
   );
 
   useEffect(() => {
+    const pointObj = data?.filter(
+      item => item.cityId?.name === inputCityRedux,
+    )[0];
     if (inputCityRedux && data) {
       dispatch(
         setCityObj({
-          cityIdObj: data
-            .filter(item => item.cityId?.name === inputCityRedux)
-            .map(val => val.cityId)[0] as TCityObj,
+          cityIdObj: pointObj?.cityId as TCityObj,
         }),
       );
       dispatch(
         setPointId({
-          pointId: data
-            .filter(item => item.cityId?.name === inputCityRedux)
-            .map(val => val.id)[0],
+          pointId: pointObj?.id || '',
         }),
       );
     }
+    inputCity &&
+      streetsArr.length <= 1 &&
+      addresses?.map(item =>
+        createMapCoordinatesArr(
+          `${item}, ${inputCityRedux}`,
+          setStreets,
+          provider,
+        ),
+      );
+    dispatch(
+      setStreetsCoordinates({
+        coordinates: streetsArr,
+      }),
+    );
   }, [inputCityRedux, inputStreetRedux]);
 
   const addresses = useMemo(
@@ -158,23 +171,6 @@ export function OrderGeolocationComponent() {
         createMapCoordinatesArr(item || '', setCityArr, provider),
       );
   }, [inputCityRedux, inputStreetRedux, data]);
-
-  useEffect(() => {
-    inputCity &&
-      streetsArr.length <= 1 &&
-      addresses?.map(item =>
-        createMapCoordinatesArr(
-          `${item}, ${inputCityRedux}`,
-          setStreets,
-          provider,
-        ),
-      );
-    dispatch(
-      setStreetsCoordinates({
-        coordinates: streetsArr,
-      }),
-    );
-  }, [inputCityRedux, inputStreetRedux]);
 
   const mapClickHandler = (city: string, street?: string) => {
     setInputCity(city);
