@@ -4,10 +4,12 @@ import { format } from 'date-fns';
 import { setPopup } from '../../redux/order-confirmation-popup-status-slice/order-confirmation-popup-status-slice';
 import { RootState } from '../../redux/store';
 import {
+  clearStepOneOrderStore,
   getCityObj,
   getPointId,
 } from '../../redux/step-one-order-form-slice/step-one-order-form-slice';
 import {
+  clearStepThreeStore,
   getRateId,
   getStepThreeObj,
 } from '../../redux/step-three-order-form-slice/step-three-order-form-slice';
@@ -26,6 +28,7 @@ import {
   getDateToInNumber,
 } from '../../redux/rent-date/rent-date';
 import { TOrderStatus } from '../../shared/types';
+import { clearStepTwoStore } from '../../redux/step-two-order-form-slice/step-two-order-form-slice';
 
 export function OrderFinalStepComponent() {
   const mapState = (state: RootState) => ({
@@ -88,7 +91,12 @@ export function OrderFinalStepComponent() {
   };
 
   useEffect(() => {
-    data && navigate(`/s-iteration-one/order/${data.data.id}`);
+    if (data) {
+      navigate(`/s-iteration-one/order/${data.data.id}`);
+      dispatch(clearStepOneOrderStore());
+      dispatch(clearStepTwoStore());
+      dispatch(clearStepThreeStore());
+    }
   }, [data]);
 
   return (
