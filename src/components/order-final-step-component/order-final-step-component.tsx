@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
 import { format } from 'date-fns';
 import { setPopup } from '../../redux/order-confirmation-popup-status-slice/order-confirmation-popup-status-slice';
 import { RootState } from '../../redux/store';
@@ -24,8 +26,6 @@ import {
   getDateToInNumber,
 } from '../../redux/rent-date/rent-date';
 import { TOrderStatus } from '../../shared/types';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router';
 
 export function OrderFinalStepComponent() {
   const mapState = (state: RootState) => ({
