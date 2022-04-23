@@ -24,6 +24,8 @@ import {
   getDateToInNumber,
 } from '../../redux/rent-date/rent-date';
 import { TOrderStatus } from '../../shared/types';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
 
 export function OrderFinalStepComponent() {
   const mapState = (state: RootState) => ({
@@ -51,6 +53,7 @@ export function OrderFinalStepComponent() {
     pointId,
     carItem,
   } = useAppSelector(mapState);
+  let navigate = useNavigate();
   const isPopupActive = useAppSelector(
     state => state.orderConfirmationPopupStatusSlice.isPopupActive,
   );
@@ -83,6 +86,10 @@ export function OrderFinalStepComponent() {
       }),
     );
   };
+
+  useEffect(() => {
+    data && navigate(`/s-iteration-one/order/${data.data.id}`);
+  }, [data]);
 
   return (
     <>
