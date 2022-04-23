@@ -24,7 +24,10 @@ export const stepThreeOrderFormSlice = createSlice({
       state.rentalDuration = action.payload.rentalDuration;
     },
     setRate: (state, action: PayloadAction<{ rate: string }>) => {
-      state.rate = action.payload.rate;
+      state.rate = action.payload.rate.substring(
+        0,
+        action.payload.rate.indexOf(','),
+      );
     },
     setFullTank: (state, action: PayloadAction<{ fullTank: boolean }>) => {
       state.fullTank = action.payload.fullTank;
