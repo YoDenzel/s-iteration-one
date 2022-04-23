@@ -9,10 +9,10 @@ export function TextInput({
   setInputValue,
   listItems,
   isDropDownOpen,
-  setDropdownOpen,
   clearInputHandler,
   inputClickHandler,
   referal,
+  onClickLi,
 }: TTextInput) {
   return (
     <div className={styles.wrapper} ref={referal}>
@@ -35,20 +35,22 @@ export function TextInput({
           </button>
         </div>
         {isDropDownOpen && listItems && (
-          <ul className={styles.dropdown}>
+          <ul
+            className={`${styles.dropdown} ${
+              listItems.length > 3 ? styles.list_element_overflow : ''
+            }`}
+          >
             {listItems.map((item, index) => {
               return (
-                !(item.toLowerCase() === inputValue.toLowerCase()) && (
-                  <li
-                    key={item + index}
-                    onClick={() => {
-                      setInputValue(item);
-                      setDropdownOpen && setDropdownOpen(false);
-                    }}
-                  >
-                    {item}
-                  </li>
-                )
+                <li
+                  key={(item || '') + index}
+                  onClick={() => {
+                    onClickLi(item || '');
+                    inputClickHandler();
+                  }}
+                >
+                  {item}
+                </li>
               );
             })}
           </ul>

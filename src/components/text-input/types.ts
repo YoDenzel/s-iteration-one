@@ -5,10 +5,10 @@ export type TTextInput = {
   placeholder: string;
   inputValue: string;
   setInputValue: (v: string) => void;
-  listItems?: string[];
+  listItems?: (string | undefined)[];
   isDropDownOpen?: boolean;
-  setDropdownOpen?: (v: boolean) => void;
   clearInputHandler: () => void;
   inputClickHandler: () => void;
   referal: LegacyRef<HTMLDivElement> | undefined;
+  onClickLi: (v: string) => void;
 };

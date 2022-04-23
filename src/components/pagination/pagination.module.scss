@@ -1,0 +1,61 @@
+@mixin default_item {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 400;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 32px;
+  margin: 0 3px;
+  color: var(--black);
+  text-align: center;
+}
+
+.nav_container {
+  margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pagination_item {
+  @include default_item;
+  display: inline-flex;
+  height: 32px;
+  border: 1px solid transparent;
+  padding: 0px 6px;
+  &:hover {
+    border-radius: 16px;
+    border: 1px solid var(--gray);
+  }
+}
+
+.active_page {
+  color: var(--main-accent);
+  border: 1px solid var(--main-accent);
+  border-radius: 16px;
+}
+
+.pagination_item_dots {
+  @include default_item;
+  margin-bottom: 5px;
+  align-self: flex-end;
+  height: auto;
+}
+
+.unactive_button {
+  cursor: default;
+  &:hover {
+    border: 0px;
+  }
+}
+
+@media (max-width: 767px) {
+  .nav_container {
+    flex-wrap: nowrap;
+  }
+
+  .pagination_item {
+    width: 24px;
+    height: 24px;
+  }
+}

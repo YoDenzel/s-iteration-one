@@ -1,0 +1,41 @@
+$margin-bottom: 8px;
+
+.final_info_wrapper {
+  display: flex;
+  margin-top: 32px;
+  gap: 150px;
+}
+
+.car_image {
+  width: 180px;
+}
+
+.car_title {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: var(--black);
+  margin: 0;
+  margin-bottom: $margin-bottom;
+}
+
+.car_number {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  border: 1px solid var(--gray);
+  color: var(--black);
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin: 0;
+  margin-bottom: $margin-bottom;
+  width: fit-content;
+  padding: 4px 8px;
+}
+
+@media (max-width: 1023px) {
+  .final_info_wrapper {
+    flex-direction: column;
+    gap: 0;
+  }
+}

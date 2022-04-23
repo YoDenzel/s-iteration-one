@@ -5,14 +5,17 @@ import {
 } from '../../components';
 import styles from './main-page.module.scss';
 import { images } from '../../shared/images';
-import { useAppSelector, useWindowWidth } from '../../shared/custom-hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useWindowWidth,
+} from '../../shared/custom-hooks';
 
 export function MainPage() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [autoPlayEnabled, setAutoPlayEnabled] = useState(true);
   const { windowWidth } = useWindowWidth();
   const isMenuActive = useAppSelector(state => state.sidebarSlide.isMenuActive);
-
   const autoPlayRef = useRef<() => void>();
 
   useEffect(() => {

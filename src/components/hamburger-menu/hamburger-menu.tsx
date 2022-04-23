@@ -1,8 +1,8 @@
 import { Icons } from '../../shared/icons';
 import { ChangeLanguageButton } from '../change-language-button';
 import { MenuComponent } from '../menu-component';
-import styles from './hamburger-menu.module.scss';
 import { menuIcons, menuTitlesArr } from './constants';
+import styles from './hamburger-menu.module.scss';
 import { THamburgerMenu } from './types';
 import { useAppDispatch } from '../../shared/custom-hooks';
 import { setMenuActive } from '../../redux/sidebar-slice/sidebar-slice';
