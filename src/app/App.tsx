@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { HamburgerMenu } from '../components';
-import { MainPage, OrderPage } from '../pages';
+import { MainPage, OrderPage, OrderStatusPage } from '../pages';
 import { useAppSelector, useWindowWidth } from '../shared/custom-hooks';
 
 export function App() {
@@ -20,6 +20,10 @@ export function App() {
       <Routes>
         <Route path="/s-iteration-one" element={<MainPage />} />
         <Route path="/s-iteration-one/order" element={<OrderPage />} />
+        <Route
+          path="/s-iteration-one/order/:id"
+          element={<OrderStatusPage />}
+        />
       </Routes>
     </div>
   );
