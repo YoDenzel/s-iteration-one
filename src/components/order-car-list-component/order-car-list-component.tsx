@@ -110,7 +110,6 @@ export function OrderCarListComponent() {
     setCurrentPage(1);
   };
 
-  console.log(activeCarItem);
   return (
     <section className={styles.container}>
       <div className={styles.margin_wrapper}>
