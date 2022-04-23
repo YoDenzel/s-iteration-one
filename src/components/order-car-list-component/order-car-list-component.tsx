@@ -37,7 +37,7 @@ export function OrderCarListComponent() {
   const dispatch = useAppDispatch();
   const { data, isError, isLoading } = useGetData<TCars>({
     QUERY_KEY: 'cars',
-    url: `car?${filter}&page=${currentPage - 1}&limit=${PAGE_LIMIT}`,
+    url: `car?${filter}page=${currentPage - 1}&limit=${PAGE_LIMIT}`,
   });
   const { data: carCategory } = useGetData<TCarCategory>({
     QUERY_KEY: 'carCategory',
@@ -98,12 +98,11 @@ export function OrderCarListComponent() {
   const clickRadioButtonHandler = (name: string) => {
     setActiveButtonName(name);
     const categoryId = carCategory?.data.filter(item => item.name === name)[0];
-    setFilter(() => {
-      return categoryId ? `categoryId=${categoryId?.id}` : '';
-    });
+    const isCategory = categoryId ? `categoryId=${categoryId?.id}&` : '';
+    setFilter(isCategory);
     dispatch(
       setCarFilter({
-        carFilter: `categoryId=${categoryId?.id}`,
+        carFilter: isCategory,
         carFilterButtonTitle: name,
       }),
     );
