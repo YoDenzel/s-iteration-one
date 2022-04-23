@@ -10,6 +10,7 @@ export function CheckoutForm({
   clickHandler,
   secondStepObj,
   thirdStepObj,
+  isOrderStatusPage
 }: TCheckoutForm) {
   return (
     <form className={styles.form_wrapper}>
@@ -42,7 +43,7 @@ export function CheckoutForm({
           <p className={styles.summary_price}>{price}</p>
         </div>
         <button
-          className={styles.checkout_button}
+          className={`${styles.checkout_button} ${isOrderStatusPage && styles.order_button_color}`}
           disabled={isButtonActive}
           type="button"
           onClick={clickHandler}
