@@ -1,4 +1,5 @@
 import { Icons } from '../../shared/icons';
+
 export const menuIcons = [
   {
     linkTo: '/s-iteration-one',

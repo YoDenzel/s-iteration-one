@@ -1,0 +1,60 @@
+@mixin input_font_type {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--black);
+}
+
+.date_wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.input_container {
+  display: flex;
+}
+
+.datepicker {
+  @include input_font_type;
+  border: none;
+  padding-left: 8px;
+  width: 224px;
+  border-bottom: 1px solid var(--gray);
+  &::placeholder {
+    color: var(--gray);
+  }
+  &:focus-visible {
+    outline: none;
+  }
+  &:disabled {
+    background: none;
+  }
+}
+
+.title {
+  @include input_font_type;
+  margin: 0;
+  width: 18px;
+  height: 16px;
+  margin-right: 8px;
+  text-align: right;
+}
+
+.reset_button {
+  position: relative;
+  right: 15px;
+  &:disabled {
+    cursor: default;
+  }
+}
+
+@media (max-width: 330px) {
+  .datepicker {
+    width: 180px;
+  }
+
+  .calendar {
+    display: none;
+  }
+}

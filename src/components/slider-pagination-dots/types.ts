@@ -1,4 +1,4 @@
-import { TSliderImagesArr } from "../../shared/types";
+import { TSliderImagesArr } from '../../shared/types';
 
 export type TSliderPaginationDots = {
   sliderImagesArr: TSliderImagesArr[];

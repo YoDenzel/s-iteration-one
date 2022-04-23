@@ -1,0 +1,14 @@
+.container {
+  width: 100%;
+}
+
+.margin_wrapper {
+  margin-top: 32px;
+  margin-bottom: 48px;
+}
+
+@media (min-width: 2042px) {
+  .container {
+    width: 974px;
+  }
+}

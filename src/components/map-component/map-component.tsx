@@ -7,10 +7,11 @@ import { TMapComponent } from './types';
 export function MapComponent({
   center,
   cityTitle,
-  infoArr,
   zoom,
   streetTitle,
   clickHandler,
+  cityCoordinatesArr,
+  streetsCoordinatesArr,
 }: TMapComponent) {
   return (
     <div>
@@ -24,32 +25,41 @@ export function MapComponent({
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {cityTitle.length < 5
-          ? infoArr?.map((item, index) => {
+        {!cityTitle
+          ? cityCoordinatesArr?.map((item, index) => {
               return (
-                <div key={item.city + index}>
+                <div key={item.label + index}>
                   <ChangeCityView item={item} cityTitle={cityTitle} />
                   <MapMarker
-                    coordinates={item.cityCoordinates}
-                    clickHandler={() => clickHandler(item.city)}
-                    zoom={10}
+                    coordinates={[item.y, item.x]}
+                    clickHandler={() =>
+                      clickHandler(
+                        item.label.substring(0, item.label.indexOf(',')),
+                      )
+                    }
+                    zoom={4}
                   />
                 </div>
               );
             })
-          : infoArr?.map(item =>
-              item.address.map((val, index) => {
-                if (item.city.toLowerCase() === cityTitle.toLowerCase()) {
+          : cityCoordinatesArr.map(val =>
+              streetsCoordinatesArr.map((item, index) => {
+                const cityName = val.label.split(',')[0];
+                const streetName = item.label.split(',')[0];
+                if (
+                  cityName.toLowerCase().trim() ===
+                  cityTitle.toLowerCase().trim()
+                ) {
                   return (
-                    <div key={val.title + index}>
+                    <div key={item.label + index}>
                       <ChangeStreetView
-                        val={val}
-                        cityCoordinates={item.cityCoordinates}
+                        val={item}
+                        cityCoordinates={[val.y, val.x]}
                         streetTitle={streetTitle}
                       />
                       <MapMarker
-                        coordinates={val.coordinates}
-                        clickHandler={() => clickHandler(item.city, val.title)}
+                        coordinates={[item.y, item.x]}
+                        clickHandler={() => clickHandler(cityName, streetName)}
                         zoom={14}
                       />
                     </div>

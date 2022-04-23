@@ -21,6 +21,7 @@ export function CarsharingSliderArrows({
           <Icons.LeftArrow color="#ffffff" />
         </span>
       </button>
+
       <button
         className={styles.right_arrow}
         onClick={() => {

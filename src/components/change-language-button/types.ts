@@ -1,4 +1,4 @@
 export type TChangeLanguageButton = {
-  language: string;
-  setLanguage: (v: string) => void;
-};
+    language: string;
+    setLanguage: (v: string) => void;
+  };

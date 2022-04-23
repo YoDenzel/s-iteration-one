@@ -1,0 +1,68 @@
+@mixin button_styles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  padding: 15px 30px 11px 30px;
+  color: var(--white);
+}
+
+.popup_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  flex-direction: column;
+}
+
+.popup_container {
+  width: max-content;
+  height: max-content;
+}
+
+.popup_title {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 32px;
+}
+
+.buttons_container {
+  display: flex;
+  gap: 16px;
+}
+
+.agree_button {
+  @include button_styles;
+  background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
+  background-blend-mode: darken;
+  border-radius: 8px;
+}
+
+.decline_button {
+  @include button_styles;
+  background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
+  border-radius: 4px;
+}
+
+@media (max-width: 767px) {
+  .popup_wrapper {
+    position: fixed;
+  }
+}
+
+@media (max-width: 335px) {
+  .buttons_container {
+    flex-direction: column;
+  }
+}

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export const sidebarSlice = createSlice({
   name: 'sidebarSlice',
@@ -6,7 +6,7 @@ export const sidebarSlice = createSlice({
     isMenuActive: false,
   },
   reducers: {
-    setMenuActive: (state, action) => {
+    setMenuActive: (state, action: PayloadAction<{ menuActive: boolean }>) => {
       state.isMenuActive = action.payload.menuActive;
     },
   },

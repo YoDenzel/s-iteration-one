@@ -1,0 +1,19 @@
+$wrapper_margin: 32px 0;
+
+.settings_container {
+  width: 100%;
+}
+
+.color_filter_form_wrapper {
+  margin: $wrapper_margin;
+}
+
+.car_rate_wrapper {
+  margin: $wrapper_margin;
+}
+
+@media (min-width: 2042px) {
+  .settings_container {
+    width: 973px;
+  }
+}

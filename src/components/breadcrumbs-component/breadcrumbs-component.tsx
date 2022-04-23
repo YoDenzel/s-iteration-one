@@ -5,32 +5,32 @@ import { TBreadcrumbsComponent } from './types';
 export function BreadcrumbsComponent({
   breadcrumbsArr,
   activeComponentIndex,
+  setActiveIndex,
+  isButtonActive,
 }: TBreadcrumbsComponent) {
   return (
-    <nav className={styles.breadcrumbs_container}>
-      {breadcrumbsArr.map((item, index, arr) => (
-        <span key={item.title + index}>
-          <button
-            className={styles.button_link}
-            disabled={!(activeComponentIndex >= index)}
-            style={{
-              color: `${
-                !(activeComponentIndex >= index) ? '#999999' : '#0EC261'
-              }`,
-              cursor: `${
-                !(activeComponentIndex >= index) ? 'default' : 'pointer'
-              }`,
-            }}
-          >
-            {item.title}
-          </button>
-          {!(arr.length - 1 === index) && (
-            <span className={styles.arrow_icon}>
-              <Icons.BreadcrumbsArrowIcon />
-            </span>
-          )}
-        </span>
-      ))}
+    <nav className={styles.breadcrumbs_wrapper}>
+      <article className={styles.breadcrumbs_container}>
+        {breadcrumbsArr.map((item, index, arr) => (
+          <span key={item.title + index}>
+            <button
+              onClick={() => setActiveIndex(index)}
+              className={styles.button_link}
+              disabled={isButtonActive(index)}
+              style={{
+                color: `${activeComponentIndex === index ? '#0EC261' : ''}`,
+              }}
+            >
+              {item.title}
+            </button>
+            {!(arr.length - 1 === index) && (
+              <span className={styles.arrow_icon}>
+                <Icons.BreadcrumbsArrowIcon />
+              </span>
+            )}
+          </span>
+        ))}
+      </article>
     </nav>
   );
 }
