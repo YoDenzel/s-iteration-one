@@ -108,6 +108,16 @@ $paddingSides: 64px;
   color: var(--black);
 }
 
+@media (min-width: 2042px) {
+  .carsharing {
+    justify-content: center;
+  }
+
+  .container {
+    width: 861px;
+  }
+}
+
 @media (max-width: 1439px) {
   .container {
     padding-left: 32px;
