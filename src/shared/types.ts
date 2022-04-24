@@ -236,3 +236,8 @@ type TGetCarOrderDataPointId = {
   name: string;
   id: string;
 };
+
+export type TPutCarOrderStatus = {
+  orderId: string;
+  orderStatusId?: TPointsCity;
+};
