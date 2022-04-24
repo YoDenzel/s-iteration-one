@@ -118,7 +118,9 @@ export function OrderCarListComponent() {
           titleArr={radioFilterButtonsArr}
         />
       </div>
-      {isError && <ErrorComponent />}
+      {isError && (
+        <ErrorComponent errorMessage="Подождите или перезагрузите страницу" />
+      )}
       {isLoading && <LoadingComponent />}
       {!isError && !isLoading && (
         <CarsListComponent
