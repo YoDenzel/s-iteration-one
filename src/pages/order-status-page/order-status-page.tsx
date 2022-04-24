@@ -6,16 +6,23 @@ import {
   FinalInfoComponent,
   HeaderComponent,
 } from '../../components';
-import { useGetData } from '../../shared/custom-hooks';
+import { useGetData, usePutCarOrder } from '../../shared/custom-hooks';
 import { stepThreeObjIntoArray } from '../../shared/functions/step-three-obj-into-array';
-import { TGetCarOrder } from '../../shared/types';
+import { TGetCarOrder, TOrderStatus } from '../../shared/types';
 import styles from './order-status-page.module.scss';
+import { useEffect, useState } from 'react';
 
 export function OrderStatusPage() {
   const id = useParams();
+  const [isOrderCanceled, setisOrderCanceled] = useState(false);
   const { data } = useGetData<TGetCarOrder>({
     QUERY_KEY: 'order',
     url: `order/${id.id}`,
+  });
+  const { mutateAsync, isLoading, data: orderId } = usePutCarOrder();
+  const { data: orderStatus } = useGetData<TOrderStatus>({
+    QUERY_KEY: 'orderStatus',
+    url: 'orderStatus',
   });
   const availableFrom = format(
     new Date(data?.data.dateFrom || 0),
@@ -50,6 +57,18 @@ export function OrderStatusPage() {
     rightHandDrive: data?.data.isRightWheel || false,
   };
 
+  const checkoutClickhandler = () => {
+    mutateAsync({
+      orderId: data?.data.id || '',
+      orderStatusId: orderStatus?.data[2],
+    });
+  };
+
+  useEffect(() => {
+    orderId?.data.orderStatusId.name === 'Отмененые' &&
+      setisOrderCanceled(true);
+  }, [orderId]);
+
   return (
     <div className={styles.container}>
       <div className={styles.header_wrapper}>
@@ -73,9 +92,9 @@ export function OrderStatusPage() {
           secondStepObj={secondStepObj}
           thirdStepObj={stepThreeObjIntoArray(thirdStepObj)}
           price={`${data?.data.price} ₽`}
-          buttonTitle={'Отменить'}
-          clickHandler={() => void 0}
-          isButtonActive={false}
+          buttonTitle={isOrderCanceled ? 'Отменено' : 'Отменить'}
+          clickHandler={() => checkoutClickhandler()}
+          isButtonActive={isOrderCanceled ? true : false}
           isOrderStatusPage={true}
         />
       </main>
