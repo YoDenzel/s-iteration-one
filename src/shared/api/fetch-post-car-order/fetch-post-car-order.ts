@@ -48,6 +48,7 @@ export const fetchPostCarOrder = async ({
     'https://api-factory.simbirsoft1.com/api/db/order',
     requestOptions,
   );
+  if (!response.ok) throw new Error(response.statusText);
   const data = await response.json();
   return data;
 };
