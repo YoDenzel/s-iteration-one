@@ -3,6 +3,7 @@ import { format, intervalToDuration, formatDuration } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import {
   CheckoutForm,
+  ErrorComponent,
   FinalInfoComponent,
   HeaderComponent,
 } from '../../components';
@@ -15,11 +16,11 @@ import { useEffect, useState } from 'react';
 export function OrderStatusPage() {
   const id = useParams();
   const [isOrderCanceled, setisOrderCanceled] = useState(false);
-  const { data } = useGetData<TGetCarOrder>({
+  const { data, isError, isLoading } = useGetData<TGetCarOrder>({
     QUERY_KEY: 'order',
     url: `order/${id.id}`,
   });
-  const { mutateAsync, isLoading, data: orderId } = usePutCarOrder();
+  const { mutateAsync, data: orderId } = usePutCarOrder();
   const { data: orderStatus } = useGetData<TOrderStatus>({
     QUERY_KEY: 'orderStatus',
     url: 'orderStatus',
@@ -77,27 +78,35 @@ export function OrderStatusPage() {
       <article className={styles.order_id_block}>
         <p className={styles.order_id}>Заказ номер {id.id}</p>
       </article>
-      <main className={styles.info_block}>
-        <section className={styles.text_info_wrapper}>
-          <FinalInfoComponent
-            carName={data?.data.carId.name || ''}
-            carNumber={data?.data.carId.number || ''}
-            fuel={`${data?.data.carId.tank}%`}
-            availableFrom={availableFrom}
-            carImageUrl={data?.data.carId.thumbnail.path}
+      {isError && (
+        <div className={styles.error_wrapper}>
+          <ErrorComponent errorMessage="Вероятно такого заказа не существует" />
+        </div>
+      )}
+      {isLoading && <h1 className={styles.loader}>Загрузка...</h1>}
+      {!isError && !isLoading && (
+        <main className={styles.info_block}>
+          <section className={styles.text_info_wrapper}>
+            <FinalInfoComponent
+              carName={data?.data.carId.name || ''}
+              carNumber={data?.data.carId.number || ''}
+              fuel={`${data?.data.carId.tank}%`}
+              availableFrom={availableFrom}
+              carImageUrl={data?.data.carId.thumbnail.path}
+            />
+          </section>
+          <CheckoutForm
+            firstStepObj={firstStepObj}
+            secondStepObj={secondStepObj}
+            thirdStepObj={stepThreeObjIntoArray(thirdStepObj)}
+            price={`${data?.data.price} ₽`}
+            buttonTitle={isOrderCanceled ? 'Отменено' : 'Отменить'}
+            clickHandler={() => checkoutClickhandler()}
+            isButtonActive={isOrderCanceled ? true : false}
+            isOrderStatusPage={true}
           />
-        </section>
-        <CheckoutForm
-          firstStepObj={firstStepObj}
-          secondStepObj={secondStepObj}
-          thirdStepObj={stepThreeObjIntoArray(thirdStepObj)}
-          price={`${data?.data.price} ₽`}
-          buttonTitle={isOrderCanceled ? 'Отменено' : 'Отменить'}
-          clickHandler={() => checkoutClickhandler()}
-          isButtonActive={isOrderCanceled ? true : false}
-          isOrderStatusPage={true}
-        />
-      </main>
+        </main>
+      )}
     </div>
   );
 }
