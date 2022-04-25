@@ -82,13 +82,13 @@ export function OrderAdditionSettingsComponent() {
   };
 
   const firstInputMinTime = () => {
-    if (isToday(dateFrom || 0)) {
+    if (!dateFrom) return new Date();
+    else if (isToday(dateFrom)) {
       return new Date();
     } else {
       return setMinutes(setHours(new Date(), 0), 0);
     }
   };
-
   const colorClickhandler = (color: string) => {
     setActiveColorButtonName(color);
     dispatch(
