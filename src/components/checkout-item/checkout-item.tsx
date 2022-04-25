@@ -1,8 +1,8 @@
 import styles from './checkout-item.module.scss';
 
 type TCheckoutItem = {
-  title: string;
-  information: string;
+  title?: string;
+  information?: string;
 };
 
 export function CheckoutItem({ information, title }: TCheckoutItem) {
@@ -10,13 +10,7 @@ export function CheckoutItem({ information, title }: TCheckoutItem) {
     <div className={styles.order_info_item}>
       <p className={styles.item_title}>{title}</p>
       <span className={styles.dots} />
-      <p
-        className={`${styles.item_text} ${
-          title === 'Пункт выдачи' && styles.first_item
-        }`}
-      >
-        {information}
-      </p>
+      <p className={`${styles.item_text} ${title === 'Пункт выдачи' && styles.first_item}`}>{information}</p>
     </div>
   );
 }

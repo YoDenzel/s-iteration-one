@@ -111,15 +111,10 @@ $cancel_button_color: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
 .order_button_color {
   background: $cancel_button_color;
   &:hover {
-    background: $cancel_button_color;
-    filter: brightness(90%);
+    background: linear-gradient(90deg, #492f11 0%, #680930 100%);
   }
   &:active {
-    background: $cancel_button_color;
-    filter: brightness(80%);
-  }
-  &:disabled {
-    filter: brightness(100%);
+    background: linear-gradient(90deg, #3a250c 0%, #580729 100%);
   }
 }
 
