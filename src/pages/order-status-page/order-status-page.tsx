@@ -66,9 +66,10 @@ export function OrderStatusPage() {
   };
 
   useEffect(() => {
-    orderId?.data.orderStatusId.name === 'Отмененые' &&
-      setisOrderCanceled(true);
-  }, [orderId]);
+    orderId?.data.orderStatusId.name === 'Отмененые' ||
+      (data?.data.orderStatusId.name === 'Отмененые' &&
+        setisOrderCanceled(true));
+  }, [orderId, data]);
 
   return (
     <div className={styles.container}>
