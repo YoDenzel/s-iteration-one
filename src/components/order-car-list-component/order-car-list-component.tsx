@@ -30,7 +30,9 @@ export function OrderCarListComponent() {
     carTitle: state.stepTwoOrderForm.carFilterButtonTitle,
   });
   const { carFilter, carNameRedux, carTitle } = useAppSelector(mapState);
-  const [activeButtonName, setActiveButtonName] = useState(carTitle);
+  const [activeButtonName, setActiveButtonName] = useState(
+    carTitle || 'Все модели',
+  );
   const [car, setCar] = useState(carNameRedux);
   const [filter, setFilter] = useState(carFilter);
   const [currentPage, setCurrentPage] = useState(1);
