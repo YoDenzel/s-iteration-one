@@ -57,6 +57,16 @@ $big_screens_content_width: 1280px;
 
 .text_info_wrapper {
   width: 100%;
+  margin-top: 32px;
+}
+
+.order_status {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  margin: 0;
+  margin-bottom: 16px;
+  color: var(--black);
 }
 
 .checkout_block {

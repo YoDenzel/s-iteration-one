@@ -95,6 +95,9 @@ export function OrderStatusPage() {
       {!isError && !isLoading && (
         <main className={styles.info_block}>
           <section className={styles.text_info_wrapper}>
+            <h1 className={styles.order_status}>
+              Ваш заказ {!isOrderCanceled ? 'подтвержден' : 'отменен'}
+            </h1>
             <FinalInfoComponent
               carName={data?.data.carId.name || 'Нет данных'}
               carNumber={carNumber || 'Нет данных'}
