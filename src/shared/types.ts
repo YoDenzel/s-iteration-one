@@ -204,7 +204,7 @@ type TPostCarOrderResponseDataCarId = {
   number: string;
   priceMax: number;
   priceMin: number;
-  tank: 50;
+  tank: number;
   thumbnail: TCarThumbnail;
 };
 
