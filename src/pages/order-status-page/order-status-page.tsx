@@ -29,6 +29,9 @@ export function OrderStatusPage() {
     new Date(data?.data.dateFrom || 0),
     'dd.MM.yyyy HH:mm',
   );
+  const fuel = !data?.data.carId.tank
+    ? 'Нет данных'
+    : `${data.data.carId.tank}%`;
 
   const interval = intervalToDuration({
     start: data?.data.dateFrom || 0,
@@ -65,11 +68,15 @@ export function OrderStatusPage() {
     });
   };
 
+  const carNumber = data?.data.carId.number
+    ?.replace(/(?<=\D)(?=\d)|(?<=\d)(?=\D)/g, ' ')
+    .toUpperCase();
+
   useEffect(() => {
-    orderId?.data.orderStatusId.name === 'Отмененые' ||
-      (data?.data.orderStatusId.name === 'Отмененые' &&
-        setisOrderCanceled(true));
-  }, [orderId, data]);
+    (orderId?.data.orderStatusId.name === 'Отмененые' ||
+      data?.data.orderStatusId.name === 'Отмененые') &&
+      setisOrderCanceled(true);
+  }, [orderId, data, isLoading]);
 
   return (
     <div className={styles.container}>
@@ -89,9 +96,9 @@ export function OrderStatusPage() {
         <main className={styles.info_block}>
           <section className={styles.text_info_wrapper}>
             <FinalInfoComponent
-              carName={data?.data.carId.name || ''}
-              carNumber={data?.data.carId.number || ''}
-              fuel={`${data?.data.carId.tank}%`}
+              carName={data?.data.carId.name || 'Нет данных'}
+              carNumber={carNumber || 'Нет данных'}
+              fuel={fuel}
               availableFrom={availableFrom}
               carImageUrl={data?.data.carId.thumbnail.path}
             />

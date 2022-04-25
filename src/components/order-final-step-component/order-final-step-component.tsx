@@ -90,6 +90,10 @@ export function OrderFinalStepComponent() {
     );
   };
 
+  const carNumber = carItem?.number
+    ?.replace(/(?<=\D)(?=\d)|(?<=\d)(?=\D)/g, ' ')
+    .toUpperCase();
+
   useEffect(() => {
     if (data) {
       navigate(`/s-iteration-one/order/${data.data.id}`);
@@ -106,7 +110,7 @@ export function OrderFinalStepComponent() {
           carName={carItem.name}
           availableFrom={availableFrom}
           carImageUrl={carItem.thumbnail.path}
-          carNumber={carItem.number || 'Нет данных'}
+          carNumber={carNumber || 'Нет данных'}
           fuel={stepThree.fullTank ? '100%' : `${fuel}`}
         />
       </section>
