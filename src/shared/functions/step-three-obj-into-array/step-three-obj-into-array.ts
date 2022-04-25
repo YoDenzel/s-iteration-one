@@ -12,7 +12,7 @@ export const stepThreeObjIntoArray = (stepThree: TStepThree) => {
     },
     {
       title: 'Тариф',
-      information: stepThree.rate,
+      information: stepThree.rate.split(',')[0],
     },
     {
       title: 'Полный бак',
