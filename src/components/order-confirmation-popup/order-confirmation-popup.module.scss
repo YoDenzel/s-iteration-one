@@ -47,12 +47,24 @@
   background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
   background-blend-mode: darken;
   border-radius: 8px;
+  &:hover {
+    background: var(--button-hover);
+  }
+  &:active {
+    background: var(--button-clicked);
+  }
 }
 
 .decline_button {
   @include button_styles;
   background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
   border-radius: 4px;
+  &:hover {
+    background: linear-gradient(90deg, #422a0f 0%, #5e082c 100%);
+  }
+  &:active {
+    background: linear-gradient(90deg, #3a250c 0%, #580729 100%);
+  }
 }
 
 @media (max-width: 767px) {
