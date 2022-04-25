@@ -7,7 +7,6 @@ import { TCheckboxItem } from './types';
 export function CheckboxItem({
   isButtonActive,
   title,
-  setCheckboxItem,
   checkboxArr,
 }: TCheckboxItem) {
   const dispatch = useAppDispatch();
