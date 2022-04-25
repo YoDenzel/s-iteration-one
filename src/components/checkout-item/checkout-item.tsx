@@ -10,7 +10,13 @@ export function CheckoutItem({ information, title }: TCheckoutItem) {
     <div className={styles.order_info_item}>
       <p className={styles.item_title}>{title}</p>
       <span className={styles.dots} />
-      <p className={styles.item_text}>{information}</p>
+      <p
+        className={`${styles.item_text} ${
+          title === 'Пункт выдачи' && styles.first_item
+        }`}
+      >
+        {information}
+      </p>
     </div>
   );
 }

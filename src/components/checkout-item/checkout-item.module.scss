@@ -34,4 +34,15 @@
   border-bottom: 2px dotted var(--gray);
   width: 100%;
   margin-bottom: 3px;
+  flex: 1;
+}
+
+.first_item {
+  width: min-content;
+}
+
+@media (min-width: 1440px) {
+  .first_item {
+    width: max-content;
+  }
 }
