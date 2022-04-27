@@ -1,10 +1,14 @@
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient, UseMutationResult } from 'react-query';
 import { fetchPostCarOrder } from '../../api';
-import { TPostCarOrder } from '../../types';
+import { TPostCarOrder, TPostCarOrderResponse } from '../../types';
 
 const QUERY_KEY = 'carOrder';
 
-export const usePostCarOrder = () => {
+export const usePostCarOrder = (): UseMutationResult<
+  TPostCarOrderResponse,
+  unknown,
+  TPostCarOrder
+> => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation(

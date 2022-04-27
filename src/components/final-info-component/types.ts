@@ -3,5 +3,5 @@ export type TFinalInfoComponent = {
   carNumber: string;
   fuel: string;
   availableFrom: string;
-  carImageUrl: string;
+  carImageUrl?: string;
 };

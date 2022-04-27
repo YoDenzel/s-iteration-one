@@ -1,0 +1,157 @@
+$side_padding_desktop: 0 64px;
+$side_padding_tablet: 0 32px;
+$side_padding_mobile: 0 16px;
+$big_screens_content_width: 1280px;
+
+@mixin bigScreenDefault {
+  align-self: center;
+  width: $big_screens_content_width;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  margin-left: 64px;
+  background-color: var(--white);
+}
+
+.header_wrapper {
+  padding: $side_padding_desktop;
+}
+
+.error_wrapper {
+  padding: $side_padding_desktop;
+}
+
+.loader {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--black);
+  padding: $side_padding_desktop;
+}
+
+.order_id_block {
+  width: 100%;
+  border-top: 1px solid var(--light-gray);
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.order_id {
+  padding: $side_padding_desktop;
+  margin: 0;
+  margin-top: 8px;
+  margin-bottom: 7px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--black);
+}
+
+.info_block {
+  padding: $side_padding_desktop;
+  display: flex;
+  height: 100%;
+}
+
+.text_info_wrapper {
+  width: 100%;
+  margin-top: 32px;
+}
+
+.order_status {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  margin: 0;
+  margin-bottom: 16px;
+  color: var(--black);
+}
+
+.checkout_block {
+  height: 100%;
+}
+
+@media (min-width: 2042px) {
+  .header_wrapper {
+    @include bigScreenDefault;
+  }
+
+  .error_wrapper {
+    @include bigScreenDefault;
+  }
+
+  .loader {
+    @include bigScreenDefault;
+  }
+
+  .info_block {
+    @include bigScreenDefault;
+  }
+
+  .order_id_block {
+    display: flex;
+    justify-content: center;
+  }
+
+  .order_id {
+    width: $big_screens_content_width;
+  }
+
+  .text_info_wrapper {
+    width: $big_screens_content_width;
+  }
+}
+
+@media (max-width: 1023px) {
+  .header_wrapper {
+    padding: $side_padding_tablet;
+  }
+
+  .error_wrapper {
+    padding: $side_padding_tablet;
+  }
+
+  .loader {
+    padding: $side_padding_tablet;
+  }
+
+  .info_block {
+    padding: $side_padding_tablet;
+  }
+
+  .order_id {
+    padding: $side_padding_tablet;
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    margin-left: 0;
+  }
+
+  .header_wrapper {
+    padding: $side_padding_mobile;
+  }
+
+  .error_wrapper {
+    padding: $side_padding_mobile;
+  }
+
+  .info_block {
+    padding: $side_padding_mobile;
+  }
+
+  .loader {
+    padding: $side_padding_mobile;
+  }
+
+  .order_id {
+    padding: $side_padding_mobile;
+  }
+
+  .info_block {
+    flex-direction: column;
+  }
+}

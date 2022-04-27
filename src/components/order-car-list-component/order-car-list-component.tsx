@@ -30,14 +30,16 @@ export function OrderCarListComponent() {
     carTitle: state.stepTwoOrderForm.carFilterButtonTitle,
   });
   const { carFilter, carNameRedux, carTitle } = useAppSelector(mapState);
-  const [activeButtonName, setActiveButtonName] = useState(carTitle);
+  const [activeButtonName, setActiveButtonName] = useState(
+    carTitle || 'Все модели',
+  );
   const [car, setCar] = useState(carNameRedux);
   const [filter, setFilter] = useState(carFilter);
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useAppDispatch();
   const { data, isError, isLoading } = useGetData<TCars>({
     QUERY_KEY: 'cars',
-    url: `car?${filter}&page=${currentPage - 1}&limit=${PAGE_LIMIT}`,
+    url: `car?${filter}page=${currentPage - 1}&limit=${PAGE_LIMIT}`,
   });
   const { data: carCategory } = useGetData<TCarCategory>({
     QUERY_KEY: 'carCategory',
@@ -98,19 +100,17 @@ export function OrderCarListComponent() {
   const clickRadioButtonHandler = (name: string) => {
     setActiveButtonName(name);
     const categoryId = carCategory?.data.filter(item => item.name === name)[0];
-    setFilter(() => {
-      return categoryId ? `categoryId=${categoryId?.id}` : '';
-    });
+    const isCategory = categoryId ? `categoryId=${categoryId?.id}&` : '';
+    setFilter(isCategory);
     dispatch(
       setCarFilter({
-        carFilter: `categoryId=${categoryId?.id}`,
+        carFilter: isCategory,
         carFilterButtonTitle: name,
       }),
     );
     setCurrentPage(1);
   };
 
-  console.log(activeCarItem);
   return (
     <section className={styles.container}>
       <div className={styles.margin_wrapper}>
@@ -120,7 +120,9 @@ export function OrderCarListComponent() {
           titleArr={radioFilterButtonsArr}
         />
       </div>
-      {isError && <ErrorComponent />}
+      {isError && (
+        <ErrorComponent errorMessage="Подождите или перезагрузите страницу" />
+      )}
       {isLoading && <LoadingComponent />}
       {!isError && !isLoading && (
         <CarsListComponent

@@ -15,8 +15,8 @@ import { getStepThreeObj } from '../../redux/step-three-order-form-slice/step-th
 import { getCarItem } from '../../redux/step-two-order-form-slice/step-two-order-form-slice';
 import { RootState } from '../../redux/store';
 import { useAppDispatch, useAppSelector } from '../../shared/custom-hooks';
-import { isButtonActive } from '../../shared/functions';
-import { breadcrumbsArr, buttonTitle, thirdStepArrObj } from './constants';
+import { isButtonActive, stepThreeObjIntoArray } from '../../shared/functions';
+import { breadcrumbsArr, buttonTitle } from './constants';
 import styles from './order-page.module.scss';
 
 export function OrderPage() {
@@ -106,7 +106,8 @@ export function OrderPage() {
           firstStepObj={firstStepObj}
           secondStepObj={secondStepObj}
           clickHandler={clickHandler}
-          thirdStepObj={thirdStepArrObj(stepThree)}
+          thirdStepObj={stepThreeObjIntoArray(stepThree)}
+          isOrderStatusPage={false}
         />
       </main>
     </div>
