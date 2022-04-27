@@ -8,3 +8,4 @@ export { createMapCoordinatesArr } from './create-map-coordinates-arr';
 export { filterArrayOfObjects } from './filter-array-of-objects';
 export { orderFormCheckboxIsActive } from './order-form-checkbox-is-active';
 export { clearOrderDataOnChange } from './clear-order-data-on-change';
+export { stepThreeObjIntoArray } from './step-three-obj-into-array';

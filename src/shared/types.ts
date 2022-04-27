@@ -166,3 +166,78 @@ export type TCarCategoryData = {
   description: string;
   id: string;
 };
+
+export type TPostCarOrderResponse = {
+  fields: {};
+  data: TPostCarOrderResponseData;
+};
+
+export type TPostCarOrderResponseData = {
+  updatedAt: number;
+  createdAt: number;
+  id: string;
+  orderStatusId: TPointsCity;
+  color: string;
+  dateFrom: number;
+  dateTo: number;
+  isFullTank: boolean;
+  isNeedChildChair: boolean;
+  isRightWheel: boolean;
+  price: number;
+  rateId: TPostCarOrderRateId;
+  carId: TPostCarOrderResponseDataCarId;
+  cityId: TPointsCity;
+};
+
+type TPostCarOrderRateId = {
+  id: string;
+  price: number;
+  rateTypeId: TCarRateTypeId;
+};
+
+type TPostCarOrderResponseDataCarId = {
+  categoryId: TCarCategoryId;
+  colors: string[];
+  description: string;
+  id: string;
+  name: string;
+  number: string;
+  priceMax: number;
+  priceMin: number;
+  tank: number;
+  thumbnail: TCarThumbnail;
+};
+
+export type TGetCarOrder = {
+  fields: {};
+  data: TGetCarOrderData;
+};
+
+export type TGetCarOrderData = {
+  updatedAt: number;
+  createdAt: number;
+  id: string;
+  orderStatusId: TPointsCity;
+  color: string;
+  dateFrom: number;
+  dateTo: number;
+  isFullTank: boolean;
+  isNeedChildChair: boolean;
+  isRightWheel: boolean;
+  price: number;
+  rateId: TPostCarOrderRateId;
+  carId: TPostCarOrderResponseDataCarId;
+  cityId: TPointsCity;
+  pointId: TGetCarOrderDataPointId;
+};
+
+type TGetCarOrderDataPointId = {
+  address: string;
+  name: string;
+  id: string;
+};
+
+export type TPutCarOrderStatus = {
+  orderId: string;
+  orderStatusId?: TPointsCity;
+};

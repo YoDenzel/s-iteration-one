@@ -1,11 +1,15 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
 import { format } from 'date-fns';
 import { setPopup } from '../../redux/order-confirmation-popup-status-slice/order-confirmation-popup-status-slice';
 import { RootState } from '../../redux/store';
 import {
+  clearStepOneOrderStore,
   getCityObj,
   getPointId,
 } from '../../redux/step-one-order-form-slice/step-one-order-form-slice';
 import {
+  clearStepThreeStore,
   getRateId,
   getStepThreeObj,
 } from '../../redux/step-three-order-form-slice/step-three-order-form-slice';
@@ -24,6 +28,7 @@ import {
   getDateToInNumber,
 } from '../../redux/rent-date/rent-date';
 import { TOrderStatus } from '../../shared/types';
+import { clearStepTwoStore } from '../../redux/step-two-order-form-slice/step-two-order-form-slice';
 
 export function OrderFinalStepComponent() {
   const mapState = (state: RootState) => ({
@@ -51,6 +56,7 @@ export function OrderFinalStepComponent() {
     pointId,
     carItem,
   } = useAppSelector(mapState);
+  let navigate = useNavigate();
   const isPopupActive = useAppSelector(
     state => state.orderConfirmationPopupStatusSlice.isPopupActive,
   );
@@ -84,6 +90,19 @@ export function OrderFinalStepComponent() {
     );
   };
 
+  const carNumber = carItem?.number
+    ?.replace(/(?<=\D)(?=\d)|(?<=\d)(?=\D)/g, ' ')
+    .toUpperCase();
+
+  useEffect(() => {
+    if (data) {
+      navigate(`/s-iteration-one/order/${data.data.id}`);
+      dispatch(clearStepOneOrderStore());
+      dispatch(clearStepTwoStore());
+      dispatch(clearStepThreeStore());
+    }
+  }, [data]);
+
   return (
     <>
       <section className={styles.final_step_wrapper}>
@@ -91,7 +110,7 @@ export function OrderFinalStepComponent() {
           carName={carItem.name}
           availableFrom={availableFrom}
           carImageUrl={carItem.thumbnail.path}
-          carNumber={carItem.number || 'Нет данных'}
+          carNumber={carNumber || 'Нет данных'}
           fuel={stepThree.fullTank ? '100%' : `${fuel}`}
         />
       </section>

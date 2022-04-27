@@ -1,4 +1,5 @@
 $top_margin: 32px;
+$cancel_button_color: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
 
 @mixin default_font {
   font-style: normal;
@@ -104,6 +105,16 @@ $top_margin: 32px;
   }
   &:focus-visible {
     background: var(--button-hover);
+  }
+}
+
+.order_button_color {
+  background: $cancel_button_color;
+  &:hover {
+    background: linear-gradient(90deg, #422a0f 0%, #5e082c 100%);
+  }
+  &:active {
+    background: linear-gradient(90deg, #3a250c 0%, #580729 100%);
   }
 }
 

@@ -8,4 +8,5 @@ export type TCheckoutForm = {
   clickHandler: () => void;
   secondStepObj: TFirstStepObj;
   thirdStepObj: TFirstStepObj[];
+  isOrderStatusPage: boolean;
 };

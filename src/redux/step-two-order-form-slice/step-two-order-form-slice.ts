@@ -8,7 +8,7 @@ export const stepTwoOrderForm = createSlice({
   initialState: {
     car: {} as TCarsData,
     carFilter: '',
-    carFilterButtonTitle: '',
+    carFilterButtonTitle: 'Все модели',
   },
   reducers: {
     setCarItem: (state, action: PayloadAction<{ car: TCarsData }>) => {
@@ -17,6 +17,7 @@ export const stepTwoOrderForm = createSlice({
     clearStepTwoStore: state => {
       state.car = {} as TCarsData;
       state.carFilter = '';
+      state.carFilterButtonTitle = '';
     },
     setCarFilter: (state, action: PayloadAction<TCarFilter>) => {
       state.carFilter = action.payload.carFilter;

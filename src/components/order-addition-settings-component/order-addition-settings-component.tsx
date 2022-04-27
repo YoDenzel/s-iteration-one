@@ -82,13 +82,13 @@ export function OrderAdditionSettingsComponent() {
   };
 
   const firstInputMinTime = () => {
-    if (isToday(dateFrom || 0)) {
+    if (!dateFrom) return new Date();
+    else if (isToday(dateFrom)) {
       return new Date();
     } else {
       return setMinutes(setHours(new Date(), 0), 0);
     }
   };
-
   const colorClickhandler = (color: string) => {
     setActiveColorButtonName(color);
     dispatch(
@@ -109,6 +109,21 @@ export function OrderAdditionSettingsComponent() {
         dateTo: dateTo?.toString() || '',
       }),
     );
+    const interval = intervalToDuration({
+      start: dateFrom || 0,
+      end: dateTo || 0,
+    });
+
+    if ((dateFrom && dateTo) || (!dateFrom && !dateTo)) {
+      dispatch(
+        setRentalDuration({
+          rentalDuration: formatDuration(interval, {
+            format: ['years', 'months', 'weeks', 'days', 'hours', 'minutes'],
+            locale: ru,
+          }),
+        }),
+      );
+    }
   }, [dateFrom, dateTo]);
 
   const rateClickhandler = (rateProp: TCarRateData) => {
@@ -127,24 +142,6 @@ export function OrderAdditionSettingsComponent() {
       }),
     );
   };
-
-  useEffect(() => {
-    const interval = intervalToDuration({
-      start: dateFrom || 0,
-      end: dateTo || 0,
-    });
-
-    if ((dateFrom && dateTo) || (!dateFrom && !dateTo)) {
-      dispatch(
-        setRentalDuration({
-          rentalDuration: formatDuration(interval, {
-            format: ['years', 'months', 'weeks', 'days', 'hours', 'minutes'],
-            locale: ru,
-          }),
-        }),
-      );
-    }
-  }, [dateFrom, dateTo]);
 
   useEffect(() => {
     calculatePriceDependOnRate({

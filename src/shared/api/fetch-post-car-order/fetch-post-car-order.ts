@@ -1,4 +1,5 @@
 import { TPostCarOrder } from '../../types';
+import { requestOptions } from '../constants';
 
 export const fetchPostCarOrder = async ({
   carId,
@@ -14,14 +15,9 @@ export const fetchPostCarOrder = async ({
   price,
   rateId,
 }: TPostCarOrder) => {
-  const requestOptions = {
+  const request = {
+    ...requestOptions,
     method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer 52efbe08228671240494f537f2486bc109a637b4',
-      'X-Api-Factory-Application-Id': `${process.env.REACT_APP_API_KEY}`,
-    },
     body: JSON.stringify({
       orderStatusId: {
         id: orderStatusId?.id,
@@ -46,8 +42,9 @@ export const fetchPostCarOrder = async ({
 
   const response = await fetch(
     'https://api-factory.simbirsoft1.com/api/db/order',
-    requestOptions,
+    request,
   );
+  if (!response.ok) throw new Error(response.statusText);
   const data = await response.json();
   return data;
 };
