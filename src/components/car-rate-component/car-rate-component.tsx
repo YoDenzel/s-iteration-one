@@ -15,7 +15,9 @@ export function CarRateComponent({
           <FilterRadioButton
             activeButtonName={activeButtonName}
             clickRadioButtonHandler={() => setActiveButtonName(item)}
-            name={`${item.rateTypeId.name}, ${item.price} ₽`}
+            name={`${item?.rateTypeId?.name || 'Нет информации'}, ${
+              item?.price || 'Нет информации'
+            } ₽`}
           />
         </div>
       ))}
